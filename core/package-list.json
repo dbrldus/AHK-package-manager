@@ -2,22 +2,19 @@
     {
         "id": "latex",
         "name": "LaTeX Tools",
-        "path": "Lib/Latex/",
-        "enabled": true,
+        "path": "Lib/latex/",
         "version": "0.1.0"
-    },
+    }, 
     {
         "id": "ros2",
         "name": "ROS2 Tools",
-        "path": "Lib/Ros2/",
-        "enabled": true,
+        "path": "Lib/ros2/",
         "version": "0.1.0"
     },
     {
         "id": "r33",
         "name": "Notion",
-        "path": "Lib/Rasda/",
-        "enabled": true,
+        "path": "Lib/r33/",
         "version": "0.1.0"
     }
 ]

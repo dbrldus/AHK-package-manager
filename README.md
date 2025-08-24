@@ -1,0 +1,1 @@
+! JSON.ahk의 경우 일단은 load / dump 기능

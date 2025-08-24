@@ -1,0 +1,18 @@
+{
+    "plugin": {
+        "id": "latex",
+        "version": "0.1.0"
+    },
+    "calibration": {
+        "EditorTopLeft": {
+            "x": 7686,
+            "y": 6959
+        }
+    },
+    "recent_docs": [
+        "doc1",
+        "doc2"
+    ],
+    "enabled": true,
+    "last_used": "2025-08-25 10:02:00"
+}
