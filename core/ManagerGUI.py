@@ -1,11 +1,11 @@
-#========================================================================================================
+#region # 설명 및 목차========================================================================================================
 # 파이썬 버전: 3.12.6
 # PyQt5: 5.15.11
 # Qt: 5.15.2
 # 목차:
 #   1) 라이브러리 import (PyQt5 위젯/코어/GUI, 표준 모듈)
 #   2) 전역변수 및 경로 설정 (isDebugging, assets/icons 경로, package_list_path)
-#   3) AHK 실행 파일 경로 조회 (find_ahk_path) 및 ahk_exe 바인딩
+#   3) AHK 실행 파일 경로 조회 (find_ahk_path) 및 ahk_exe_path 바인딩
 #   4) PackageManagementGUI 클래스
 #       4-1) UI 구성: 커스텀 타이틀바, 버튼(최소화/종료), 본문 레이아웃(좌/중/우 리스트·버튼)
 #       4-2) 스타일시트(다크 테마, 스크롤바 커스터마이즈)
@@ -15,16 +15,18 @@
 #       4-6) 패키지 헬퍼: findInfoByNameInPkgJson, findLibPathByNameInPkgJson,
 #                         runPkgByNameInPkgJson(스텁), checkBindingsByNameInPkgJson(스텁)
 #   5) 진입점: if __name__ == "__main__" (QApplication 실행)
-#========================================================================================================
+#endregion #========================================================================================================
 
 #region imports
-import sys, json, os, winreg, threading, subprocess
+import sys, json, os, winreg, threading, subprocess, time, difflib
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
-    QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller
+    QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller, QLineEdit, QSpacerItem, QSizePolicy,
+    QStyledItemDelegate
 )
-from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve
-from PyQt5.QtGui import QFont, QIcon
+from Lib.AHKRPC import RPCManager
+from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject
+from PyQt5.QtGui import QFont, QIcon, QColor, QBrush, QPainter
 
 #endregion
 
@@ -34,7 +36,7 @@ isDebugging = True #디버깅 변수
 assets_path = os.path.join(os.path.dirname(__file__), "..", "assets")
 icons_path = os.path.join(assets_path, "icons")
 package_list_path = os.path.join(os.path.dirname(__file__),"package-list.json")
-#endregion
+rpc_communication_path = os.path.join(os.path.dirname(__file__), "..", "tmp")
 
 def find_ahk_path():
     try:
@@ -46,22 +48,105 @@ def find_ahk_path():
     except Exception as e:
         raise FileNotFoundError("Cannot find AutoHotkey executer.") from e
 
-ahk_exe = find_ahk_path()
+ahk_exe_path = find_ahk_path()
 
+#endregion 
+
+
+#region 우월한 리스트 위젯
+class ToggleList(QListWidget):
+    def mousePressEvent(self, event):
+        item = self.itemAt(event.pos())
+        if item and item.isSelected():
+            item.setSelected(False)
+            
+            return  # 여기서 이벤트를 소비해서 다시 선택되지 않게 함
+        super().mousePressEvent(event)
+
+class SearchableList(ToggleList):
+    def __init__(self, search_bar):
+        super().__init__()
+
+        self.searchBar = search_bar
+        self.searchBar.textChanged.connect(self.highlightAndMove)
+        
+    def highlightAndMove(self, text):
+        text = text.strip().lower()
+
+        # 먼저 모든 아이템 색 초기화
+        for i in range(self.count()):
+            item = self.item(i)
+            item.setForeground(QColor("white"))
+            font = item.font()
+            font.setBold(False)        # 볼드체 켜기
+            # font.setItalic(True)    # 필요시 이탤릭
+            item.setFont(font)
+
+        if not text:
+            # 검색 없으면 전체 정렬
+            self.sortItems(Qt.AscendingOrder)
+            return
+
+        matches = []
+        for i in range(self.count()):
+            item = self.item(i)
+            word = item.text().lower()
+            # 부분 포함
+            if text in word or difflib.SequenceMatcher(None, text, word).ratio() >= 0.60:
+                item.setForeground(QColor("#ED7D31"))
+                font = item.font()
+                font.setBold(True)        # 볼드체 켜기
+                # font.setItalic(True)    # 필요시 이탤릭
+                item.setFont(font)
+                matches.append(item)
+
+        # match 상단으로
+        for item in matches:
+            row = self.row(item)
+            self.takeItem(row)
+            self.insertItem(0, item)
+
+        # 나머지 사전순 정렬
+        # (matches 그대로)
+        count = self.count()
+        match_count = len(matches)
+        if match_count < count:
+            items = [self.item(i).text() for i in range(match_count, count)]
+            items.sort(key=lambda s: s.lower())
+            for i in range(match_count, count):
+                self.item(i).setText(items[i - match_count])
+#endregion 
+
+class UiBridge(QObject):
+    runPkgSig = pyqtSignal()  
 
 class PackageManagementGUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setGeometry(200, 200, 500, 350)
+        
         self.pkgJson = self.openJson(package_list_path)
         self.pkgNames = [_.get("name") for _ in self.pkgJson]
         if isDebugging:
             print(self.pkgNames)
-            
+        self._anims = [] #텍스트 여러 개 옮길 때 애니메이션 각각 저장하기 위함
+        
+        #region RPC 통신용 셋업
+
+        self.client = RPCManager(rpc_communication_path)
+        self.bridge = UiBridge()
+        self.bridge.runPkgSig.connect(self.runPkg, Qt.QueuedConnection)
+        #endregion 
+
+        #region 눈에보이는거
+        #region 메인 레이아웃 설정
         mainLayout = QVBoxLayout()
+        
         mainLayout.setContentsMargins(0, 0, 0, 0)
         mainLayout.setSpacing(0)
+        
+        #endregion 
         
         #region 커스텀 타이틀바
         
@@ -122,14 +207,37 @@ class PackageManagementGUI(QWidget):
         # 각각의 레이아웃 명칭은 leftListLayout, btnLayout, rightListLayout
         #endregion 
         
-        #body 설정
+        #region 검색바
+        
+        searchLayout = QHBoxLayout()
+        searchBar = QLineEdit()
+        searchLayout.setContentsMargins(10, 5, 10, 5) 
+
+        leftSpacer  = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        rightSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        searchBar = QLineEdit()
+        searchBar.setPlaceholderText("Search Pkg...")
+        searchBar.setFixedWidth(200)  # 폭 고정
+        
+        searchLayout.addItem(leftSpacer)
+        searchLayout.addWidget(searchBar)
+        searchLayout.addItem(rightSpacer)
+        
+        #endregion 
+        
+        #region body 설정
         bodyLayout = QHBoxLayout()
         bodyLayout.setContentsMargins(10, 10, 10, 10)
+        #endregion 
         
         #region 좌측 리스트 leftList
         leftListLayout = QVBoxLayout()
-        self.leftList = QListWidget()
-        self.leftListTitle = QLabel("대기중인 패키지")
+        self.leftList = SearchableList(search_bar=searchBar)
+        
+        self.leftList.setSelectionMode(ToggleList.ExtendedSelection)
+        self.leftList.itemClicked.connect(self.delRightSelectedItems)
+        self.leftListTitle = QLabel("Ready")
         leftListLayout.addWidget(self.leftListTitle)
         leftListLayout.addWidget(self.leftList)
         self.leftList.addItems(self.pkgNames)
@@ -144,7 +252,7 @@ class PackageManagementGUI(QWidget):
         
         # 버튼설정
         self.btnRight.clicked.connect(self.runPkg)
-        self.btnLeft.clicked.connect(self.stopPkg)
+        self.btnLeft.clicked.connect(self.moveLeft)
         self.btnReload.clicked.connect(self.reloadPkg)
         
         # 버튼 배치
@@ -163,8 +271,10 @@ class PackageManagementGUI(QWidget):
         
         #region 우측 리스트(작동중인 패키지) rightList
         rightListLayout = QVBoxLayout()
-        self.rightList = QListWidget()
-        self.rightListTitle = QLabel("작동중인 패키지")
+        self.rightList = SearchableList(search_bar=searchBar)
+        self.rightList.setSelectionMode(ToggleList.ExtendedSelection)
+        self.rightList.itemClicked.connect(self.delLeftSelectedItems)
+        self.rightListTitle = QLabel("Active")
         rightListLayout.addWidget(self.rightListTitle)
         rightListLayout.addWidget(self.rightList)
         bodyLayout.addLayout(rightListLayout)
@@ -175,79 +285,87 @@ class PackageManagementGUI(QWidget):
         bodyFrame.setLayout(bodyLayout)
 
         mainLayout.addWidget(titleBar)
+        mainLayout.addLayout(searchLayout)
         mainLayout.addWidget(bodyFrame)
         self.setLayout(mainLayout)
         #endregion 
-        
+
         #region 스타일시트
         self.setStyleSheet("""
-        QWidget {
-            background-color: #2E3440;
-            color: #ECEFF4;
-            font-family: 'Segoe UI';
-            font-size: 14px;
-        }
-        QListWidget {
-            border: 2px solid #4C566A;
-            border-radius: 8px;
-            padding: 5px;
-            background-color: #3B4252;
-        }
-        QListWidget::item {
-            padding: 6px;
-        }
-        QListWidget::item:selected {
-            background-color: #81A1C1;
-            color: white;
-        }
-        QPushButton {
-            background-color: #5E81AC;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            color: white;
-            font-weight: bold;
-        }
-        QPushButton:hover {
-            background-color: #88C0D0;
-        }
-        QPushButton:pressed {
-            background-color: #4C566A;
-        }
+            QWidget {
+                background-color: #2E3440;
+                color: #ECEFF4;
+                font-family: 'Segoe UI';
+                font-size: 14px;
+            }
+            QListWidget {
+                border: 2px solid #4C566A;
+                border-radius: 8px;
+                padding: 5px;
+                background-color: #3B4252;
+            }
+            QListWidget::item {
+                padding: 6px;
+            }
+            QListWidget::item:selected {
+                background-color: #81A1C1;
+                color: white;
+            }
+            QPushButton {
+                background-color: #5E81AC;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 16px;
+                color: white;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #88C0D0;
+            }
+            QPushButton:pressed {
+                background-color: #4C566A;
+            }
 
-        /* ===== 스크롤바 커스터마이즈 ===== */
-        QScrollBar:vertical {
-            background: #3B4252;
-            width: 12px;
-            margin: 2px;
-            border-radius: 6px;
-        }
-        QScrollBar::handle:vertical {
-            background: #81A1C1;
-            min-height: 20px;
-            border-radius: 6px;
-        }
-        QScrollBar::handle:vertical:hover {
-            background: #88C0D0;
-        }
-        QScrollBar::add-line:vertical,
-        QScrollBar::sub-line:vertical {
-            background: none;
-            height: 0px;
-        }
-        QScrollBar::add-page:vertical,
-        QScrollBar::sub-page:vertical {
-            background: none;
-        }
-    """)
-    #endregion 
+            /* ===== 스크롤바 커스터마이즈 ===== */
+            QScrollBar:vertical {
+                background: #3B4252;
+                width: 12px;
+                margin: 2px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:vertical {
+                background: #81A1C1;
+                min-height: 20px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background: #88C0D0;
+            }
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+                height: 0px;
+            }
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+        """)
+        #endregion 
+        #endregion 
+        
+        
+        self.client.regist(self._rpc_run_wrapper, "Run")
+        self.client.spin()
+        
 
+
+    #region 함수 영역
     #region  ===== 애니메이션 관련 =====
-    def animateTransfer(self, text, start_pos, end_pos, callbackA, callbackB): #딱히 수정 필요없음. 순수 애니메이팅. A 위치에서 B 위치로 이동하는 기능
+    def animateTransfer(self, text, start_pos, end_pos, callback):
         label = QLabel(text, self)
         label.setStyleSheet("background-color: #81A1C1; color: white; padding: 4px; border-radius: 4px;")
         label.adjustSize()
-        callbackA()
         label.move(start_pos)
         label.show()
 
@@ -259,44 +377,52 @@ class PackageManagementGUI(QWidget):
 
         def onFinished():
             label.deleteLater()
-            callbackB()
+            callback()   # 여기서 지우기
 
         anim.finished.connect(onFinished)
         anim.start()
-        # PyQt GC 방지 → 객체를 변수에 붙여둠
-        self._anim = anim
+        if not hasattr(self, "_anims"):
+            self._anims = []
+        self._anims.append(anim)
 
-    def moveRight(self): #수정 불필요. 애니메이팅 보조 기능
-        for item in self.leftList.selectedItems():
-            text = item.text()
+
+    def moveRight(self):
+        selected = list(self.leftList.selectedItems())
+        texts = [item.text() for item in selected]
+        for item in selected:
+            self.leftList.takeItem(self.leftList.row(item))
+            
+        for text in texts:
             start = self.leftList.mapToGlobal(self.leftList.visualItemRect(item).topLeft())
             end = self.rightList.mapToGlobal(self.rightList.rect().topLeft())
             start = self.mapFromGlobal(start)
             end = self.mapFromGlobal(end)
 
-            def beforeMoveing():
-                self.leftList.takeItem(self.leftList.row(item))
-            def finish():
+            def finish(text=text):
                 self.rightList.addItem(text)
-            self.animateTransfer(text, start, end, beforeMoveing ,finish)
 
-    def moveLeft(self): #수정 불필요. 애니메이팅 보조 기능
-        for item in self.rightList.selectedItems():
-            text = item.text()
-            start = self.rightList.mapToGlobal(self.rightList.visualItemRect(item).topLeft())
+            self.animateTransfer(text, start, end, finish)
+        
+    def moveLeft(self):
+        selected = list(self.leftList.selectedItems())
+        texts = [item.text() for item in selected]
+        for item in selected:
+            self.rightList.takeItem(self.rightList.row(item)) #
+            
+        for text in texts:
+            start = self.rightList.mapToGlobal(self.rightList.visualItemRect(item).topLeft()) #
             end = self.leftList.mapToGlobal(self.leftList.rect().topLeft())
             start = self.mapFromGlobal(start)
             end = self.mapFromGlobal(end)
 
-            def beforeMoveing():
-                self.rightList.takeItem(self.rightList.row(item))
-            def finish():
+            def finish(text=text):
                 self.leftList.addItem(text)
-            self.animateTransfer(text, start, end, beforeMoveing, finish)
+
+            self.animateTransfer(text, start, end, finish)
 
     #endregion 
     
-    # ===== 타이틀바 드래그 =====
+    #region ===== 타이틀바 드래그 =====
     def titleMousePress(self, event):
         if event.button() == Qt.LeftButton:
             self.offset = event.globalPos() - self.frameGeometry().topLeft()
@@ -304,8 +430,19 @@ class PackageManagementGUI(QWidget):
     def titleMouseMove(self, event):
         if event.buttons() == Qt.LeftButton:
             self.move(event.globalPos() - self.offset)
+    #endregion 
     
-    #정보통신. json을 열고, 읽고, (쓸 수는 없음), 각종 ahk실행 및 
+    #region ===== 리스트 관련 함수 =====
+    def delRightSelectedItems(self, _):
+        if len(self.rightList.selectedItems()):
+            self.rightList.clearSelection()
+    def delLeftSelectedItems(self, _):
+        if len(self.leftList.selectedItems()):
+            self.leftList.clearSelection()
+    #endregion 
+    
+    #region 정보통신. json을 열고, 읽고, (쓸 수는 없음), 각종 ahk실행 및 
+    
     def openJson(self, path):
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
@@ -322,17 +459,43 @@ class PackageManagementGUI(QWidget):
             self.pkgNames.append(name)
             self.leftList.addItem(name)
         
-            
     def findInfoByNameInPkgJson(self, name, target): # data는 package-list.json 의 원형(딕셔너리를 원소로 갖는 리스트). name은 말 그대로 패키지 "이름"(name, id 아님). target은 찾고 싶은 패키지의 인자. id, path, version 등. 
         return next((i[target] for i in self.pkgJson if i.get("name") == name), None)
-    def findLibPathByNameInPkgJson(self, name):
+    
+    def findInstallPathByNameInPkgJson(self, name):
         return os.path.join(os.path.dirname(__file__), "..", self.findInfoByNameInPkgJson(name, "path"))
-    def runPkgByNameInPkgJson(self, pkg, name): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
-        pkg_path = self.findLibPathByNameInPkgJson(name)
+    
+    def runPkgByNameInPkgJson(self, name): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
+        pkg_init_path = os.path.join(self.findInstallPathByNameInPkgJson(name), "init.ahk")
+        print(f"pkg_init_path is {pkg_init_path}!!")
+        if(not self.client.request("runPkgInit",[pkg_init_path])):
+            return 0
+        else:
+            return 1
         
     def checkBindingsByNameInPkgJson(self, pkg):
         pass
-
+    
+    def runPkg(self):
+        selected = list(self.leftList.selectedItems())
+        print(selected)
+        texts = [item.text() for item in selected]
+        print(texts)
+        for text in texts:
+            self.runPkgByNameInPkgJson(text)
+        self.moveRight()
+        
+    def _rpc_run_wrapper(self, *args):
+        # 백그라운드 스레드에서 실행됨 → UI 직접 조작 금지!
+        self.bridge.runPkgSig.emit()
+        return "OK"  # AHK 쪽에 즉시 응답 필요하면 간단한 값 반환
+    
+    
+    
+    #endregion 
+    #endregion 
+    
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PackageManagementGUI()

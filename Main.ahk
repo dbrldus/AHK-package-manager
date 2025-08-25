@@ -12,6 +12,10 @@
 ::\s::{
     SendText("self.")
 }
+
+::\t:: {
+    SendText("this.")
+}
 ::\rg:: {
     SendText("#region ")
 }

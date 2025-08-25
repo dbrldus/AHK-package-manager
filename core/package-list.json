@@ -1,8 +1,8 @@
 [
     {
-        "id": "latex",
+        "id": "Latex",
         "name": "LaTeX Tools",
-        "path": "Lib/latex/",
+        "path": "Lib/Latex/",
         "version": "0.1.0"
     }, 
     {
