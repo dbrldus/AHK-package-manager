@@ -15,7 +15,7 @@
 #       4-6) 패키지 헬퍼: findInfoByNameInPkgJson, findLibPathByNameInPkgJson,
 #                         runPkgByNameInPkgJson(스텁), checkBindingsByNameInPkgJson(스텁)
 #   5) 진입점: if __name__ == "__main__" (QApplication 실행)
-#endregion #========================================================================================================
+#endregion #=================================================================================================================
 
 #region imports
 import sys, json, os, winreg, threading, subprocess, time, difflib
@@ -24,19 +24,18 @@ from PyQt5.QtWidgets import (
     QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller, QLineEdit, QSpacerItem, QSizePolicy,
     QStyledItemDelegate
 )
-from Lib.AHKRPC import RPCManager
+from util.PyRPC import RPCManager
 from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject
 from PyQt5.QtGui import QFont, QIcon, QColor, QBrush, QPainter
+from util.path import ROOT_PATH, DATA_PATH, CONFIG_PATH, RUNTIME_PATH, SCHEMA_PATH, TEMP_PATH, CORE_PATH, ASSETS_PATH, ICONS_PATH, PKGS_PATH
 
 #endregion
 
 isDebugging = True #디버깅 변수
 
 #region Path
-assets_path = os.path.join(os.path.dirname(__file__), "..", "assets")
-icons_path = os.path.join(assets_path, "icons")
-package_list_path = os.path.join(os.path.dirname(__file__),"package-list.json")
-rpc_communication_path = os.path.join(os.path.dirname(__file__), "..", "tmp")
+package_list_path = os.path.join(SCHEMA_PATH, "package-list.json")
+rpc_communication_path = os.path.join(TEMP_PATH, "ipc")
 
 def find_ahk_path():
     try:
@@ -118,7 +117,8 @@ class SearchableList(ToggleList):
 #endregion 
 
 class UiBridge(QObject):
-    runPkgSig = pyqtSignal()  
+    movePkgRightSig = pyqtSignal()  
+    hubStatusSig = pyqtSignal()
 
 class PackageManagementGUI(QWidget):
     def __init__(self):
@@ -136,7 +136,11 @@ class PackageManagementGUI(QWidget):
 
         self.client = RPCManager(rpc_communication_path)
         self.bridge = UiBridge()
-        self.bridge.runPkgSig.connect(self.runPkg, Qt.QueuedConnection)
+        self.bridge.movePkgRightSig.connect(self.moveRight, Qt.QueuedConnection)
+        self.bridge.hubStatusSig.connect(self.checkHubStatus, Qt.QueuedConnection)
+        self.client.regist(self._rpc_run_wrapper, "MovePkgRight")
+        self.client.regist(self._check_hub, "doCheckHubStatus")
+        self.client.spin()
         #endregion 
 
         #region 눈에보이는거
@@ -165,11 +169,11 @@ class PackageManagementGUI(QWidget):
         #endregion 
         
             #region 타이틀에 놓일 버튼 (최소화, 나가기(종료), 디자인 포함)
-        btnMin = QPushButton(QIcon(os.path.join(icons_path, "frame_.svg")),"")
+        btnMin = QPushButton(QIcon(os.path.join(ICONS_PATH, "frame_.svg")),"")
         btnMin.setFixedSize(30, 24)
         btnMin.clicked.connect(self.showMinimized)
         
-        btnClose = QPushButton(QIcon(os.path.join(icons_path, "frameX.svg")),"")
+        btnClose = QPushButton(QIcon(os.path.join(ICONS_PATH, "frameX.svg")),"")
         btnClose.setFixedSize(30, 24)
         btnClose.clicked.connect(self.close)
 
@@ -246,17 +250,24 @@ class PackageManagementGUI(QWidget):
         
         #region  본문 버튼 설정, 배치, 디자인
         btnLayout = QVBoxLayout()
-        self.btnRight = QPushButton(QIcon(os.path.join(icons_path, "arrowR.svg")), "")
-        self.btnLeft = QPushButton(QIcon(os.path.join(icons_path, "arrowL.svg")), "")
-        self.btnReload = QPushButton(QIcon(os.path.join(icons_path, "reloadbtn1.svg")), "")
+        self.btnRight = QPushButton(QIcon(os.path.join(ICONS_PATH, "arrowR.svg")), "")
+        self.btnLeft = QPushButton(QIcon(os.path.join(ICONS_PATH, "arrowL.svg")), "")
+        self.btnReload = QPushButton(QIcon(os.path.join(ICONS_PATH, "reloadbtn1.svg")), "")
+        self.btnOnOffHub = QPushButton(QIcon(os.path.join(ICONS_PATH, "onOff.svg")), "")
+        self.hubStatusLable = QLabel(text="Hub: Off")
+        self.hubStatusLable.setStyleSheet("color: red;")
+        self.checkHubStatus()
         
         # 버튼설정
-        self.btnRight.clicked.connect(self.runPkg)
+        self.btnRight.clicked.connect(self.runPkgCall)
         self.btnLeft.clicked.connect(self.moveLeft)
         self.btnReload.clicked.connect(self.reloadPkg)
+        self.btnOnOffHub.clicked.connect(self.onOffHub)
         
         # 버튼 배치
         btnLayout.addStretch()
+        btnLayout.addWidget(self.btnOnOffHub)
+        btnLayout.addWidget(self.hubStatusLable)
         btnLayout.addWidget(self.btnRight)
         btnLayout.addWidget(self.btnLeft)
         btnLayout.addWidget(self.btnReload)
@@ -267,6 +278,7 @@ class PackageManagementGUI(QWidget):
         self.btnReload.setStyleSheet("QPushButton { qproperty-iconSize: 24px 24px; }")
         self.btnRight.setStyleSheet("QPushButton { qproperty-iconSize: 20px 20px; }")
         self.btnLeft.setStyleSheet("QPushButton { qproperty-iconSize: 20px 20px; }")
+        self.btnOnOffHub.setStyleSheet("QPushButton { qproperty-iconSize: 20px 20px; }")
         #endregion 
         
         #region 우측 리스트(작동중인 패키지) rightList
@@ -353,12 +365,6 @@ class PackageManagementGUI(QWidget):
         """)
         #endregion 
         #endregion 
-        
-        
-        self.client.regist(self._rpc_run_wrapper, "Run")
-        self.client.spin()
-        
-
 
     #region 함수 영역
     #region  ===== 애니메이션 관련 =====
@@ -386,8 +392,13 @@ class PackageManagementGUI(QWidget):
         self._anims.append(anim)
 
 
-    def moveRight(self):
+    def moveRight(self, item = None):
         selected = list(self.leftList.selectedItems())
+        if item != None:
+            selected = [item]
+        else:
+            selected = list(self.leftList.selectedItems())
+            
         texts = [item.text() for item in selected]
         for item in selected:
             self.leftList.takeItem(self.leftList.row(item))
@@ -419,7 +430,8 @@ class PackageManagementGUI(QWidget):
                 self.leftList.addItem(text)
 
             self.animateTransfer(text, start, end, finish)
-
+    def onOffHub(self):
+        pass
     #endregion 
     
     #region ===== 타이틀바 드래그 =====
@@ -444,10 +456,10 @@ class PackageManagementGUI(QWidget):
     #region 정보통신. json을 열고, 읽고, (쓸 수는 없음), 각종 ahk실행 및 
     
     def openJson(self, path):
-            with open(path, "r", encoding="utf-8") as f:
-                return json.load(f)
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
             
-    def reloadPkg(self): # 패키지 json에서 패키지 이름 받아서 만약 추가되
+    def reloadPkg(self): # 패키지 json에서 패키지 이름 받아서 만약 추가되면 리스트에도 추가.
         if isDebugging:
             print("Reloadbtn pushed!")
         new_pkg_json = self.openJson(package_list_path)
@@ -456,45 +468,71 @@ class PackageManagementGUI(QWidget):
             if isDebugging:
                 print(set(new_pkgNames) - set(self.pkgNames))
                 
+            if name in [item.text() for item in list(self.leftList.Items())]:
+                self.leftList.takeItem(self.leftList.row(name))
             self.pkgNames.append(name)
             self.leftList.addItem(name)
         
     def findInfoByNameInPkgJson(self, name, target): # data는 package-list.json 의 원형(딕셔너리를 원소로 갖는 리스트). name은 말 그대로 패키지 "이름"(name, id 아님). target은 찾고 싶은 패키지의 인자. id, path, version 등. 
         return next((i[target] for i in self.pkgJson if i.get("name") == name), None)
     
-    def findInstallPathByNameInPkgJson(self, name):
-        return os.path.join(os.path.dirname(__file__), "..", self.findInfoByNameInPkgJson(name, "path"))
+    def findInstallDirByNameInPkgJson(self, name):
+        return os.path.join(PKGS_PATH, self.findInfoByNameInPkgJson(name, "id"))
     
     def runPkgByNameInPkgJson(self, name): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
-        pkg_init_path = os.path.join(self.findInstallPathByNameInPkgJson(name), "init.ahk")
+        pkg_init_path = os.path.join(self.findInstallDirByNameInPkgJson(name), "init.ahk")
         print(f"pkg_init_path is {pkg_init_path}!!")
         if(not self.client.request("runPkgInit",[pkg_init_path])):
             return 0
         else:
             return 1
-        
-    def checkBindingsByNameInPkgJson(self, pkg):
-        pass
     
-    def runPkg(self):
+    def runPkgCall(self):
         selected = list(self.leftList.selectedItems())
-        print(selected)
+        # print(selected)
         texts = [item.text() for item in selected]
         print(texts)
         for text in texts:
             self.runPkgByNameInPkgJson(text)
-        self.moveRight()
+        
+    def stopPkgCall(self):
+        pass
         
     def _rpc_run_wrapper(self, *args):
-        # 백그라운드 스레드에서 실행됨 → UI 직접 조작 금지!
-        self.bridge.runPkgSig.emit()
-        return "OK"  # AHK 쪽에 즉시 응답 필요하면 간단한 값 반환
+        self.bridge.movePkgRightSig.emit()
+        return 0
+    def _check_hub(self, *args):
+        self.bridge.hubStatusSig.emit()
+        return 0
     
+    def findItemByName(self, qlist:QListWidget, name):
+        obj = list(qlist.items())
+        for item in obj:
+            if item.text() == name:
+                return item
     
+    def moveItemRightByName(self, name):
+        target_item = self.findItemByName(self.leftList, name)
+        self.moveRight(item=target_item)
+        return 0
+    
+    def moveItemLeftByName(self, name):
+        target_item = self.findItemByName(self.leftList, name)
+        self.moveRight(item=target_item)
+        return 0
+    
+    def checkHubStatus(self):
+        path = os.path.join(RUNTIME_PATH, "hub-status.json")
+        data = self.openJson(path)
+        if(data["is_active"] == "True"):
+            self.hubStatusLable.setStyleSheet("color: green;")
+            self.hubStatusLable.setText("Hub status: On")
+        else:
+            self.hubStatusLable.setStyleSheet("color: red;")
+            self.hubStatusLable.setText("Hub status: Off")
     
     #endregion 
     #endregion 
-    
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)

@@ -4,7 +4,7 @@ import tempfile
 import threading
 
 class RPCManager:
-    def __init__(self, _temp_path):
+    def __init__(self, _temp_path: str):
         self.callbacks = {}
         self.running = False
         self.temp_path = _temp_path

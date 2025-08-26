@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 ^#r::{
-    Run("C:\Users\acalo\OneDrive\문서\AutoHotkey\Main.ahk")
+    Run(A_ScriptFullPath)
 }
 
 ::\D::{
@@ -57,4 +57,8 @@ Log(1)
     Send("!{Tab}")
     Sleep 1000
     Send("!{F4}")
+}
+::\pj::{
+    SendText("os.path.join()")
+    SendInput("{Left}")
 }

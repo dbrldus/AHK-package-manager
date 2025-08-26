@@ -32,10 +32,10 @@
 }
 
 ::\mat::{
-    SendText("\begin{pmatrix}")
+    SendText("\begin{bmatrix}")
     Send("+{Enter}")
     Send("+{Enter}")
-    SendText("\end{pmatrix}")
+    SendText("\end{bmatrix}")
     Send("{Up}")
 }
 
@@ -104,7 +104,7 @@ F1::{
 ::\b::{
     SendText("\beta")
 }
-::\D::{
+::\\d::{
     SendText("\Delta")
 }
 ::\t::{
