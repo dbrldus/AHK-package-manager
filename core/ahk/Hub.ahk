@@ -19,9 +19,12 @@ cleanup(exitReason, exitCode) {
 ; -----------------------------------------------------------
 
 python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
-if (python_exe_path = "")
+if (python_exe_path = ""){
     findPythonInterpreterGUI()
-python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
+    python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
+}
+    
+
 
 client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
 shutdownManager := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
@@ -56,10 +59,7 @@ client.request("doCheckHubStatus", [])
 ^#h:: {
     Run(A_ScriptFullPath)
 }
-^#g:: {
-    obj := '"' python_exe_path '"' " " '"' PathJoin(CORE_PATH, "py", "ManagerGUI.py") '"'
-    Run obj
-}
+
 
 ; cleanup 함수가 이제 OnExit보다 위에 있으므로 오류가 발생하지 않습니다.
 OnExit(cleanup)
