@@ -1,6 +1,6 @@
 /*
-Latex Tools
-v0.1.0
+Latex Tools For Notion Math Editor
+0.1.0
 */
 
 ::\mb:: {

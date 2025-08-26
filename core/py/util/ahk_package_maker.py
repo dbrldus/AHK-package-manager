@@ -4,6 +4,14 @@ import json
 import sys
 import os
 
+AHK_INIT_SCRIPT_CONTENT = """
+#Requires AutoHotkey v2.0
+#SingleInstance Force
+#Include ..\\..\\core\\ahk\\Lib
+#Include Path.ahk
+#Include stdinit.ahk
+"""
+
 # Remove Comments
 def removeComments(code : List[str]):
     texts : List[str] = []
@@ -141,15 +149,15 @@ def getCommandFromCode(code : str):
     idx = code.rfind("::")
     cmd : str
     option : str
-    type : Literal["hotkey", "hotstring"]
+    _type : Literal["hotkey", "hotstring"]
 
     code = code[:idx]
     if code.find(":") == -1:
-        type = "hotkey"
+        _type = "hotkey"
         cmd = code
         option = "none"
     else:
-        type = "hotstring"
+        _type = "hotstring"
         code = code[1:]
         idx = code.find(":")
         option = code[:idx]
@@ -157,36 +165,71 @@ def getCommandFromCode(code : str):
         if(option == ""):
             option = "none"
         
-    return {"type" : type, "cmd" : cmd, "option" : option }
+    return [_type, cmd, option]
 
-def ExtractCommandFromAHKFile(directory, name):
-    code : List[str]
-    try:
-        with open(directory + f"/{name}.ahk", "r", encoding='utf-8-sig') as f:
-            code = f.readlines()
-    except:
-        print(os.path.dirname(__file__))
-        print(f"Error : Could not find {name}.ahk")
-        return
+def ExtractBindingsFromAHKFile(code : List[str]):
     code = removeComments(code)
     code = removeStringLiterals(code)
     code = getCommandLineInCode(code)
+
+    result = {"hotkeys" : [], "hotstrings" : []}
     for i in code:
-        print(getCommandFromCode(i))
+        cmd : str
+        option : str
+        _type : Literal["hotkey", "hotstring"]
+        [_type, cmd, option] = getCommandFromCode(i)
+        if (_type == "hotkey") :
+            result["hotkeys"].append({"cmd" : cmd, "option" : option})
+        elif (_type == "hotstring") :
+            result["hotstrings"].append({"cmd" : cmd, "option" : option})
+    return result
 
-def Build(directory, name):
-    ExtractCommandFromAHKFile(directory, name)
+def Build(directory):
+    fileName = directory.split("\\")[-1]
+    codeText : str
+    try:
+        with open(directory + f"/{fileName}.ahk", "r", encoding='utf-8-sig') as f:
+            codeText = f.read()
+    except:
+        print(f"Error : Could not find {fileName}.ahk")
+        return
 
+    start = codeText.find("/*")
+    end = codeText.find("*/")
+    [name, version] = codeText[start+3:end-1].split("\n")
+
+    if(version[0] == "v"):
+        version = version[1:]
+
+    package_info = {
+        "id" : fileName,
+        "name" : name,
+        "version" : version
+    }
+
+    package_info_string = json.dumps(package_info, indent=4, ensure_ascii=False, sort_keys=True)
+    with open(directory + "/package.json", "w", encoding='utf-8') as f:
+        f.write(package_info_string)
+    
+    with open(directory + "/init.ahk", "w", encoding='utf-8-sig') as f:
+        f.write(AHK_INIT_SCRIPT_CONTENT)
+
+    code = codeText.split("\n")
+    bindings = ExtractBindingsFromAHKFile(code)
+    bindings_string = json.dumps(bindings, indent=4, ensure_ascii=False, sort_keys=True)
+
+    with open(directory + "/bindings.json", "w", encoding='utf-8') as f:
+        f.write(bindings_string)
+        
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         working_directory = sys.argv[1]
-        fileName = working_directory.split("\\")[-1]
         print(f"명령어가 실행된 경로: {working_directory}")
         additional_args = sys.argv[2:]
         print(f"추가 인자: {additional_args}")
 
         if "run" in additional_args and "build" in additional_args:
-            Build(working_directory, fileName)
+            Build(working_directory)
         else:
             print("Unknown Commands.")
     else:
