@@ -1,11 +1,16 @@
-::\mb::{
+/*
+Latex Tools
+v0.1.0
+*/
+
+::\mb:: {
     SendText("/mat")
     SendInput("h{Enter}")
 }
-::\mi::{
+::\mi:: {
     SendInput("^+e")
 }
-::\ma::{
+::\ma:: {
     SendText("\begin{align*}")
     Send("+{Enter}")
     Send("+{Enter}")
@@ -13,25 +18,25 @@
     Send("{Up}")
 }
 
-::\dp::{
+::\dp:: {
     SendText("\displaystyle")
 }
 
-::\lr::{
+::\lr:: {
     SendText("\left(  \right)")
     Send("{Left 7}")
 }
-::\fr::{
+::\fr:: {
     SendText("\frac{}{}")
     Send("{Left 3}")
 }
 
-::\sq::{
+::\sq:: {
     SendText("\sqrt{}")
-    Send("{Left}") 
+    Send("{Left}")
 }
 
-::\mat::{
+::\mat:: {
     SendText("\begin{bmatrix}")
     Send("+{Enter}")
     Send("+{Enter}")
@@ -39,7 +44,7 @@
     Send("{Up}")
 }
 
-::\lim::{
+::\lim:: {
     SendText("\lim_{ \to }")
     Send("{Left 5}")
 }
@@ -52,7 +57,7 @@
     ch := ih.Input
     if (ch = "")
         return
-    len := StrLen(ch)+1
+    len := StrLen(ch) + 1
     Send("{Backspace " len "}")
     SendText("\frac{d}{d" ch "}")
 }
@@ -65,20 +70,20 @@
     ch := ih.Input
     if (ch = "")
         return
-    len := StrLen(ch)+1
+    len := StrLen(ch) + 1
     Send("{Backspace " len "}")
     SendText("\frac{\partial}{\partial " ch "}")
 }
 
-::\int::{
+::\int:: {
     SendText("\int_{}^{}")
     Send("{Left 4}")
 }
-::\inti::{
+::\inti:: {
     SendText("\int_{-\infty}^{\infty}")
 }
 
-F1::{
+F1:: {
     OriginalClipboard := A_Clipboard
     A_Clipboard := ""
     SendInput("+^{End}")
@@ -93,34 +98,33 @@ F1::{
         Send("{Right " Count "}")
     }
     A_Clipboard := OriginalClipboard
-    Return
+    return
 }
-
 
 ;Greek Alphabet
-::\a::{
+::\a:: {
     SendText("\alpha")
 }
-::\b::{
+::\b:: {
     SendText("\beta")
 }
-::\\d::{
+::\\d:: {
     SendText("\Delta")
 }
-::\t::{
+::\t:: {
     SendText("\theta")
 }
-::\l::{
+::\l:: {
     SendText("\lambda")
 }
-::\w::{
+::\w:: {
     SendText("\omega")
 }
-::\x::{
+::\x:: {
     SendText("\xi")
 }
-::\z::{
-    SendText("\zeta") 
+::\z:: {
+    SendText("\zeta")
 }
 
 MsgBox "LaTex Now Active!"

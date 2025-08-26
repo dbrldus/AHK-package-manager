@@ -1,10 +1,8 @@
 from typing import *
 from collections import deque
+import json
+import sys
 import os
-
-code : List[str]
-with open(os.path.dirname(__file__) + "/Latex.ahk", "r", encoding='utf-8-sig') as f:
-    code = f.readlines()
 
 # Remove Comments
 def removeComments(code : List[str]):
@@ -161,5 +159,35 @@ def getCommandFromCode(code : str):
         
     return {"type" : type, "cmd" : cmd, "option" : option }
 
-for i in getCommandLineInCode(removeStringLiterals(removeComments(code))):
-    print(getCommandFromCode(i))
+def ExtractCommandFromAHKFile(directory, name):
+    code : List[str]
+    try:
+        with open(directory + f"/{name}.ahk", "r", encoding='utf-8-sig') as f:
+            code = f.readlines()
+    except:
+        print(os.path.dirname(__file__))
+        print(f"Error : Could not find {name}.ahk")
+        return
+    code = removeComments(code)
+    code = removeStringLiterals(code)
+    code = getCommandLineInCode(code)
+    for i in code:
+        print(getCommandFromCode(i))
+
+def Build(directory, name):
+    ExtractCommandFromAHKFile(directory, name)
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        working_directory = sys.argv[1]
+        fileName = working_directory.split("\\")[-1]
+        print(f"명령어가 실행된 경로: {working_directory}")
+        additional_args = sys.argv[2:]
+        print(f"추가 인자: {additional_args}")
+
+        if "run" in additional_args and "build" in additional_args:
+            Build(working_directory, fileName)
+        else:
+            print("Unknown Commands.")
+    else:
+        print("Argument Not Found")
