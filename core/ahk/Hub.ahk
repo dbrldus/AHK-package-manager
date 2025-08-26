@@ -1,4 +1,3 @@
-; MyScript.ahk
 #Requires AutoHotkey v2.0
 #Include <Path>
 #Include <AHKRPC>
@@ -6,16 +5,28 @@
 #Include <JSON_PLUS>
 #SingleInstance Force
 
-
+; --- cleanup 함수를 스크립트의 가장 상단에 배치합니다. ---
+cleanup(exitReason, exitCode) {
+    global hub_status, RUNTIME_PATH, client
+    try {
+        hub_status["is_active"] := "False"
+        writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
+        client.request("doCheckHubStatus", [])
+    } catch as e {
+        try FileAppend(e.Message "`n", A_ScriptDir "\cleanup.log", "UTF-8")
+    }
+}
+; -----------------------------------------------------------
 
 python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
 if (python_exe_path = "")
     findPythonInterpreterGUI()
-    python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
-
+python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
 
 client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
-runPkgInit(init_path){
+shutdownManager := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
+
+runPkgInit(init_path) {
     try {
         Run(init_path, , , &pid)
         client.request("MovePkgRight", [])
@@ -25,29 +36,30 @@ runPkgInit(init_path){
     }
 }
 
-isWell(init_path) {
-    return 0
+shutdown() {
+    ; MsgBox "receieved shutdown signal!"
+    ExitApp
 }
 client.regist(runPkgInit, "runPkgInit")
-client.regist(isWell, 'asdsad')
+shutdownManager.regist(shutdown, "doShutdown")
+shutdownManager.spin()
 client.spin()
 
-
+hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
+hub_status["is_active"] := "True"
+writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
 client.request("doCheckHubStatus", [])
 
-^#D::{
+^#D:: {
     client.request("MovePkgRight", [])
 }
-^#h::{
+^#h:: {
     Run(A_ScriptFullPath)
 }
-^#g::{
+^#g:: {
     obj := '"' python_exe_path '"' " " '"' PathJoin(CORE_PATH, "py", "ManagerGUI.py") '"'
     Run obj
 }
 
-cleanup(){
-    return 0
-}
-
+; cleanup 함수가 이제 OnExit보다 위에 있으므로 오류가 발생하지 않습니다.
 OnExit(cleanup)

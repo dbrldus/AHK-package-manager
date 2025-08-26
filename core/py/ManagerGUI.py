@@ -256,13 +256,13 @@ class PackageManagementGUI(QWidget):
         self.btnOnOffHub = QPushButton(QIcon(os.path.join(ICONS_PATH, "onOff.svg")), "")
         self.hubStatusLable = QLabel(text="Hub: Off")
         self.hubStatusLable.setStyleSheet("color: red;")
-        self.checkHubStatus()
+        
         
         # 버튼설정
         self.btnRight.clicked.connect(self.runPkgCall)
         self.btnLeft.clicked.connect(self.moveLeft)
         self.btnReload.clicked.connect(self.reloadPkg)
-        self.btnOnOffHub.clicked.connect(self.onOffHub)
+        self.btnOnOffHub.clicked.connect(self.hubOnOff)
         
         # 버튼 배치
         btnLayout.addStretch()
@@ -430,8 +430,7 @@ class PackageManagementGUI(QWidget):
                 self.leftList.addItem(text)
 
             self.animateTransfer(text, start, end, finish)
-    def onOffHub(self):
-        pass
+
     #endregion 
     
     #region ===== 타이틀바 드래그 =====
@@ -501,9 +500,7 @@ class PackageManagementGUI(QWidget):
     def _rpc_run_wrapper(self, *args):
         self.bridge.movePkgRightSig.emit()
         return 0
-    def _check_hub(self, *args):
-        self.bridge.hubStatusSig.emit()
-        return 0
+    
     
     def findItemByName(self, qlist:QListWidget, name):
         obj = list(qlist.items())
@@ -520,10 +517,15 @@ class PackageManagementGUI(QWidget):
         target_item = self.findItemByName(self.leftList, name)
         self.moveRight(item=target_item)
         return 0
+    #region HUB ON/OFF 관련
+    def _check_hub(self, *args):
+        self.bridge.hubStatusSig.emit()
+        return 0
     
     def checkHubStatus(self):
         path = os.path.join(RUNTIME_PATH, "hub-status.json")
         data = self.openJson(path)
+        print("checking hub state...")
         if(data["is_active"] == "True"):
             self.hubStatusLable.setStyleSheet("color: green;")
             self.hubStatusLable.setText("Hub status: On")
@@ -531,6 +533,17 @@ class PackageManagementGUI(QWidget):
             self.hubStatusLable.setStyleSheet("color: red;")
             self.hubStatusLable.setText("Hub status: Off")
     
+    def hubOnOff(self):
+        path = os.path.join(RUNTIME_PATH, "hub-status.json")
+        data = self.openJson(path)
+
+        if data["is_active"] == "True":
+            # 현재 켜져 있으니 종료 실행
+            subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "shutdown.ahk")])
+        else:
+            # 현재 꺼져 있으니 초기화 실행
+            subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "init.ahk")])
+    #endregion 
     #endregion 
     #endregion 
     
@@ -538,4 +551,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PackageManagementGUI()
     window.show()
+    window.checkHubStatus()
     sys.exit(app.exec_())
