@@ -32,6 +32,24 @@ CORE_PATH := ROOT_PATH "\core"
 DATA_PATH := ROOT_PATH "\data"
 CONFIG_PATH := ROOT_PATH "\config"
 RUNTIME_PATH := CORE_PATH "\runtime"
+if !DirExist(RUNTIME_PATH) {
+    DirCreate(RUNTIME_PATH)
+}
+defaultJson := "[]"
+json_file := PathJoin(RUNTIME_PATH, "package-status.json")
+if !FileExist(json_file) {
+    try {
+        FileAppend(defaultJson, json_file, "UTF-8")
+    }
+}
+
+defaultJson := '{"is_active":"False", "PID": -1}'
+json_file := PathJoin(RUNTIME_PATH, "hub-status.json")
+if !FileExist(json_file) {
+    try {
+        FileAppend(defaultJson, json_file, "UTF-8")
+    }
+}
 SCHEMA_PATH := CORE_PATH "\schema"
 TEMP_PATH := CORE_PATH "\tmp"
 ASSETS_PATH := ROOT_PATH "\assets"

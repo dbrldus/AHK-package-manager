@@ -48,7 +48,6 @@ def find_ahk_path():
         raise FileNotFoundError("Cannot find AutoHotkey executer.") from e
 
 ahk_exe_path = find_ahk_path()
-
 #endregion 
 
 

@@ -5,7 +5,6 @@
 #Include <JSON_PLUS>
 #SingleInstance Force
 
-; --- cleanup 함수를 스크립트의 가장 상단에 배치합니다. ---
 cleanup(exitReason, exitCode) {
     global hub_status, RUNTIME_PATH, client
     try {

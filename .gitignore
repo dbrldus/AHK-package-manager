@@ -1,1 +1,2 @@
-/core/runtime/
+core/runtime/*
+!core/runtime/.gitignore

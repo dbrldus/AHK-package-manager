@@ -3,7 +3,7 @@
 #Include JSON_PLUS.ahk
 
 pkg_json_path := A_ScriptDir "\package.json"
-status_path := PathJoin(CORE_PATH, "runtime", "package-status.json")
+status_path := PathJoin(RUNTIME_PATH, "package-status.json")
 
 packageInfo := readJsonFile(pkg_json_path)
 packageName := packageInfo["name"]
