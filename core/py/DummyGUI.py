@@ -632,11 +632,12 @@ class PackageManagementGUI(QWidget):
                     pkgList.append(currentPkgInfo)
                     with open(package_list_path, "w", encoding="utf-8") as f:
                         f.write(json.dumps(pkgList, indent=4, ensure_ascii=False, sort_keys=True))
+                        self.reloadPkg()
                     print("Add Package Completed")
                 except FileExistsError:
-                    print("에러: 대상 디렉토리가 이미 존재합니다.")
+                    print("Error : Package Already Exists")
                 except FileNotFoundError:
-                    print("에러: 원본 디렉토리를 찾을 수 없습니다.")
+                    print("Error : Could Not Find Selected Package")
         else:
             print("Fail to import package.")
             
@@ -645,14 +646,15 @@ class PackageManagementGUI(QWidget):
             print("Reloadbtn pushed!")
         new_pkg_json = self.openJson(package_list_path)
         new_pkgNames = [_.get("name") for _ in new_pkg_json]
-        for name in set(new_pkgNames) - set(self.pkgNames):
-            if isDebugging:
-                print(set(new_pkgNames) - set(self.pkgNames))
+        # for name in set(new_pkgNames) - set(self.pkgNames):
+        #     if isDebugging:
+        #         print(set(new_pkgNames) - set(self.pkgNames))
                 
-            if name in [item.text() for item in list(self.leftList.items())]:
-                self.leftList.takeItem(self.leftList.row(name))
-            self.pkgNames.append(name)
-            self.leftList.addItem(name)
+        #     if name in [item.text() for item in list(self.leftList.items())]:
+        #         self.leftList.takeItem(self.leftList.row(name))
+        self.pkgNames = new_pkgNames
+        self.leftList.clear()
+        self.leftList.addItems(new_pkgNames)
         
     def findInfoByNameInPkgJson(self, name, target): # data는 package-list.json 의 원형(딕셔너리를 원소로 갖는 리스트). name은 말 그대로 패키지 "이름"(name, id 아님). target은 찾고 싶은 패키지의 인자. id, path, version 등. 
         return next((i[target] for i in self.pkgJson if i.get("name") == name), None)
