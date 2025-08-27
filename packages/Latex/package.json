@@ -1,6 +1,5 @@
 {
     "id": "Latex",
-    "name": "Latex Tools",
-    "path": "Lib/Latex/",
+    "name": "Latex Tools For Notion Math Editor",
     "version": "0.1.0"
 }

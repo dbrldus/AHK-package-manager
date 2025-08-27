@@ -1,0 +1,94 @@
+{
+    "hotkeys": [
+        {
+            "cmd": "F1",
+            "option": "none"
+        }
+    ],
+    "hotstrings": [
+        {
+            "cmd": "\\mb",
+            "option": "none"
+        },
+        {
+            "cmd": "\\mi",
+            "option": "none"
+        },
+        {
+            "cmd": "\\ma",
+            "option": "none"
+        },
+        {
+            "cmd": "\\dp",
+            "option": "none"
+        },
+        {
+            "cmd": "\\lr",
+            "option": "none"
+        },
+        {
+            "cmd": "\\fr",
+            "option": "none"
+        },
+        {
+            "cmd": "\\sq",
+            "option": "none"
+        },
+        {
+            "cmd": "\\mat",
+            "option": "none"
+        },
+        {
+            "cmd": "\\lim",
+            "option": "none"
+        },
+        {
+            "cmd": "\\diff",
+            "option": "*?"
+        },
+        {
+            "cmd": "\\pdiff",
+            "option": "*?"
+        },
+        {
+            "cmd": "\\int",
+            "option": "none"
+        },
+        {
+            "cmd": "\\inti",
+            "option": "none"
+        },
+        {
+            "cmd": "\\a",
+            "option": "none"
+        },
+        {
+            "cmd": "\\b",
+            "option": "none"
+        },
+        {
+            "cmd": "\\\\d",
+            "option": "none"
+        },
+        {
+            "cmd": "\\t",
+            "option": "none"
+        },
+        {
+            "cmd": "\\l",
+            "option": "none"
+        },
+        {
+            "cmd": "\\w",
+            "option": "none"
+        },
+        {
+            "cmd": "\\x",
+            "option": "none"
+        },
+        {
+            "cmd": "\\z",
+            "option": "none"
+        }
+    ]
+}
