@@ -2,19 +2,7 @@
 # 파이썬 버전: 3.12.6
 # PyQt5: 5.15.11
 # Qt: 5.15.2
-# 목차:
-#   1) 라이브러리 import (PyQt5 위젯/코어/GUI, 표준 모듈)
-#   2) 전역변수 및 경로 설정 (isDebugging, assets/icons 경로, package_list_path)
-#   3) AHK 실행 파일 경로 조회 (find_ahk_path) 및 ahk_exe_path 바인딩
-#   4) PackageManagementGUI 클래스
-#       4-1) UI 구성: 커스텀 타이틀바, 버튼(최소화/종료), 본문 레이아웃(좌/중/우 리스트·버튼)
-#       4-2) 스타일시트(다크 테마, 스크롤바 커스터마이즈)
-#       4-3) 애니메이션 유틸: animateTransfer, moveRight, moveLeft
-#       4-4) 타이틀바 드래그: titleMousePress, titleMouseMove
-#       4-5) 데이터 I/O: openJson, reloadPkg
-#       4-6) 패키지 헬퍼: findInfoByNameInPkgJson, findLibPathByNameInPkgJson,
-#                         runPkgByNameInPkgJson(스텁), checkBindingsByNameInPkgJson(스텁)
-#   5) 진입점: if __name__ == "__main__" (QApplication 실행)
+# 수정사항: 창 크기 가변, 왼쪽 사이드바 추가
 #endregion #=================================================================================================================
 
 #region imports
@@ -22,11 +10,11 @@ import sys, json, os, winreg, threading, subprocess, time, difflib
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
     QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller, QLineEdit, QSpacerItem, QSizePolicy,
-    QStyledItemDelegate
+    QStyledItemDelegate, QSplitter
 )
 from util.PyRPC2 import RPCManager
-from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject
-from PyQt5.QtGui import QFont, QIcon, QColor, QBrush, QPainter
+from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject, QRect, QEvent
+from PyQt5.QtGui import QFont, QIcon, QColor, QBrush, QPainter, QCursor
 from util.path import ROOT_PATH, DATA_PATH, CONFIG_PATH, RUNTIME_PATH, SCHEMA_PATH, TEMP_PATH, CORE_PATH, ASSETS_PATH, ICONS_PATH, PKGS_PATH
 
 #endregion
@@ -122,7 +110,18 @@ class PackageManagementGUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setGeometry(200, 200, 500, 350)
+        # 창 크기 가변으로 변경 - setGeometry 대신 resize 사용
+        self.resize(800, 500)  # 초기 크기만 설정
+        self.setMinimumSize(600, 400)  # 최소 크기 설정
+        self.offset = QPoint()
+        self.resize_margin = 8
+        self.resizing = False
+        self.resize_direction = set()  # {'left','right','top','bottom'}
+        self.resize_start_pos = None
+        self.resize_start_geo = None
+        self.setMouseTracking(True)  # 버튼 안 눌러도 move 이벤트 받기
+        
+        QApplication.instance().installEventFilter(self)
         
         self.pkgJson = self.openJson(package_list_path)
         self.pkgNames = [_.get("name") for _ in self.pkgJson]
@@ -196,19 +195,13 @@ class PackageManagementGUI(QWidget):
         titleLayout.addWidget(btnClose)
         titleBar.setLayout(titleLayout)
         
-        # 타이틀바 드래그 기능
-        self.offset = QPoint()
+        # 타이틀바 드래그 기능 + 리사이즈 기능 추가
+        
         titleBar.mousePressEvent = self.titleMousePress
         titleBar.mouseMoveEvent = self.titleMouseMove
         
         #endregion
 
-        #region 레이아웃 구조 설명
-        # body (전체, 수평으로 원소 배치)
-        # body 아래, 세 개의 레이아웃 존재. 각각의 레이아웃은 리스트(설명 딸림)
-        # 각각의 레이아웃 명칭은 leftListLayout, btnLayout, rightListLayout
-        #endregion 
-        
         #region 검색바
         
         searchLayout = QHBoxLayout()
@@ -228,7 +221,58 @@ class PackageManagementGUI(QWidget):
         
         #endregion 
         
-        #region body 설정
+        #region 새로운 전체 body (사이드바 + 기존 body)
+        fullBodyLayout = QHBoxLayout()
+        fullBodyLayout.setContentsMargins(0, 0, 0, 0)
+        fullBodyLayout.setSpacing(0)
+        
+        #region 왼쪽 사이드바 추가
+        sideBar = QFrame()
+        sideBar.setFixedWidth(60)
+        sideBar.setStyleSheet("""
+            QFrame {
+                background-color: #2E3440;
+                border-right: 2px solid #4C566A;
+            }
+        """)
+        
+        sideBarLayout = QVBoxLayout()
+        sideBarLayout.setContentsMargins(5, 10, 5, 10)
+        sideBarLayout.setSpacing(5)
+        #endregion 
+        #region 사이드바 버튼들
+        sideBarButtons = []
+        sideBarIcons = ["🏠", "📦", "⚙️", "📊", "❓"]  # 이모지 대신 실제 아이콘 파일 사용 가능
+        sideBarTooltips = ["Home", "Packages", "Settings", "Statistics", "Help"]
+        
+        for i, (icon, tooltip) in enumerate(zip(sideBarIcons, sideBarTooltips)):
+            btn = QPushButton(icon)
+            btn.setFixedSize(50, 50)
+            btn.setToolTip(tooltip)
+            btn.setStyleSheet("""
+                QPushButton {
+                    background-color: #3B4252;
+                    border: none;
+                    border-radius: 8px;
+                    color: #D8DEE9;
+                    font-size: 20px;
+                }
+                QPushButton:hover {
+                    background-color: #4C566A;
+                }
+                QPushButton:pressed {
+                    background-color: #5E81AC;
+                }
+            """)
+            btn.clicked.connect(lambda checked, idx=i: self.onSideBarClick(idx))
+            sideBarLayout.addWidget(btn)
+            sideBarButtons.append(btn)
+        
+        sideBarLayout.addStretch()
+        sideBar.setLayout(sideBarLayout)
+        #endregion
+        
+        #region body 설정 (기존 body)
         bodyLayout = QHBoxLayout()
         bodyLayout.setContentsMargins(10, 10, 10, 10)
         #endregion 
@@ -290,13 +334,17 @@ class PackageManagementGUI(QWidget):
         bodyLayout.addLayout(rightListLayout)
         #endregion 
         
-        #region 최종 화면 설정. body와는 다름
+        #region 최종 화면 설정. 
         bodyFrame = QFrame()
         bodyFrame.setLayout(bodyLayout)
+        
+        # 사이드바와 body를 fullBodyLayout에 추가
+        fullBodyLayout.addWidget(sideBar)
+        fullBodyLayout.addWidget(bodyFrame, 1)  # stretch factor 1로 body가 늘어나도록
 
         mainLayout.addWidget(titleBar)
         mainLayout.addLayout(searchLayout)
-        mainLayout.addWidget(bodyFrame)
+        mainLayout.addLayout(fullBodyLayout)
         self.setLayout(mainLayout)
         #endregion 
 
@@ -365,6 +413,111 @@ class PackageManagementGUI(QWidget):
         #endregion 
 
     #region 함수 영역
+    
+    # 사이드바 버튼 클릭 핸들러
+    def onSideBarClick(self, index):
+        buttons = ["Home", "Packages", "Settings", "Statistics", "Help"]
+        print(f"Clicked: {buttons[index]}")
+        
+        
+    def _hit_edges(self, pos):
+        rect = self.rect()
+        m = self.resize_margin
+        on_left   = pos.x() <= m
+        on_right  = pos.x() >= rect.width()  - m
+        on_top    = pos.y() <= m
+        on_bottom = pos.y() >= rect.height() - m
+        return on_left, on_right, on_top, on_bottom
+
+    # ---- 마우스 이벤트 ----
+    def mousePressEvent(self, event):
+        if event.button() != Qt.LeftButton:
+            return super().mousePressEvent(event)
+
+        pos = event.pos()
+        on_left, on_right, on_top, on_bottom = self._hit_edges(pos)
+        dir_set = set()
+        if on_left: dir_set.add("left")
+        if on_right: dir_set.add("right")
+        if on_top: dir_set.add("top")
+        if on_bottom: dir_set.add("bottom")
+
+        if dir_set:
+            self.resizing = True
+            self.resize_direction = dir_set
+            self.resize_start_pos = event.globalPos()
+            # 시작 지오메트리는 반드시 "복사"
+            self.resize_start_geo = QRect(self.geometry())
+        else:
+            self.resizing = False
+            super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        # --- 리사이즈 동작 ---
+        if not self.resizing:
+            return
+        r = self.rect()
+
+        delta = event.globalPos() - self.resize_start_pos
+        start = self.resize_start_geo
+        r = QRect(start)  # 복사본
+
+        if "left" in self.resize_direction:
+            new_left = start.left() + delta.x()
+            min_w = self.minimumWidth()
+            new_left = min(new_left, start.right() - (min_w - 1))
+            r.setLeft(new_left)
+        elif "right" in self.resize_direction:
+            new_right = start.right() + delta.x()
+            min_w = self.minimumWidth()
+            new_right = max(new_right, start.left() + (min_w - 1))
+            r.setRight(new_right)
+
+        if "top" in self.resize_direction:
+            new_top = start.top() + delta.y()
+            min_h = self.minimumHeight()
+            new_top = min(new_top, start.bottom() - (min_h - 1))
+            r.setTop(new_top)
+        elif "bottom" in self.resize_direction:
+            new_bot = start.bottom() + delta.y()
+            min_h = self.minimumHeight()
+            new_bot = max(new_bot, start.top() + (min_h - 1))
+            r.setBottom(new_bot)
+
+        self.setGeometry(r.normalized())
+        
+    def eventFilter(self, obj, ev):
+        if ev.type() == QEvent.MouseMove:
+            gp = QCursor.pos()
+            lp = self.mapFromGlobal(gp)
+            r = self.rect(); m = 10
+            x, y = lp.x(), lp.y()
+
+            # 대각선 우선
+            if (x <= m and y <= m) or (x >= r.width()-m and y >= r.height()-m):
+                self.setCursor(Qt.SizeFDiagCursor)   # ↘︎↖︎
+            elif (x >= r.width()-m and y <= m) or (x <= m and y >= r.height()-m):
+                self.setCursor(Qt.SizeBDiagCursor)   # ↗︎↙︎
+            elif x <= m or x >= r.width()-m:
+                self.setCursor(Qt.SizeHorCursor)     # ↔︎
+            elif y <= m or y >= r.height()-m:
+                self.setCursor(Qt.SizeVerCursor)     # ↕︎
+            else:
+                self.setCursor(Qt.ArrowCursor)       # 기본 화살표
+        return super().eventFilter(obj, ev)
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == Qt.LeftButton and self.resizing:
+            self.resizing = False
+            self.resize_direction.clear()
+        return super().mouseReleaseEvent(event)
+
+    def leaveEvent(self, event):
+    # 마우스가 위젯 밖으로 나가면 커서 복구
+        if not self.resizing:
+            self.unsetCursor()
+        return super().leaveEvent(event)
+    
     #region  ===== 애니메이션 관련 =====
     def animateTransfer(self, text, start_pos, end_pos, callback):
         label = QLabel(text, self)
@@ -518,7 +671,7 @@ class PackageManagementGUI(QWidget):
     #region HUB ON/OFF 관련
     def _check_hub(self, *args):
         self.bridge.hubStatusSig.emit()
-        return 0
+        return "Hub_checked, this res is from PyGui"
     
     def checkHubStatus(self):
         path = os.path.join(RUNTIME_PATH, "hub-status.json")
@@ -539,6 +692,9 @@ class PackageManagementGUI(QWidget):
             subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "shutdown.ahk")])
         elif(data["is_active"] == "False"):
             subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "init.ahk")])
+        print("on/off!!")
+            
+
     #endregion 
     #endregion 
     #endregion 

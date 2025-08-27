@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #Include <Path>
-#Include <AHKRPC>
+#Include <AHKRPC2>
 #Include <PythonFinder>
 #Include <JSON_PLUS>
 #SingleInstance Force
@@ -26,6 +26,7 @@ if (python_exe_path = ""){
 
 
 client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
+; client.request("doCheckHubStatus", [])
 shutdownManager := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
 
 runPkgInit(init_path) {

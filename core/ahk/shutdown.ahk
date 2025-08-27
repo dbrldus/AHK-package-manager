@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #Include <JSON_PLUS>
 #Include <Path>
-#Include <AHKRPC>
+#Include <AHKRPC2>
 #SingleInstance Force
 
 shutdownClient := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
@@ -15,6 +15,7 @@ shutdownClient := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
 ; writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), stat)
 
 try {
+    ; MsgBox "I will shutdown!"
     shutdownClient.request("doShutdown", [])
 } catch {
     MsgBox "종료 실패 " ;pid

@@ -33,7 +33,6 @@ findPythonInterpreterGUI(){
             finalList.Push(path)
         }
     }
-
     if finalList.Length = 0 {
         MsgBox "Cannot find Python Interpreter on your system."
         ExitApp
