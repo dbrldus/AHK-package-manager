@@ -6,11 +6,12 @@
 #endregion #=================================================================================================================
 
 #region imports
-import sys, json, os, winreg, threading, subprocess, time, difflib
+import sys, json, os, winreg, shutil, threading, subprocess, time, difflib
+from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
     QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller, QLineEdit, QSpacerItem, QSizePolicy,
-    QStyledItemDelegate, QSplitter
+    QStyledItemDelegate, QSplitter, QFileDialog
 )
 from util.PyRPC2 import RPCManager
 from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject, QRect, QEvent
@@ -242,8 +243,8 @@ class PackageManagementGUI(QWidget):
         #endregion 
         #region 사이드바 버튼들
         sideBarButtons = []
-        sideBarIcons = ["🏠", "📦", "⚙️", "📊", "❓"]  # 이모지 대신 실제 아이콘 파일 사용 가능
-        sideBarTooltips = ["Home", "Packages", "Settings", "Statistics", "Help"]
+        sideBarIcons = ["🏠", "📦", "⚙️", "➕", "❓"]  # 이모지 대신 실제 아이콘 파일 사용 가능
+        sideBarTooltips = ["Home", "Packages", "Settings", "Add", "Help"]
         
         for i, (icon, tooltip) in enumerate(zip(sideBarIcons, sideBarTooltips)):
             btn = QPushButton(icon)
@@ -416,8 +417,10 @@ class PackageManagementGUI(QWidget):
     
     # 사이드바 버튼 클릭 핸들러
     def onSideBarClick(self, index):
-        buttons = ["Home", "Packages", "Settings", "Statistics", "Help"]
+        buttons = ["Home", "Packages", "Settings", "Add", "Help"]
         print(f"Clicked: {buttons[index]}")
+        if(index == 3):
+            self.addPkg()
         
         
     def _hit_edges(self, pos):
@@ -608,6 +611,34 @@ class PackageManagementGUI(QWidget):
     def openJson(self, path):
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
+    
+    def addPkg(self):
+        home_dir = str(os.path.join(Path.home(), "Downloads"))
+        dir_path = QFileDialog.getExistingDirectory(None, '패키지 폴더 선택', home_dir, QFileDialog.ShowDirsOnly)
+        if dir_path:
+            fileName = dir_path.split("/")[-1]
+            for f in ["init.ahk", f"{fileName}.ahk", "package.json", "bindings.json"]:
+                p = Path(os.path.join(dir_path, f))
+                if not p.is_file():
+                    print(f"Selected Directory({dir_path}) is not a proper ahk package")
+                    print(f"{f} does not exist in selected package")
+                    break
+            else:
+                print("AHK Package Confirmed")
+                try:
+                    shutil.copytree(dir_path, os.path.join(PKGS_PATH, fileName))
+                    pkgList = self.openJson(package_list_path)
+                    currentPkgInfo = self.openJson(os.path.join(PKGS_PATH, fileName, "package.json"))
+                    pkgList.append(currentPkgInfo)
+                    with open(package_list_path, "w", encoding="utf-8") as f:
+                        f.write(json.dumps(pkgList, indent=4, ensure_ascii=False, sort_keys=True))
+                    print("Add Package Completed")
+                except FileExistsError:
+                    print("에러: 대상 디렉토리가 이미 존재합니다.")
+                except FileNotFoundError:
+                    print("에러: 원본 디렉토리를 찾을 수 없습니다.")
+        else:
+            print("Fail to import package.")
             
     def reloadPkg(self): # 패키지 json에서 패키지 이름 받아서 만약 추가되면 리스트에도 추가.
         if isDebugging:
@@ -618,7 +649,7 @@ class PackageManagementGUI(QWidget):
             if isDebugging:
                 print(set(new_pkgNames) - set(self.pkgNames))
                 
-            if name in [item.text() for item in list(self.leftList.Items())]:
+            if name in [item.text() for item in list(self.leftList.items())]:
                 self.leftList.takeItem(self.leftList.row(name))
             self.pkgNames.append(name)
             self.leftList.addItem(name)

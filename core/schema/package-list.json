@@ -1,20 +1,7 @@
 [
     {
         "id": "Latex",
-        "name": "LaTeX Tools",
-        "path": "Lib/Latex/",
-        "version": "0.1.0"
-    }, 
-    {
-        "id": "ros2",
-        "name": "ROS2 Tools",
-        "path": "Lib/ros2/",
-        "version": "0.1.0"
-    },
-    {
-        "id": "r33",
-        "name": "Notion",
-        "path": "Lib/r33/",
+        "name": "Latex Tools For Notion Math Editor",
         "version": "0.1.0"
     }
 ]
