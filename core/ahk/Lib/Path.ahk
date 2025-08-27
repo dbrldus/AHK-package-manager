@@ -58,5 +58,8 @@ PKGS_PATH := PathJoin(ROOT_PATH, "packages")
 HUB_PATH := PathJoin(CORE_PATH,"ahk","Hub.ahk")
 HUB_STATUS_FILE_PATH := PathJoin(RUNTIME_PATH, "hub-status.json")
 MAIN_IPC_PATH := PathJoin(TEMP_PATH, "ipc")
+if !DirExist(MAIN_IPC_PATH) {
+    DirCreate(MAIN_IPC_PATH)
+}
 ; 확인용
 ; MsgBox(CORE_PATH)

@@ -24,7 +24,8 @@ TEMP_PATH = os.path.join(CORE_PATH, "tmp")
 ASSETS_PATH = os.path.join(ROOT_PATH, "assets")
 ICONS_PATH = os.path.join(ASSETS_PATH, "icons")
 PKGS_PATH = os.path.join(ROOT_PATH, "packages")
-
+MAIN_IPC_PATH = os.path.join(TEMP_PATH, "ipc")
+os.makedirs(MAIN_IPC_PATH, exist_ok=True)
 
 
 # RUNTIME_PATH는 문자열 경로라고 가정
