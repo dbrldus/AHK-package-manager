@@ -25,6 +25,7 @@ isDebugging = True #디버깅 변수
 #region Path
 package_list_path = os.path.join(SCHEMA_PATH, "package-list.json")
 rpc_communication_path = os.path.join(TEMP_PATH, "ipc")
+hub_status_path = os.path.join(RUNTIME_PATH,"hub-status.json")
 
 def find_ahk_path():
     try:
@@ -422,7 +423,7 @@ class PackageManagementGUI(QWidget):
         if(index == 3):
             self.addPkg()
         
-        
+    #region 창 크기변경 관련
     def _hit_edges(self, pos):
         rect = self.rect()
         m = self.resize_margin
@@ -520,7 +521,7 @@ class PackageManagementGUI(QWidget):
         if not self.resizing:
             self.unsetCursor()
         return super().leaveEvent(event)
-    
+    #endregion 
     #region  ===== 애니메이션 관련 =====
     def animateTransfer(self, text, start_pos, end_pos, callback):
         label = QLabel(text, self)
@@ -653,6 +654,7 @@ class PackageManagementGUI(QWidget):
                 self.leftList.takeItem(self.leftList.row(name))
             self.pkgNames.append(name)
             self.leftList.addItem(name)
+        self.checkHubStatus()
         
     def findInfoByNameInPkgJson(self, name, target): # data는 package-list.json 의 원형(딕셔너리를 원소로 갖는 리스트). name은 말 그대로 패키지 "이름"(name, id 아님). target은 찾고 싶은 패키지의 인자. id, path, version 등. 
         return next((i[target] for i in self.pkgJson if i.get("name") == name), None)
@@ -720,10 +722,29 @@ class PackageManagementGUI(QWidget):
         data = self.openJson(path)
 
         if data["is_active"] == "True":
-            subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "shutdown.ahk")])
+            creation_flags = subprocess.DETACHED_PROCESS | 0x01000000
+
+            # 표준 입출력을 완전히 분리하여 더욱 안정적으로 만듭니다.
+            subprocess.Popen(
+                [ahk_exe_path, os.path.join(CORE_PATH, "ahk", "shutdown.ahk")],
+                creationflags=creation_flags,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+            print("off hub!!")
         elif(data["is_active"] == "False"):
-            subprocess.Popen([ahk_exe_path, os.path.join(CORE_PATH, "ahk", "init.ahk")])
-        print("on/off!!")
+            creation_flags = subprocess.DETACHED_PROCESS | 0x01000000
+
+            # 표준 입출력을 완전히 분리하여 더욱 안정적으로 만듭니다.
+            proc = subprocess.Popen(
+                [ahk_exe_path, os.path.join(CORE_PATH, "ahk", "Hub.ahk")],
+                creationflags=creation_flags,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        time.sleep(0.8)
             
 
     #endregion 

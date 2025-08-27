@@ -1,9 +1,10 @@
-# PyRPC.py - Queue-based RPC
 import os
 import time
 import threading
 import random
 import string
+import ctypes
+from ctypes import wintypes
 
 class RPCManager:
     def __init__(self, _temp_path: str):
@@ -11,138 +12,289 @@ class RPCManager:
         self.running = False
         self.temp_path = _temp_path
         self.request_queue = os.path.join(self.temp_path, "rpc_requests.queue")
-        self.response_dir = self.temp_path
-
+        self.server_mutex_name = f"RPCServer_{_temp_path.replace('\\', '_').replace('/', '_').replace(':', '_')}"
+        
+        # 디버깅용
+        self.debug_file = os.path.join(self.temp_path, "python_debug.log")
+        
+        # 폴더 생성
+        os.makedirs(self.temp_path, exist_ok=True)
+        
         if not os.path.exists(self.request_queue):
-            with open(self.request_queue, 'w') as f:
+            with open(self.request_queue, 'w', encoding='utf-8'):
                 pass
         
+        # self._log(f"RPCManager initialized with path: {self.temp_path}")
+        # self._log(f"Mutex name: {self.server_mutex_name}")
+
+    def _log(self, message):
+        """디버깅용 로그"""
+        try:
+            with open(self.debug_file, 'a', encoding='utf-8') as f:
+                f.write(f"[{time.strftime('%H:%M:%S')}] {message}\n")
+            print(f"[PYTHON] {message}")
+        except:
+            pass
+
+    def acquire_server_lock(self, timeout_ms=1000):
+        """간단한 파일 기반 락으로 대체"""
+        try:
+            lock_file = os.path.join(self.temp_path, "python_server.lock")
+            start_time = time.time() * 1000
+            
+            while (time.time() * 1000 - start_time) < timeout_ms:
+                try:
+                    # 락 파일이 없으면 생성하고 성공
+                    if not os.path.exists(lock_file):
+                        with open(lock_file, 'w') as f:
+                            f.write(str(os.getpid()))
+                        # self._log("Server lock acquired")
+                        return lock_file
+                    
+                    # 기존 락 파일이 있으면 잠시 대기
+                    time.sleep(0.02)
+                except:
+                    time.sleep(0.02)
+            
+            # self._log("Server lock timeout")
+            return None
+        except Exception as e:
+            self._log(f"Lock acquire error: {e}")
+            return None
+
+    def release_server_lock(self, lock_file):
+        """파일 기반 락 해제"""
+        try:
+            if lock_file and os.path.exists(lock_file):
+                os.remove(lock_file)
+                # self._log("Server lock released")
+        except Exception as e:
+            self._log(f"Lock release error: {e}")
+            
+
     def regist(self, callback, callback_name):
         self.callbacks[callback_name] = callback
+        # self._log(f"Registered callback: {callback_name}")
     
-    def _generate_id(self):
-        return ''.join(random.choices(string.ascii_letters + string.digits, k=12))
+    def _generate_id(self, length=16):
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return ''.join(random.choice(chars) for _ in range(length))
     
-    def request(self, callback_name, params=None):
+    def request(self, callback_name, params=None, ignore_response = False):
         if params is None:
             params = []
-        request_id = self._generate_id()
+        request_id = self._generate_id(16)
 
-        text = f"RPC|{request_id}|{callback_name}"
+        text = f"RPC|{request_id}|{callback_name}|{int(ignore_response)}"
         for p in params:
             text += f"|{p}"
-        for _ in range(10):
+        
+        # self._log(f"Sending request: {text}")
+        
+        # 큐에 추가
+        success = False
+        for attempt in range(10):
             try:
                 with open(self.request_queue, 'a', encoding='utf-8') as f:
                     f.write(text + '\n')
+                success = True
+                # self._log(f"Request written to queue (attempt {attempt + 1})")
                 break
             except Exception as e:
-                time.sleep(0.001)
-        else:
-            return ""
-        res = os.path.join(self.response_dir, f"rpc_res_{request_id}.txt")
+                # self._log(f"Queue write failed (attempt {attempt + 1}): {e}")
+                time.sleep(0.01)
         
-        for _ in range(50):
-            if os.path.exists(res):
-                try:
-                    with open(res, 'r') as f:
-                        result = f.read()
-                    os.remove(res)
-                    
+        if not success:
+            # self._log("Failed to write to queue after 10 attempts")
+            return 1
+
+        # 응답 대기
+        if(not ignore_response):
+            res_completed = os.path.join(self.temp_path, f"rpc_res_COMPLETED_{request_id}.txt")
+            res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+            for i in range(50):
+                if os.path.exists(res_completed):
                     try:
-                        if '.' in result:
-                            return float(result)
-                        return int(result)
-                    except:
+                        with open(res_completed, 'r', encoding='utf-8') as f:
+                            result = f.read()
+                        os.remove(res_completed)
+                        try:
+                            os.remove(res_fail)
+                        except:
+                            pass
+                        # self._log(f"Got response: {result}")
                         return result
+                    except Exception as e:
+                        self._log(f"Response read error: {e}")
+                
+                time.sleep(0.1)
+
+            if os.path.exists(res_fail):
+                try:
+                    with open(res_fail, 'r', encoding='utf-8') as f:
+                        result = f.read()
+                    os.remove(res_fail)
+                    # self._log(f"Got fail response: {result}")
+                    return result
                 except:
                     pass
             
-            time.sleep(0.1)
-        
-        return ""
+            # self._log("Request timeout")
+            return ""
     
     def spin(self):
         self.running = True
+        # self._log("Starting check thread")
         thread = threading.Thread(target=self._check, daemon=True)
         thread.start()
-        print("now spinning")
     
     def _check(self):
+        # self._log("Check thread started")
+        check_count = 0
+        
         while self.running:
             try:
+                check_count += 1
+                if check_count % 100 == 0:  # 10초마다 로그
+                    self._log(f"Check cycle {check_count}, callbacks: {list(self.callbacks.keys())}")
+                
                 if not os.path.exists(self.request_queue):
-                    with open(self.request_queue, 'w') as f:
-                        pass
                     time.sleep(0.1)
                     continue
                 
-                lines_to_process = []
-                remaining_lines = []
-                
+                # 서버 락 획득
+                server_lock = self.acquire_server_lock(1000)
+                if not server_lock:
+                    time.sleep(0.1)
+                    continue
+
                 try:
-                    with open(self.request_queue, 'r') as f:
-                        all_lines = f.readlines()
-                except:
-                    time.sleep(0.1)
-                    continue
-                
-                found = False
-                for line in all_lines:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    if not found and line.startswith("RPC|"):
-                        lines_to_process.append(line)
-                        found = True
-                    else:
-                        remaining_lines.append(line)
-                
-                if lines_to_process:
+                    # 큐 파일 읽기
                     try:
-                        with open(self.request_queue, 'w') as f:
-                            for line in remaining_lines:
-                                f.write(line + '\n')
-                    except:
-                        pass
-                    
-                    # 요청 처리
-                    for line in lines_to_process:
-                        parts = line.split("|")
-                        if len(parts) < 3:
+                        with open(self.request_queue, 'r', encoding='utf-8') as f:
+                            text = f.read()
+                        
+                        if text.strip():  # 큐에 내용이 있으면 로그
+                            self._log(f"Queue content: {repr(text)}")
+                            
+                    except Exception as e:
+                        self._log(f"Queue read error: {e}")
+                        continue
+
+                    lines = text.split('\n')
+                    processed = False
+                    new_lines = []
+                    request_id, name, params = "", "", []
+
+                    for line in lines:
+                        line = line.strip()
+                        if not line:
                             continue
                         
-                        request_id = parts[1]
-                        name = parts[2]
+                        # self._log(f"Processing line: {line}")
                         
-                        res = os.path.join(self.response_dir, f"rpc_res_{request_id}.txt")
-                        
-                        if name not in self.callbacks:
-                            with open(res, 'w') as f:
-                                f.write("ERROR")
+                        if not line.startswith("RPC|"):
+                            # self._log(f"Skipping non-RPC line: {line}")
                             continue
+
+                        if not processed:
+                            parts = line.split("|")
+                            if len(parts) < 4:
+                                # self._log(f"Invalid RPC format: {line}")
+                                continue
+                            
+                            request_id = parts[1]
+                            name = parts[2]
+                            ignore_response = int(parts[3])
+                            # self._log(f"Found RPC request - ID: {request_id}, Name: {name}")
+
+                            # FAIL 파일 미리 생성
+                            if(not ignore_response):
+                                res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+                                try:
+                                    with open(res_fail, 'w', encoding='utf-8') as f:
+                                        f.write("srv_may_be_ended")
+                                except:
+                                    pass
+
+                            if name in self.callbacks:
+                                params = []
+                                for val in parts[4:]:
+                                    try:
+                                        if '.' in str(val):
+                                            params.append(float(val))
+                                        else:
+                                            params.append(int(val))
+                                    except:
+                                        params.append(val)
+                                
+                                processed = True
+                                # self._log(f"Will process callback {name} with params: {params}")
+                                continue  # 이 줄은 큐에서 제거
+                            else:
+                                # self._log(f"No callback for {name}")
+                                new_lines.append(line)
+                                continue
                         
-                        params = []
-                        for val in parts[3:]:
+                        new_lines.append(line)
+
+                    # 큐 업데이트
+                    try:
+                        with open(self.request_queue, 'w', encoding='utf-8') as f:
+                            for l in new_lines:
+                                if l.strip():
+                                    f.write(l + '\n')
+                        
+                        # if processed:
+                        #     self._log(f"Queue updated, removed processed item")
+                            
+                    except Exception as e:
+                        self._log(f"Queue update error: {e}")
+
+                except Exception as e:
+                    self._log(f"Check processing error: {e}")
+                finally:
+                    self.release_server_lock(server_lock)
+
+                # 콜백 처리
+                if processed:
+                    # self._log(f"Executing callback {name}")
+                    try:
+                        cb = self.callbacks[name]
+                        
+                        if len(params) == 0:
+                            result = cb()
+                        elif len(params) == 1:
+                            result = cb(params[0])
+                        elif len(params) == 2:
+                            result = cb(params[0], params[1])
+                        else:
+                            result = cb(*params)
+
+                        if(not ignore_response):
+                            res_completed = os.path.join(self.temp_path, f"rpc_res_COMPLETED_{request_id}.txt")
+                            res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+
+                            # 기존 파일들 삭제
                             try:
-                                if '.' in val:
-                                    params.append(float(val))
-                                else:
-                                    params.append(int(val))
+                                os.remove(res_fail)
                             except:
-                                params.append(val)
-                        
-                        try:
-                            result = self.callbacks[name](*params)
-                            with open(res, 'w') as f:
+                                pass
+                            try:
+                                os.remove(res_completed)
+                            except:
+                                pass
+                            
+                            # 결과 파일 생성
+                            with open(res_completed, 'w', encoding='utf-8') as f:
                                 f.write(str(result))
-                        except Exception as e:
-                            print(f"RPC Error: {e}")
-                            with open(res, 'w') as f:
-                                f.write("ERROR")
-                
+                            
+                            # self._log(f"Callback result: {result}")
+
+                    except Exception as e:
+                        self._log(f"Callback execution error: {e}")
+                        
             except Exception as e:
-                print(f"RPC Check Error: {e}")
-                pass
+                self._log(f"Main check error: {e}")
             
             time.sleep(0.1)

@@ -1,6 +1,7 @@
 #Requires AutoHotkey v2.0
 #Include Path.ahk
 #Include JSON_PLUS.ahk
+#SingleInstance Ignore
 
 pkg_json_path := A_ScriptDir "\package.json"
 status_path := PathJoin(RUNTIME_PATH, "package-status.json")

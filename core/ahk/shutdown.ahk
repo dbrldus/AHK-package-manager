@@ -2,9 +2,9 @@
 #Include <JSON_PLUS>
 #Include <Path>
 #Include <AHKRPC2>
-#SingleInstance Force
+#SingleInstance Ignore 
 
-shutdownClient := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
+client := RPCManager(MAIN_IPC_PATH)
 
 ; stat := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
 
@@ -15,15 +15,13 @@ shutdownClient := RPCManager(PathJoin(TEMP_PATH, "shutdownSignal"))
 ; writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), stat)
 
 try {
-    ; MsgBox "I will shutdown!"
-    shutdownClient.request("doShutdown", [])
+    client.request("doShutdown", [], true)
 } catch {
     MsgBox "종료 실패 " ;pid
 }
 
-hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
-hub_status["is_active"] := "False"
-writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
-client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
+; hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
+; hub_status["is_active"] := "False"
+; writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
 client.request("doCheckHubStatus", [])
 ExitApp
