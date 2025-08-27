@@ -633,11 +633,12 @@ class PackageManagementGUI(QWidget):
                     pkgList.append(currentPkgInfo)
                     with open(package_list_path, "w", encoding="utf-8") as f:
                         f.write(json.dumps(pkgList, indent=4, ensure_ascii=False, sort_keys=True))
+                        self.reloadPkg()
                     print("Add Package Completed")
                 except FileExistsError:
-                    print("에러: 대상 디렉토리가 이미 존재합니다.")
+                    print("Error : Package Already Exists")
                 except FileNotFoundError:
-                    print("에러: 원본 디렉토리를 찾을 수 없습니다.")
+                    print("Error : Could Not Find Selected Package")
         else:
             print("Fail to import package.")
             
