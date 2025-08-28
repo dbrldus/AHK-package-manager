@@ -23,6 +23,13 @@
     SendText("#endregion ")
 }
 
+::;rg:: {
+    SendText(";region ")
+}
+::;erg:: {
+    SendText(";endregion ")
+}
+
 ::\notion:: {
     Run("https://www.notion.so/project-swms/1689997ea6a380f2bf5be2bb4a5cc05d?v=1689997ea6a380f380d6000c267f2038")
     Sleep 2000

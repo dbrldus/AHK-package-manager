@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (
 from util.PyRPC2 import RPCManager
 from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject, QRect, QEvent
 from PyQt5.QtGui import QFont, QIcon, QColor, QBrush, QPainter, QCursor
-from util.path import ROOT_PATH, DATA_PATH, CONFIG_PATH, RUNTIME_PATH, SCHEMA_PATH, TEMP_PATH, CORE_PATH, ASSETS_PATH, ICONS_PATH, PKGS_PATH
+from util.path import *
 
 #endregion
 
@@ -133,7 +133,7 @@ class PackageManagementGUI(QWidget):
         
         #region RPC 통신용 셋업
 
-        self.client = RPCManager(rpc_communication_path)
+        self.client = RPCManager(MAIN_IPC_PATH)
         self.bridge = UiBridge()
         self.bridge.movePkgRightSig.connect(self.moveRight, Qt.QueuedConnection)
         self.bridge.hubStatusSig.connect(self.checkHubStatus, Qt.QueuedConnection)

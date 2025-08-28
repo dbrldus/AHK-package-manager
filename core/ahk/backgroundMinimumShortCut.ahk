@@ -10,6 +10,6 @@ if (python_exe_path = "") {
 }
 
 ^#g:: {
-    obj := '"' python_exe_path '"' " " '"' PathJoin(CORE_PATH, "py", "ManagerGUI.py") '"'
+    obj := '"' python_exe_path '"' " " '"' PathJoin(CORE_PATH, "py", "DummyGUI.py") '"'
     Run obj
 }
