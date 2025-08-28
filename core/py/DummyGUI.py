@@ -7,6 +7,7 @@
 
 #region imports
 import sys, json, os, winreg, shutil, threading, subprocess, time, difflib
+from typing import *
 from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
@@ -105,7 +106,7 @@ class SearchableList(ToggleList):
 #endregion 
 
 class UiBridge(QObject):
-    movePkgRightSig = pyqtSignal()  
+    reloadGuiSig = pyqtSignal()  
     hubStatusSig = pyqtSignal()
 
 class PackageManagementGUI(QWidget):
@@ -126,7 +127,9 @@ class PackageManagementGUI(QWidget):
         QApplication.instance().installEventFilter(self)
         
         self.pkgJson = self.openJson(package_list_path)
-        self.pkgNames = [_.get("name") for _ in self.pkgJson]
+        self.pkgInfos : list[tuple[str,str]] = [ (item.get("id"), item.get("name")) for item in self.pkgJson]
+        self.activePkgIds = set()
+        self.pkgNames : list[str] = [_.get("name") for _ in self.pkgJson]
         if isDebugging:
             print(self.pkgNames)
         self._anims = [] #텍스트 여러 개 옮길 때 애니메이션 각각 저장하기 위함
@@ -135,9 +138,9 @@ class PackageManagementGUI(QWidget):
 
         self.client = RPCManager(MAIN_IPC_PATH)
         self.bridge = UiBridge()
-        self.bridge.movePkgRightSig.connect(self.moveRight, Qt.QueuedConnection)
+        self.bridge.reloadGuiSig.connect(self.reloadGUI, Qt.QueuedConnection)
         self.bridge.hubStatusSig.connect(self.checkHubStatus, Qt.QueuedConnection)
-        self.client.regist(self._rpc_run_wrapper, "MovePkgRight")
+        self.client.regist(self._rpc_run_wrapper, "reloadGui")
         self.client.regist(self._check_hub, "doCheckHubStatus")
         self.client.spin()
         #endregion 
@@ -288,7 +291,6 @@ class PackageManagementGUI(QWidget):
         self.leftListTitle = QLabel("Ready")
         leftListLayout.addWidget(self.leftListTitle)
         leftListLayout.addWidget(self.leftList)
-        self.leftList.addItems(self.pkgNames)
         bodyLayout.addLayout(leftListLayout)
         #endregion 
         
@@ -334,7 +336,9 @@ class PackageManagementGUI(QWidget):
         rightListLayout.addWidget(self.rightListTitle)
         rightListLayout.addWidget(self.rightList)
         bodyLayout.addLayout(rightListLayout)
-        #endregion 
+
+        self.reloadGUI()
+        #endregion
         
         #region 최종 화면 설정. 
         bodyFrame = QFrame()
@@ -554,35 +558,40 @@ class PackageManagementGUI(QWidget):
         else:
             selected = list(self.leftList.selectedItems())
             
-        texts = [item.text() for item in selected]
         for item in selected:
             self.leftList.takeItem(self.leftList.row(item))
             
-        for text in texts:
+        for item in selected:
+            text = item.text()
             start = self.leftList.mapToGlobal(self.leftList.visualItemRect(item).topLeft())
             end = self.rightList.mapToGlobal(self.rightList.rect().topLeft())
             start = self.mapFromGlobal(start)
             end = self.mapFromGlobal(end)
 
-            def finish(text=text):
-                self.rightList.addItem(text)
+            def finish(item=item):
+                self.rightList.addItem(item)
 
             self.animateTransfer(text, start, end, finish)
         
-    def moveLeft(self):
-        selected = list(self.leftList.selectedItems())
-        texts = [item.text() for item in selected]
+    def moveLeft(self, item = None):
+        selected = list(self.rightList.selectedItems())
+        if item != None:
+            selected = [item]
+        else:
+            selected = list(self.rightList.selectedItems())
+
         for item in selected:
             self.rightList.takeItem(self.rightList.row(item)) #
             
-        for text in texts:
+        for item in selected:
+            text = item.text()
             start = self.rightList.mapToGlobal(self.rightList.visualItemRect(item).topLeft()) #
             end = self.leftList.mapToGlobal(self.leftList.rect().topLeft())
             start = self.mapFromGlobal(start)
             end = self.mapFromGlobal(end)
 
-            def finish(text=text):
-                self.leftList.addItem(text)
+            def finish(item=item):
+                self.leftList.addItem(item)
 
             self.animateTransfer(text, start, end, finish)
 
@@ -599,6 +608,11 @@ class PackageManagementGUI(QWidget):
     #endregion 
     
     #region ===== 리스트 관련 함수 =====
+    def genListWidgetItemWithId(self, id : str, title : str) :
+        listItem = QListWidgetItem(title)
+        listItem.setData(Qt.UserRole, id)
+        return listItem
+
     def delRightSelectedItems(self, _):
         if len(self.rightList.selectedItems()):
             self.rightList.clearSelection()
@@ -646,62 +660,78 @@ class PackageManagementGUI(QWidget):
         if isDebugging:
             print("Reloadbtn pushed!")
         new_pkg_json = self.openJson(package_list_path)
-        new_pkgNames = [_.get("name") for _ in new_pkg_json]
-        for name in set(new_pkgNames) - set(self.pkgNames):
-            if isDebugging:
-                print(set(new_pkgNames) - set(self.pkgNames))
-                
-            if name in [item.text() for item in list(self.leftList.items())]:
-                self.leftList.takeItem(self.leftList.row(name))
-            self.pkgNames.append(name)
-            self.leftList.addItem(name)
-        self.checkHubStatus()
-        
-    def findInfoByNameInPkgJson(self, name, target): # data는 package-list.json 의 원형(딕셔너리를 원소로 갖는 리스트). name은 말 그대로 패키지 "이름"(name, id 아님). target은 찾고 싶은 패키지의 인자. id, path, version 등. 
-        return next((i[target] for i in self.pkgJson if i.get("name") == name), None)
+        new_pkgInfos : list[tuple[str,str]] = [ (item.get("id"), item.get("name")) for item in new_pkg_json]
+        self.pkgInfos = new_pkgInfos
+        self.checkActivePkg()
+        self.reloadGUIwithAnimation()
+
+    def reloadGUI(self):
+        self.leftList.clear()
+        self.rightList.clear()
+        for id, name in self.pkgInfos:
+            listItem = self.genListWidgetItemWithId(id, name)
+            if id in self.activePkgIds: #active #animation?
+                self.rightList.addItem(listItem)
+            else: #not active
+                self.leftList.addItem(listItem)
     
-    def findInstallDirByNameInPkgJson(self, name):
-        return os.path.join(PKGS_PATH, self.findInfoByNameInPkgJson(name, "id"))
-    
-    def runPkgByNameInPkgJson(self, name): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
-        pkg_init_path = os.path.join(self.findInstallDirByNameInPkgJson(name), "init.ahk")
-        print(f"pkg_init_path is {pkg_init_path}!!")
-        if(not self.client.request("runPkgInit",[pkg_init_path])):
+    def reloadGUIwithAnimation(self):
+        leftIds = [self.leftList.item(i).data(Qt.UserRole) for i in range(self.leftList.count())]
+        rightIds = [self.rightList.item(i).data(Qt.UserRole) for i in range(self.rightList.count())]
+
+        for id, _ in self.pkgInfos:
+            if id in self.activePkgIds and id in leftIds: #active #animation?
+                self.moveItemRightById(id)
+            elif id in rightIds: #not active
+                self.moveItemLeftById(id)
+
+    def checkActivePkg(self):
+        pkgStatus = self.openJson(os.path.join(RUNTIME_PATH, "package-status.json"))
+        activePkgIdList = []
+        for singlePkg in pkgStatus:
+            try:
+                if(singlePkg.get("status", "dummy") == "running"):
+                    activePkgIdList.append(pkgStatus["id"])
+            except:
+                print("Invalid Package Status")
+        self.activePkgIds = set(activePkgIdList)
+
+    def runPkgById(self, id): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
+        if(not self.client.request("runPkgInit",[id])):
             return 0
         else:
             return 1
     
     def runPkgCall(self):
         selected = list(self.leftList.selectedItems())
-        # print(selected)
-        texts = [item.text() for item in selected]
-        print(texts)
-        for text in texts:
-            self.runPkgByNameInPkgJson(text)
+        ids = [item.data(Qt.UserRole) for item in selected]
+        for id in ids:
+            self.runPkgById(id)
         
     def stopPkgCall(self):
         pass
         
     def _rpc_run_wrapper(self, *args):
-        self.bridge.movePkgRightSig.emit()
+        self.checkActivePkg()
+        self.bridge.reloadGuiSig.emit()
         return 0
     
-    
-    def findItemByName(self, qlist:QListWidget, name):
-        obj = list(qlist.items())
-        for item in obj:
-            if item.text() == name:
+    def findItemById(self, qlist:QListWidget, id):
+        for i in range(qlist.count()):
+            item = qlist.item(i)
+            if item.data(Qt.UserRole) == id:
                 return item
     
-    def moveItemRightByName(self, name):
-        target_item = self.findItemByName(self.leftList, name)
+    def moveItemRightById(self, id):
+        target_item = self.findItemById(self.leftList, id)
         self.moveRight(item=target_item)
         return 0
     
-    def moveItemLeftByName(self, name):
-        target_item = self.findItemByName(self.leftList, name)
-        self.moveRight(item=target_item)
+    def moveItemLeftById(self, id):
+        target_item = self.findItemById(self.rightList, id)
+        self.moveLeft(item=target_item)
         return 0
+
     #region HUB ON/OFF 관련
     def _check_hub(self, *args):
         self.bridge.hubStatusSig.emit()
