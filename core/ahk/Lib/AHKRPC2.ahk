@@ -21,7 +21,7 @@ class RPCManager {
         this.request_queue := communication_path "\rpc_requests.queue"
         this.server_mutex_name := "RPCServer_" StrReplace(communication_path, "\", "_")
         this.ENCODING := 'UTF-8-RAW'
-
+        this.server_lock_handle := 0
         ; Map으로 O(1) 조회 - ID를 키로, 타임스탬프를 값으로
         this.duplicate_window := 2  ; 2초
 
@@ -33,41 +33,27 @@ class RPCManager {
         start_time := A_TickCount
 
         while (A_TickCount - start_time < timeout_ms) {
-            if (!FileExist(lock_file)) {
-                try {
-                    FileAppend(DllCall("GetCurrentProcessId") "|" A_Now, lock_file)
-                    return lock_file
+            try {
+                handle := FileOpen(lock_file, "w", "UTF-8")
+                if (handle) {
+                    handle.Write(DllCall("GetCurrentProcessId"))
+                    handle.Pos := 0
+                    this.server_lock_handle := handle
+                    return handle
                 }
-            } else {
-                ; 기존 락 파일 확인 및 강제 해제
-                try {
-                    lock_content := FileRead(lock_file)
-                    parts := StrSplit(lock_content, "|")
-                    if (parts.Length >= 2) {
-                        lock_pid := parts[1]
-                        lock_time := parts[2]
-
-                        ; 5분 초과 또는 프로세스 죽음 확인
-                        time_diff := this.GetTimeDifferenceSeconds(lock_time, A_Now)
-                        if (time_diff > 1 || !ProcessExist(lock_pid)) {
-                            FileDelete(lock_file)
-                            continue
-                        }
-                    }
-                } catch {
-                    ; 손상된 락 파일은 삭제
-                    FileDelete(lock_file)
-                    continue
-                }
+            } catch {
+                Sleep(20)
             }
-            Sleep(20)
         }
         return false
     }
 
-    ReleaseServerLock(lock_file) {
-        if (lock_file && FileExist(lock_file)) {
-            FileDelete(lock_file)
+    ReleaseServerLock(handle) {
+        if (handle) {
+            try {
+                handle.Close()
+            }
+            this.server_lock_handle := 0
         }
     }
     GenerateID(len) {

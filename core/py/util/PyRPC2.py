@@ -35,6 +35,7 @@ class RPCManager:
         self.ENCODING = 'utf-8'
         self.debug_file = os.path.join(self.communication_path, "python_debug.log")
         self.duplicate_window = 2
+        self.server_lock_handle = None 
         # 중복 감지 시스템 - dict로 O(1) 조회
         
         file_auto_gen(self.request_queue)
@@ -49,52 +50,27 @@ class RPCManager:
             pass
 
     def acquire_server_lock(self, timeout_ms=1000):
-        try:
-            lock_file = os.path.join(self.communication_path, "rpc_server.lock")
-            start_time = time.time() * 1000
-            
-            while (time.time() * 1000 - start_time) < timeout_ms:
-                try:
-                    if not os.path.exists(lock_file):
-                        with open(lock_file, 'w') as f:
-                            f.write(f"{os.getpid()}|{self.get_timestamp()}")
-                        return lock_file
-                    else:
-                        # 기존 락 파일 확인 및 강제 해제
-                        try:
-                            with open(lock_file, 'r') as f:
-                                lock_content = f.read()
-                            parts = lock_content.split('|')
-                            if len(parts) >= 2:
-                                lock_pid = int(parts[0])
-                                lock_time = parts[1]
-                                
-                                # 5분 초과 또는 프로세스 죽음 확인
-                                time_diff = self.get_time_difference_seconds(lock_time, self.get_timestamp())
-                                if time_diff > 1 or not self._process_exists(lock_pid):
-                                    os.remove(lock_file)
-                                    continue
-                        except:
-                            # 손상된 락 파일은 삭제
-                            os.remove(lock_file)
-                            continue
-                    
-                    time.sleep(0.02)
-                except:
-                    time.sleep(0.02)
-            
-            return None
-        except Exception as e:
-            self._log(f"Lock acquire error: {e}")
-            return None
+        lock_file = os.path.join(self.communication_path, "rpc_server.lock")
+        start_time = time.time() * 1000
+        
+        while (time.time() * 1000 - start_time) < timeout_ms:
+            try:
+                # 배타적으로 파일 열기
+                handle = open(lock_file, 'w', encoding=self.ENCODING)
+                handle.write(str(os.getpid()))
+                handle.flush()
+                return handle  # 핸들 반환 (파일 열린 상태 유지)
+            except (IOError, OSError):
+                time.sleep(0.02)
+        
+        return None
 
-    def release_server_lock(self, lock_file):
-        """파일 기반 락 해제"""
-        try:
-            if lock_file and os.path.exists(lock_file):
-                os.remove(lock_file)
-        except Exception as e:
-            self._log(f"Lock release error: {e}")
+    def release_server_lock(self, handle):
+        if handle:
+            try:
+                handle.close()  # 파일 닫으면 자동 락 해제
+            except:
+                pass
     
     def cleanup_processed_requests(self):
         """오래된 처리 기록 정리"""
