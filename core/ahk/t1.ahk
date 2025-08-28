@@ -11,9 +11,9 @@ getNameAndDtByPID(pid, &dt, &processName){
 aaa:=0
 bbb:=0
 
-getNameAndDtByPID(0, &aaa, &bbb)
+getNameAndDtByPID(26104, &aaa, &bbb)
 
-MsgBox aaa " " bbb
+MsgBox aaa " " bbb "`n" StrSplit(A_AhkPath, "\").Pop()
 
 ; setupPkgStatusJson()
 
@@ -88,3 +88,10 @@ setupPkgStatusJson() {
     ; MsgBox finalResult
     
 }
+; MsgBox StrSplit(A_AhkPath, "\").Pop()  ; exe 파일 이름만 뽑음
+
+; ; 혹은 전체 프로세스 목록에서 AHK만 추출
+; for proc in ComObjGet("winmgmts:").ExecQuery("Select * from Win32_Process") {
+;     if InStr(proc.Name, "AutoHotkey")
+;         MsgBox proc.Name  ; 예: AutoHotkey64.exe
+; }

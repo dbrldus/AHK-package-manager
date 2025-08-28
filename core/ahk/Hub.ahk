@@ -19,6 +19,7 @@ if (python_exe_path = "") {
 ;#endregion 
 
 OnExit(cleanup)
+setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성. 
 
 ;#region  RPC 통신을 위한 클라이언트 및 종료 신호 관리자 생성
 
@@ -29,7 +30,6 @@ client.regist(shutdown, "doShutdown")
 client.spin()
 ;#endregion 
 
-setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성. 
 
 ; 허브 상태를 '활성'으로 변경하고 파일에 기록
 hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
@@ -144,7 +144,6 @@ runPkgById(pkg_id) { ; id 받아서 패키지 경로 실행하고, 만약 됐으
         return pid
     } catch as e {
         throw Error("Fail to run pkg at:" init_path, "`n " (IsObject(e) ? e.Message : e))
-        return 1
     }
 }
 
@@ -165,20 +164,13 @@ stopPkgById(pkg_id) { ; id 받아서 패키지 경로 종료 시도하고, 됐�
 }
 
 setPkgStatusById(pkg_id, status, pid, pName, birth){
-    mutex_handle := AcquireServerLock(PKG_STATUS_FILE_PATH, 5000)
-    if (mutex_handle) {
-        try {
-            status_data := readPkgStatusJson()
-            idx := findIndexById(status_data, pkg_id)
-            status_data[idx]["status"] := status
-            status_data[idx]["pid"] := pid
-            status_data[idx]["process_name"] := pName
-            status_data[idx]["creation_time"] := birth
-            writeJsonFile(PKG_STATUS_FILE_PATH, status_data)
-        } finally {
-            ReleaseServerLock(mutex_handle, PKG_STATUS_FILE_PATH)
-        }
-    }
+    status_data := readPkgStatusJson()
+    idx := findIndexById(status_data, pkg_id)
+    status_data[idx]["status"] := status
+    status_data[idx]["pid"] := pid
+    status_data[idx]["process_name"] := pName
+    status_data[idx]["creation_time"] := birth
+    writeJsonFile(PKG_STATUS_FILE_PATH, status_data)
 }
 
 ;#region Func def
@@ -228,8 +220,6 @@ class WatchDog {
     __New() {
 
     }
-
-
     pkgs_status := readPkgStatusJson()
 
     isThisPkgWellBeing(pkg) {
@@ -240,6 +230,7 @@ class WatchDog {
         if dt = 0 && processName = 0{
             return false
         }
+
 
     }
 }
