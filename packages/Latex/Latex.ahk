@@ -2,6 +2,7 @@
 Latex Tools For Notion Math Editor
 0.1.0
 */
+#SingleInstance Force
 
 ::\mb:: {
     SendText("/mat")
@@ -126,5 +127,3 @@ F1:: {
 ::\z:: {
     SendText("\zeta")
 }
-
-MsgBox "LaTex Now Active!"

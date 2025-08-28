@@ -66,7 +66,7 @@ class RPCManager {
 
         loop 10 {
             try {
-                FileAppend(text "`n", this.request_queue ,this.ENCODING)
+                FileAppend(text "`n", this.request_queue, this.ENCODING)
                 break
             }
             catch {
@@ -79,7 +79,7 @@ class RPCManager {
         res := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
         res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
         ; 응답 대기
-        if !ignore_response{
+        if !ignore_response {
             loop 50 {
                 if FileExist(res) {
                     ; text := FileRead(res)
@@ -96,14 +96,14 @@ class RPCManager {
                 Sleep(100)
             }
             if FileExist(res_fail) {
-                result := FileRead(res_fail , this.ENCODING)
+                result := FileRead(res_fail, this.ENCODING)
                 try FileDelete(res_fail)
                 return 1
             }
             return 1
         }
         return 0
-        
+
     }
 
     regist(callback, callback_name) {
@@ -152,11 +152,11 @@ class RPCManager {
             for line in lines{
 
                 line := Trim(line)
-                if (line = ""){
+                if (line = "") {
                     ; MsgBox "Line is empty"
                     continue
                 }
-                if (SubStr(line, 1, 4) != "RPC|"){
+                if (SubStr(line, 1, 4) != "RPC|") {
                     ; MsgBox "Warn"
                     continue
                 }
@@ -167,7 +167,7 @@ class RPCManager {
                     ;     MsgBox part " !!"
                     ; }
 
-                    if (parts.Length < 4){
+                    if (parts.Length < 4) {
                         continue
                     }
                     ; FileAppend("111 `n", "*")
@@ -175,11 +175,11 @@ class RPCManager {
                     request_id := parts[2]
                     name := parts[3]
                     resIgnore := Number(parts[4])
-                    if(!resIgnore){
+                    if (!resIgnore) {
                         res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
-                        try FileAppend("1", res , this.ENCODING)
+                        try FileAppend("1", res, this.ENCODING)
                     }
-                        
+
                     ; FileAppend("222`n", "*")
 
                     if this.callbacks.Has(name) {
@@ -251,22 +251,22 @@ class RPCManager {
                     result := cb(params[1], params[2], params[3], params[4], params[5], params[6])
 
                 ; FileAppend("Callback executed successfully, result: " String(result) "`n", "*")
-                if !resIgnore{
+                if !resIgnore {
                     res_success := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
                     res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
 
                     try FileDelete(res_fail)
                     try FileDelete(res_success)
-                    FileAppend(String(result), res_success , this.ENCODING)
+                    FileAppend(String(result), res_success, this.ENCODING)
                     ; FileAppend("Response file created`n", "*")
                 }
             } catch as e {
-                if !resIgnore{
+                if !resIgnore {
                     ; FileAppend("CALLBACK ERROR: " e.Message "`n", "*")
                     ; FileAppend("Error at line: " e.Line "`n", "*")
                     res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
                     FileDelete(res)
-                    FileAppend("ERROR: " e.Message, res , this.ENCODING)
+                    FileAppend("ERROR: " e.Message, res, this.ENCODING)
                 }
             }
         }
