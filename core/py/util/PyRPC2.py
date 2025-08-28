@@ -34,11 +34,8 @@ class RPCManager:
         self.server_mutex_name = f"RPCServer_{_communication_path.replace('\\', '_').replace('/', '_').replace(':', '_')}"
         self.ENCODING = 'utf-8'
         self.debug_file = os.path.join(self.communication_path, "python_debug.log")
-        
+        self.duplicate_window = 2
         # 중복 감지 시스템 - dict로 O(1) 조회
-        self.recent_requests = {}  # {"request_id": "20250829032827", ...}
-        self.duplicate_window = 2  # 2초
-        self.last_cleanup = time.time()
         
         file_auto_gen(self.request_queue)
 
@@ -52,17 +49,35 @@ class RPCManager:
             pass
 
     def acquire_server_lock(self, timeout_ms=1000):
-        """간단한 파일 기반 락으로 대체"""
         try:
-            lock_file = os.path.join(self.communication_path, "python_server.lock")
+            lock_file = os.path.join(self.communication_path, "rpc_server.lock")
             start_time = time.time() * 1000
             
             while (time.time() * 1000 - start_time) < timeout_ms:
                 try:
                     if not os.path.exists(lock_file):
                         with open(lock_file, 'w') as f:
-                            f.write(str(os.getpid()))
+                            f.write(f"{os.getpid()}|{self.get_timestamp()}")
                         return lock_file
+                    else:
+                        # 기존 락 파일 확인 및 강제 해제
+                        try:
+                            with open(lock_file, 'r') as f:
+                                lock_content = f.read()
+                            parts = lock_content.split('|')
+                            if len(parts) >= 2:
+                                lock_pid = int(parts[0])
+                                lock_time = parts[1]
+                                
+                                # 5분 초과 또는 프로세스 죽음 확인
+                                time_diff = self.get_time_difference_seconds(lock_time, self.get_timestamp())
+                                if time_diff > 1 or not self._process_exists(lock_pid):
+                                    os.remove(lock_file)
+                                    continue
+                        except:
+                            # 손상된 락 파일은 삭제
+                            os.remove(lock_file)
+                            continue
                     
                     time.sleep(0.02)
                 except:
@@ -80,7 +95,69 @@ class RPCManager:
                 os.remove(lock_file)
         except Exception as e:
             self._log(f"Lock release error: {e}")
+    
+    def cleanup_processed_requests(self):
+        """오래된 처리 기록 정리"""
+        processed_file = os.path.join(self.communication_path, "processed_requests.txt")
+        if not os.path.exists(processed_file):
+            return
+        
+        try:
+            # 파일 크기 확인 - 10KB 미만이면 건너뛰기
+            if os.path.getsize(processed_file) < 10240:
+                return
+            
+            with open(processed_file, 'r', encoding=self.ENCODING) as f:
+                content = f.read()
+            
+            lines = content.split('\n')
+            new_lines = []
+            current_time = self.get_timestamp()
+            removed_count = 0
+            
+            for line in lines:
+                if not line.strip():
+                    continue
+                parts = line.split('|')
+                if len(parts) >= 2:
+                    time_diff = self.get_time_difference_seconds(parts[1], current_time)
+                    if time_diff <= self.duplicate_window:
+                        new_lines.append(line)
+                    else:
+                        removed_count += 1
+            
+            # 정리할 게 있으면 파일 업데이트
+            if removed_count > 0:
+                with open(processed_file, 'w', encoding=self.ENCODING) as f:
+                    for line in new_lines:
+                        f.write(line + '\n')
+                        
+        except Exception as e:
+            self._log(f"Cleanup error: {e}")
+    
+    def record_processed_request(self, request_id, timestamp):
 
+        processed_file = os.path.join(self.communication_path, "processed_requests.txt")
+        try:
+            with open(processed_file, 'a', encoding=self.ENCODING) as f:
+                f.write(f"{request_id}|{timestamp}\n")
+        except:
+            pass
+    
+    
+    def _process_exists(self, pid):
+        """프로세스 존재 확인"""
+        try:
+            import psutil
+            return psutil.pid_exists(pid)
+        except:
+            # psutil 없으면 간단한 방법
+            try:
+                os.kill(pid, 0)
+                return True
+            except:
+                return False
+    
     def regist(self, callback, callback_name):
         self.callbacks[callback_name] = callback
     
@@ -114,13 +191,28 @@ class RPCManager:
             del self.recent_requests[key]
     
     def is_duplicate_request(self, request_id, timestamp):
-        """중복 요청 검사 - O(1)"""
-        if request_id not in self.recent_requests:
+        processed_file = os.path.join(self.communication_path, "processed_requests.txt")
+        
+        if not os.path.exists(processed_file):
             return False
         
-        old_timestamp = self.recent_requests[request_id]
-        time_diff = self.get_time_difference_seconds(old_timestamp, timestamp)
-        return time_diff <= self.duplicate_window
+        try:
+            with open(processed_file, 'r', encoding=self.ENCODING) as f:
+                content = f.read()
+            
+            lines = content.split('\n')
+            for line in lines:
+                if not line.strip():
+                    continue
+                parts = line.split('|')
+                if len(parts) >= 2 and parts[0] == request_id:
+                    time_diff = self.get_time_difference_seconds(parts[1], timestamp)
+                    if time_diff <= self.duplicate_window:
+                        return True
+        except:
+            pass
+        
+        return False
     
     def request(self, callback_name, params=None, ignore_response=False):
         if params is None:
@@ -202,11 +294,13 @@ class RPCManager:
                     time.sleep(0.1)
                     continue
                 
-                # 10초마다 한 번만 정리 (성능 최적화)
+                
                 current_time = time.time()
-                if current_time - self.last_cleanup > 10:
-                    current_timestamp = self.get_timestamp()
-                    self.cleanup_recent_requests(current_timestamp)
+                if not hasattr(self, 'last_cleanup'):
+                    self.last_cleanup = time.time()
+                current_time = time.time()
+                if current_time - self.last_cleanup > 30:
+                    self.cleanup_processed_requests()
                     self.last_cleanup = current_time
                 
                 server_lock = self.acquire_server_lock(1000)
@@ -276,8 +370,7 @@ class RPCManager:
                                 except:
                                     callback_params.append(val)
                             
-                            # 최근 요청 dict에 추가 - O(1)
-                            self.recent_requests[request_id] = timestamp
+                            self.record_processed_request(request_id, timestamp)
                             
                             # FAIL 응답 파일 미리 생성
                             if not ignore_response:

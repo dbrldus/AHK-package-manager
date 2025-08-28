@@ -29,14 +29,35 @@ class RPCManager {
     }
 
     AcquireServerLock(timeout_ms := 1000) {
-        lock_file := this.temp_path "\rpc_server.lock"  ; Python과 같은 이름
+        lock_file := this.temp_path "\rpc_server.lock"
         start_time := A_TickCount
 
         while (A_TickCount - start_time < timeout_ms) {
             if (!FileExist(lock_file)) {
                 try {
-                    FileAppend(DllCall("GetCurrentProcessId"), lock_file)
+                    FileAppend(DllCall("GetCurrentProcessId") "|" A_Now, lock_file)
                     return lock_file
+                }
+            } else {
+                ; 기존 락 파일 확인 및 강제 해제
+                try {
+                    lock_content := FileRead(lock_file)
+                    parts := StrSplit(lock_content, "|")
+                    if (parts.Length >= 2) {
+                        lock_pid := parts[1]
+                        lock_time := parts[2]
+
+                        ; 5분 초과 또는 프로세스 죽음 확인
+                        time_diff := this.GetTimeDifferenceSeconds(lock_time, A_Now)
+                        if (time_diff > 1 || !ProcessExist(lock_pid)) {
+                            FileDelete(lock_file)
+                            continue
+                        }
+                    }
+                } catch {
+                    ; 손상된 락 파일은 삭제
+                    FileDelete(lock_file)
+                    continue
                 }
             }
             Sleep(20)
@@ -113,34 +134,46 @@ class RPCManager {
         SetTimer(() => this.check(), 100)
     }
 
-    ; Map에서 오래된 요청들 제거 (10초마다 한 번만)
+
     CleanupProcessedRequests() {
         processed_file := this.temp_path "\processed_requests.txt"
         if (!FileExist(processed_file)){
             return
-        }
+        } 
         try {
+            ; 파일 크기 확인 - 너무 크면 정리
+            file_size := FileGetSize( processed_file)
+            if (file_size < 10240) {  ; 10KB 미만이면 건너뛰기
+                return
+            }
+
             content := FileRead(processed_file)
             lines := StrSplit(content, "`n")
             new_lines := []
             current_time := A_Now
+            removed_count := 0
 
             for line in lines {
-                if (line = "") {
+                if (line = ""){
                     continue
                 }
-                    parts := StrSplit(line, "|")
+                parts := StrSplit(line, "|")
                 if (parts.Length >= 2) {
                     time_diff := this.GetTimeDifferenceSeconds(parts[2], current_time)
                     if (time_diff <= this.duplicate_window) {
                         new_lines.Push(line)
+                    } else {
+                        removed_count++
                     }
                 }
             }
 
-            FileDelete(processed_file)
-            for line in new_lines {
-                FileAppend(line "`n", processed_file)
+            ; 정리할 게 있으면 파일 업데이트
+            if (removed_count > 0) {
+                FileDelete(processed_file)
+                for line in new_lines {
+                    FileAppend(line "`n", processed_file)
+                }
             }
         }
     }
@@ -189,6 +222,7 @@ class RPCManager {
     }
 
     check() {
+        
         if !FileExist(this.request_queue)
             return
 
@@ -196,7 +230,12 @@ class RPCManager {
         if (!server_lock) {
             return
         }
-
+        static last_cleanup := 0
+        current_time := A_TickCount
+        if (current_time - last_cleanup > 30000) {
+            this.CleanupProcessedRequests()
+            last_cleanup := current_time
+        }
         try {
             queue_file := FileOpen(this.request_queue, "rw", this.ENCODING)
             if (!queue_file) {
