@@ -21,7 +21,12 @@ class RPCManager {
         this.request_queue := communication_path "\rpc_requests.queue"
         this.server_mutex_name := "RPCServer_" StrReplace(communication_path, "\", "_")
         this.ENCODING := 'UTF-8-RAW'
-        ; 큐 파일이 없으면 생성
+
+        ; Map으로 O(1) 조회 - ID를 키로, 타임스탬프를 값으로
+        this.recent_requests := Map()  ; {"request_id": "20250829032827", ...}
+        this.duplicate_window := 2  ; 2초
+        this.last_cleanup := A_TickCount
+
         fileAutoGen(this.request_queue)
     }
 
@@ -31,7 +36,7 @@ class RPCManager {
             return false
 
         result := DllCall("WaitForSingleObject", "ptr", mutex, "uint", timeout_ms)
-        if (result = 0) {  ; WAIT_OBJECT_0
+        if (result = 0) {
             return mutex
         } else {
             DllCall("CloseHandle", "ptr", mutex)
@@ -47,47 +52,42 @@ class RPCManager {
     }
 
     GenerateID(len) {
-        ; 랜덤 ID 생성 (16자리)
         chars := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         id := ""
         loop len {
-            r := Random(1, StrLen(chars))  ; 1 ~ 길이 사이 정수
-            id .= SubStr(chars, r, 1)      ; r번째 글자 1개 추출
+            r := Random(1, StrLen(chars))
+            id .= SubStr(chars, r, 1)
         }
         return id
     }
 
-    request(callback_name, params := [], ignore_response := false) { ;서비스 이름, 파라미터 받아서 rpc_res_id.txt 나올 때까지 5초 대기, 없으면 rpc_res_id.txt
-        ; 고유 ID 생성
+    request(callback_name, params := [], ignore_response := false) {
         request_id := this.GenerateID(16)
-        text := "RPC|" request_id "|" callback_name "|" ignore_response
+        timestamp := A_Now  ; YYYYMMDDHHMISS 형식
+
+        ; 새로운 형식: RPC|ID|NAME|IGNORE|TIMESTAMP|PARAMS...
+        text := "RPC|" request_id "|" callback_name "|" ignore_response "|" timestamp
         for p in params
             text .= "|" p
 
+        ; 요청 전송 시도
         loop 10 {
             try {
                 FileAppend(text "`n", this.request_queue, this.ENCODING)
                 break
             }
             catch {
-                Sleep(10)  ; 잠깐 쉬고 재시도
-                ; FileAppend("331 1 1 `n", "*")
+                Sleep(10)
             }
         }
 
-        ; 응답 파일 경로
-        res := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
-        res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
         ; 응답 대기
         if !ignore_response {
+            res := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
+            res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
+
             loop 50 {
                 if FileExist(res) {
-                    ; text := FileRead(res)
-                    ; if (text = ""){
-                    ;     return ""
-                    ; }
-                    ; lines := StrSplit(result, "`n")
-                    ; result := lines[1]
                     result := FileRead(res, this.ENCODING)
                     try FileDelete(res)
                     try FileDelete(res_fail)
@@ -95,6 +95,7 @@ class RPCManager {
                 }
                 Sleep(100)
             }
+
             if FileExist(res_fail) {
                 result := FileRead(res_fail, this.ENCODING)
                 try FileDelete(res_fail)
@@ -103,14 +104,10 @@ class RPCManager {
             return 1
         }
         return 0
-
     }
 
     regist(callback, callback_name) {
         this.callbacks[callback_name] := callback
-        ; for cb, nm in this.callbacks{
-        ;     MsgBox " " cb "!!"
-        ; }
     }
 
     spin() {
@@ -118,156 +115,189 @@ class RPCManager {
         SetTimer(() => this.check(), 100)
     }
 
+    ; Map에서 오래된 요청들 제거 (10초마다 한 번만)
+    CleanupRecentRequests(current_timestamp) {
+        keys_to_remove := []
+
+        for request_id, timestamp in this.recent_requests {
+            time_diff := this.GetTimeDifferenceSeconds(timestamp, current_timestamp)
+            if (time_diff > this.duplicate_window) {
+                keys_to_remove.Push(request_id)
+            }
+        }
+
+        for key in keys_to_remove {
+            this.recent_requests.Delete(key)
+        }
+    }
+
+    ; 중복 요청 검사 - O(1)
+    IsDuplicateRequest(request_id, timestamp) {
+        if (!this.recent_requests.Has(request_id)) {
+            return false
+        }
+
+        old_timestamp := this.recent_requests[request_id]
+        time_diff := this.GetTimeDifferenceSeconds(old_timestamp, timestamp)
+        return (time_diff <= this.duplicate_window)
+    }
+
+    ; 시간 차이 계산 (초 단위)
+    GetTimeDifferenceSeconds(time1, time2) {
+        ; YYYYMMDDHHMISS 형식을 초로 변환해서 차이 계산
+        t1 := DateDiff(time1, "19700101000000", "Seconds")
+        t2 := DateDiff(time2, "19700101000000", "Seconds")
+        return Abs(t2 - t1)
+    }
+
     check() {
-        ; FileAppend(A_Now, "*")
         if !FileExist(this.request_queue)
             return
 
         server_lock := this.AcquireServerLock(1000)
         if (!server_lock) {
-            return  ; 다른 서버가 처리 중
+            return
         }
-        resIgnore := false
-        ; 큐 파일 독점 열기
+
+        ; 10초마다 한 번만 정리 (성능 최적화)
+        current_time := A_TickCount
+        if (current_time - this.last_cleanup > 10000) {
+            current_timestamp := A_Now
+            this.CleanupRecentRequests(current_timestamp)
+            this.last_cleanup := current_time
+        }
+
         try {
-            ; 큐 파일은 공유 모드로 열기 (클라이언트 FileAppend 허용)
             queue_file := FileOpen(this.request_queue, "rw", this.ENCODING)
             if (!queue_file) {
                 return
             }
 
-            ; 기존 처리 로직과 동일
             queue_file.Pos := 0
             text := queue_file.Read()
 
-            ; 개행 문자 통일 처리
-            text := StrReplace(text, "`r`n", "`n")  ; Windows 스타일 줄바꿈을 Unix로
-            text := StrReplace(text, "`r", "`n")    ; 혹시 남은 \r도 \n으로
+            text := StrReplace(text, "`r`n", "`n")
+            text := StrReplace(text, "`r", "`n")
 
             lines := StrSplit(text, "`n")
-            processed := false
             new_lines := []
-            request_id := "", name := "", params := []
-            
-            for line in lines{
 
+            request_to_process := ""
+            callback_name := ""
+            callback_params := []
+            ignore_response := false
+
+            for line in lines {
                 line := Trim(line)
-                if (line = "") {
-                    ; MsgBox "Line is empty"
-                    continue
-                }
-                if (SubStr(line, 1, 4) != "RPC|") {
-                    ; MsgBox "Warn"
-                    continue
-                }
-
-                if (!processed && SubStr(line, 1, 4) = "RPC|") {
-                    parts := StrSplit(line, "|")
-                    ; for part in parts{
-                    ;     MsgBox part " !!"
-                    ; }
-
-                    if (parts.Length < 4) {
-                        continue
-                    }
-                    ; FileAppend("111 `n", "*")
-                    ; MsgBox "long" " !!"
-                    request_id := parts[2]
-                    name := parts[3]
-                    resIgnore := Number(parts[4])
-                    if (!resIgnore) {
-                        res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
-                        try FileAppend("1", res, this.ENCODING)
-                    }
-
-                    ; FileAppend("222`n", "*")
-
-                    if this.callbacks.Has(name) {
-                        params := []
-                        loop parts.Length - 4 {
-                            val := parts[A_Index + 4]
-                            params.Push(IsNumber(val) ? Number(val) : val)
-                        }
-                        ; MsgBox "Called, " name
-                        processed := true
-                        ; FileAppend("333 `n", "*")
-                        continue
-                    } else {
+                if (line = "" || SubStr(line, 1, 4) != "RPC|") {
+                    if (line != "") {
                         new_lines.Push(line)
-                        ; MsgBox "Noooo"
-                        continue
                     }
+                    continue
                 }
+
+                parts := StrSplit(line, "|")
+                if (parts.Length < 5) {  ; 최소 RPC|ID|NAME|IGNORE|TIMESTAMP
+                    continue
+                }
+
+                request_id := parts[2]
+                name := parts[3]
+                ignore_resp := Number(parts[4])
+                timestamp := parts[5]
+
+                ; 중복 요청 검사
+                if (this.IsDuplicateRequest(request_id, timestamp)) {
+                    ; 중복 발견 - 큐에서 제거하고 무시
+                    continue
+                }
+
+                ; 유효한 콜백이 있고 아직 처리할 요청이 없는 경우
+                if (request_to_process = "" && this.callbacks.Has(name)) {
+                    request_to_process := request_id
+                    callback_name := name
+                    ignore_response := ignore_resp
+
+                    ; 파라미터 추출 (timestamp 이후)
+                    callback_params := []
+                    loop parts.Length - 5 {
+                        val := parts[A_Index + 5]
+                        callback_params.Push(IsNumber(val) ? Number(val) : val)
+                    }
+
+                    ; 최근 요청 Map에 추가 - O(1)
+                    this.recent_requests[request_id] := timestamp
+
+                    ; FAIL 응답 파일 미리 생성
+                    if (!ignore_response) {
+                        res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
+                        try FileAppend("1", res_fail, this.ENCODING)
+                    }
+
+                    ; 큐에서 제거
+                    continue
+                }
+
+                ; 처리하지 않는 요청들은 큐에 보존
                 new_lines.Push(line)
             }
 
+            ; 큐 파일 업데이트
             queue_file.Pos := 0
-            for l in new_lines
-                queue_file.WriteLine(l)
+            if (new_lines.Length > 0) {
+                for line in new_lines {
+                    queue_file.WriteLine(line)
+                }
+            }
             queue_file.Length := queue_file.Pos
             queue_file.Close()
 
-        }
-        catch {
+        } catch {
             return
         } finally {
-            ; 반드시 서버 락 해제
             this.ReleaseServerLock(server_lock)
         }
-        ; for i in params{
-        ;     ; MsgBox i " !!!!"
-        ; }
-        ; MsgBox params.Length " m"
 
-        ; MsgBox processed
-        ;  큐 정리 후 콜백
-        if (processed) {
-            ; FileAppend("CALLBACK EXECUTION START: " name "`n", "*")
-            ; FileAppend("Params length: " params.Length "`n", "*")
+        ; 콜백 실행
+        if (request_to_process != "") {
+            this.ExecuteCallback(request_to_process, callback_name, callback_params, ignore_response)
+        }
+    }
 
-            try {
-                cb := this.callbacks[name]
-                ; FileAppend("Callback found: " name "`n", "*")
+    ExecuteCallback(request_id, name, params, ignore_response) {
+        try {
+            cb := this.callbacks[name]
 
-                if params.Length = 0 {
-                    ; FileAppend("Calling with 0 params`n", "*")
-                    result := cb()
-                }
-                else if params.Length = 1 {
-                    ; FileAppend("Calling with 1 param`n", "*")
-                    result := cb(params[1])
-                }
-                else if params.Length = 2 {
-                    ; FileAppend("Calling with 2 params`n", "*")
-                    result := cb(params[1], params[2])
-                }
-                else if params.Length = 3
-                    result := cb(params[1], params[2], params[3])
-                else if params.Length = 4
-                    result := cb(params[1], params[2], params[3], params[4])
-                else if params.Length = 5
-                    result := cb(params[1], params[2], params[3], params[4], params[5])
-                else
-                    result := cb(params[1], params[2], params[3], params[4], params[5], params[6])
+            if (params.Length = 0) {
+                result := cb()
+            } else if (params.Length = 1) {
+                result := cb(params[1])
+            } else if (params.Length = 2) {
+                result := cb(params[1], params[2])
+            } else if (params.Length = 3) {
+                result := cb(params[1], params[2], params[3])
+            } else if (params.Length = 4) {
+                result := cb(params[1], params[2], params[3], params[4])
+            } else if (params.Length = 5) {
+                result := cb(params[1], params[2], params[3], params[4], params[5])
+            } else {
+                result := cb(params[1], params[2], params[3], params[4], params[5], params[6])
+            }
 
-                ; FileAppend("Callback executed successfully, result: " String(result) "`n", "*")
-                if !resIgnore {
-                    res_success := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
-                    res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
+            if (!ignore_response) {
+                res_success := this.temp_path "\rpc_res_COMPLETED_" request_id ".txt"
+                res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
 
-                    try FileDelete(res_fail)
-                    try FileDelete(res_success)
-                    FileAppend(String(result), res_success, this.ENCODING)
-                    ; FileAppend("Response file created`n", "*")
-                }
-            } catch as e {
-                if !resIgnore {
-                    ; FileAppend("CALLBACK ERROR: " e.Message "`n", "*")
-                    ; FileAppend("Error at line: " e.Line "`n", "*")
-                    res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
-                    FileDelete(res)
-                    FileAppend("ERROR: " e.Message, res, this.ENCODING)
-                }
+                try FileDelete(res_fail)
+                try FileDelete(res_success)
+                FileAppend(String(result), res_success, this.ENCODING)
+            }
+
+        } catch as e {
+            if (!ignore_response) {
+                res_fail := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
+                try FileDelete(res_fail)
+                FileAppend("ERROR: " e.Message, res_fail, this.ENCODING)
             }
         }
     }
