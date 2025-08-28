@@ -23,34 +23,32 @@ class RPCManager {
         this.ENCODING := 'UTF-8-RAW'
 
         ; Map으로 O(1) 조회 - ID를 키로, 타임스탬프를 값으로
-        this.recent_requests := Map()  ; {"request_id": "20250829032827", ...}
         this.duplicate_window := 2  ; 2초
-        this.last_cleanup := A_TickCount
 
         fileAutoGen(this.request_queue)
     }
 
     AcquireServerLock(timeout_ms := 1000) {
-        mutex := DllCall("CreateMutex", "ptr", 0, "int", false, "str", this.server_mutex_name, "ptr")
-        if !mutex
-            return false
+        lock_file := this.temp_path "\rpc_server.lock"  ; Python과 같은 이름
+        start_time := A_TickCount
 
-        result := DllCall("WaitForSingleObject", "ptr", mutex, "uint", timeout_ms)
-        if (result = 0) {
-            return mutex
-        } else {
-            DllCall("CloseHandle", "ptr", mutex)
-            return false
+        while (A_TickCount - start_time < timeout_ms) {
+            if (!FileExist(lock_file)) {
+                try {
+                    FileAppend(DllCall("GetCurrentProcessId"), lock_file)
+                    return lock_file
+                }
+            }
+            Sleep(20)
         }
+        return false
     }
 
-    ReleaseServerLock(mutex) {
-        if mutex {
-            DllCall("ReleaseMutex", "ptr", mutex)
-            DllCall("CloseHandle", "ptr", mutex)
+    ReleaseServerLock(lock_file) {
+        if (lock_file && FileExist(lock_file)) {
+            FileDelete(lock_file)
         }
     }
-
     GenerateID(len) {
         chars := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         id := ""
@@ -116,30 +114,70 @@ class RPCManager {
     }
 
     ; Map에서 오래된 요청들 제거 (10초마다 한 번만)
-    CleanupRecentRequests(current_timestamp) {
-        keys_to_remove := []
-
-        for request_id, timestamp in this.recent_requests {
-            time_diff := this.GetTimeDifferenceSeconds(timestamp, current_timestamp)
-            if (time_diff > this.duplicate_window) {
-                keys_to_remove.Push(request_id)
-            }
+    CleanupProcessedRequests() {
+        processed_file := this.temp_path "\processed_requests.txt"
+        if (!FileExist(processed_file)){
+            return
         }
+        try {
+            content := FileRead(processed_file)
+            lines := StrSplit(content, "`n")
+            new_lines := []
+            current_time := A_Now
 
-        for key in keys_to_remove {
-            this.recent_requests.Delete(key)
+            for line in lines {
+                if (line = "") {
+                    continue
+                }
+                    parts := StrSplit(line, "|")
+                if (parts.Length >= 2) {
+                    time_diff := this.GetTimeDifferenceSeconds(parts[2], current_time)
+                    if (time_diff <= this.duplicate_window) {
+                        new_lines.Push(line)
+                    }
+                }
+            }
+
+            FileDelete(processed_file)
+            for line in new_lines {
+                FileAppend(line "`n", processed_file)
+            }
         }
     }
 
     ; 중복 요청 검사 - O(1)
     IsDuplicateRequest(request_id, timestamp) {
-        if (!this.recent_requests.Has(request_id)) {
+        processed_file := this.temp_path "\processed_requests.txt"
+
+        if (!FileExist(processed_file)) {
             return false
         }
 
-        old_timestamp := this.recent_requests[request_id]
-        time_diff := this.GetTimeDifferenceSeconds(old_timestamp, timestamp)
-        return (time_diff <= this.duplicate_window)
+        try {
+            content := FileRead(processed_file)
+            lines := StrSplit(content, "`n")
+
+            for line in lines {
+                if (line = ""){
+                    continue
+                }
+                parts := StrSplit(line, "|")
+                if (parts.Length >= 2 && parts[1] = request_id) {
+                    time_diff := this.GetTimeDifferenceSeconds(parts[2], timestamp)
+                    if (time_diff <= this.duplicate_window) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    RecordProcessedRequest(request_id, timestamp) {
+        processed_file := this.temp_path "\processed_requests.txt"
+        try {
+            FileAppend(request_id "|" timestamp "`n", processed_file)
+        }
     }
 
     ; 시간 차이 계산 (초 단위)
@@ -228,7 +266,7 @@ class RPCManager {
                     }
 
                     ; 최근 요청 Map에 추가 - O(1)
-                    this.recent_requests[request_id] := timestamp
+                    this.RecordProcessedRequest(request_id, timestamp)
 
                     ; FAIL 응답 파일 미리 생성
                     if (!ignore_response) {
