@@ -197,14 +197,6 @@ class RPCManager {
             return
         }
 
-        ; 10초마다 한 번만 정리 (성능 최적화)
-        current_time := A_TickCount
-        if (current_time - this.last_cleanup > 10000) {
-            current_timestamp := A_Now
-            this.CleanupRecentRequests(current_timestamp)
-            this.last_cleanup := current_time
-        }
-
         try {
             queue_file := FileOpen(this.request_queue, "rw", this.ENCODING)
             if (!queue_file) {
