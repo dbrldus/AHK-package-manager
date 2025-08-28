@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Ignore
+DetectHiddenWindows(true)
 
 ;#region Include 다 여기에
 
@@ -8,7 +9,7 @@
 #Include <PythonFinder>
 #Include <JSON_PLUS>
 #Include <SafetyFileCheck>
-;#endregion 
+;#endregion
 
 ;#region 파이썬 인터프리터 경로 설정
 python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
@@ -16,10 +17,10 @@ if (python_exe_path = "") {
     findPythonInterpreterGUI()
     python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
 }
-;#endregion 
+;#endregion
 
 OnExit(cleanup)
-setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성. 
+setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성.
 
 ;#region  RPC 통신을 위한 클라이언트 및 종료 신호 관리자 생성
 
@@ -28,8 +29,7 @@ client.regist(runPkgById, "runPkg")
 client.regist(stopPkgById, "stopPkg")
 client.regist(shutdown, "doShutdown")
 client.spin()
-;#endregion 
-
+;#endregion
 
 ; 허브 상태를 '활성'으로 변경하고 파일에 기록
 hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
@@ -37,8 +37,6 @@ hub_status["is_active"] := "True"
 writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
 ; 상태 변경을 다른 GUI에 알림
 client.request("doCheckHubStatus", [], true)
-
-
 
 ; ====================================================================
 ; 4. 함수 정의
@@ -63,7 +61,7 @@ readPkgListJson() {
     return readJsonFile(PKG_LIST_FILE_PATH)
 }
 
-readPkgStatusJson(){
+readPkgStatusJson() {
     return readJsonFile(PKG_STATUS_FILE_PATH)
 }
 
@@ -130,7 +128,6 @@ setupPkgStatusJson() {
     writeJsonFile(PKG_STATUS_FILE_PATH, pStat)
 }
 
-
 /**
  * 외부 요청을 받아 특정 패키지(init_path)를 실행하는 함수.
  */
@@ -148,9 +145,9 @@ runPkgById(pkg_id) { ; id 받아서 패키지 경로 실행하고, 만약 됐으
 }
 
 stopPkgById(pkg_id) { ; id 받아서 패키지 경로 종료 시도하고, 됐으면 스테이터스 수정, 0리턴
-    init_path := PathJoin(PKGS_PATH, String(pkg_id), String(pkg_id) ".ahk")
+    init_path := String(pkg_id) ".ahk"
     targetHwnd := WinExist(init_path " ahk_class AutoHotkey")
-    try{
+    try {
         if (targetHwnd) {
             WinClose(targetHwnd)
             setPkgStatusById(pkg_id, "stopped", -1, 0, 0)
@@ -163,7 +160,7 @@ stopPkgById(pkg_id) { ; id 받아서 패키지 경로 종료 시도하고, 됐�
     }
 }
 
-setPkgStatusById(pkg_id, status, pid, pName, birth){
+setPkgStatusById(pkg_id, status, pid, pName, birth) {
     status_data := readPkgStatusJson()
     idx := findIndexById(status_data, pkg_id)
     status_data[idx]["status"] := status
@@ -227,10 +224,9 @@ class WatchDog {
         processName := 0
         pkg_pid := pkg["pid"]
         getNameAndDtByPID(pkg_pid, &dt, &processName)
-        if dt = 0 && processName = 0{
+        if dt = 0 && processName = 0 {
             return false
         }
-
 
     }
 }

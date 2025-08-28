@@ -311,7 +311,7 @@ class PackageManagementGUI(QWidget):
         
         # 버튼설정
         self.btnRight.clicked.connect(self.runPkgCall)
-        self.btnLeft.clicked.connect(self.moveLeft)
+        self.btnLeft.clicked.connect(self.stopPkgCall)
         self.btnReload.clicked.connect(self.reloadPkg)
         self.btnOnOffHub.clicked.connect(self.hubOnOff)
         
@@ -740,7 +740,7 @@ class PackageManagementGUI(QWidget):
         selected = list(self.rightList.selectedItems())
         ids = [item.data(Qt.UserRole) for item in selected]
         for id in ids:
-            self.runPkgById(id)
+            self.stopPkgById(id)
         
     def _rpc_run_wrapper(self, *args):
         self.checkActivePkg()
