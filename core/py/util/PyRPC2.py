@@ -154,12 +154,12 @@ class RPCManager:
                         result = f.read()
                     os.remove(res_fail)
                     # self._log(f"Got fail response: {result}")
-                    return result
+                    return 1
                 except:
                     pass
             
             # self._log("Request timeout")
-            return ""
+            return 1
     
     def spin(self):
         self.running = True

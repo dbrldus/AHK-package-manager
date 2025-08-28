@@ -223,3 +223,28 @@
 [20:26:07] Queue content: 'RPC|GLXKnPDiegzmMuST|doCheckHubStatus|1\n'
 [20:26:07] Queue content: 'RPC|DlMlw0YAez1P1rZU|doShutdown|1\nRPC|aPQqzZwVsY3qEPIP|doCheckHubStatus|1\n'
 [20:26:07] Queue content: 'RPC|rkINKp5vtQZLCrez|doCheckHubStatus|1\n'
+[00:20:06] Queue content: 'RPC|HDc9bLh4eaYaDqmV|doCheckHubStatus|1\n'
+[00:20:07] Queue content: 'RPC|WXq9scntlA5U0lmR|doCheckHubStatus|1\nRPC|2wmYLbpnnVOCBWh4|doCheckHubStatus|1\n'
+[00:20:08] Queue content: 'RPC|2wmYLbpnnVOCBWh4|doCheckHubStatus|1\n'
+[00:21:06] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:21:12] Queue content: 'RPC|0zX7GkOCy1lQdXly|doCheckHubStatus|1\n'
+[00:21:13] Queue content: 'RPC|0cRvesM2oJGpxg2t|doCheckHubStatus|1\nRPC|Ec4dCVr4R65ysgvO|doCheckHubStatus|1\n'
+[00:21:13] Queue content: 'RPC|Ec4dCVr4R65ysgvO|doCheckHubStatus|1\n'
+[00:21:16] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:21:26] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:21:36] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:21:46] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:21:56] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:07] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:17] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:27] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:37] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:47] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:22:57] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:08] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:18] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:28] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:38] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:48] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:23:58] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[00:24:09] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']

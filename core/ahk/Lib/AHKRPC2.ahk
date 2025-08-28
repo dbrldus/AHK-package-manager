@@ -98,9 +98,9 @@ class RPCManager {
             if FileExist(res_fail) {
                 result := FileRead(res_fail , this.ENCODING)
                 try FileDelete(res_fail)
-                return result
+                return 1
             }
-            return ""
+            return 1
         }
         return 0
         
@@ -176,7 +176,7 @@ class RPCManager {
                     resIgnore := Number(parts[4])
                     if(!resIgnore){
                         res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
-                        try FileAppend("srv_may_be_ended", res , this.ENCODING)
+                        try FileAppend("1", res , this.ENCODING)
                     }
                         
                     ; FileAppend("222`n", "*")

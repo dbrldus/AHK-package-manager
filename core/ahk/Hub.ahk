@@ -7,6 +7,7 @@
 #Include <AHKRPC2>
 #Include <PythonFinder>
 #Include <JSON_PLUS>
+#Include <SafetyFileCheck>
 ;#endregion 
 
 ;#region 파이썬 인터프리터 경로 설정
@@ -16,20 +17,19 @@ if (python_exe_path = "") {
     python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
 }
 ;#endregion 
-; RPC 통신을 위한 클라이언트 및 종료 신호 관리자 생성
-client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
 
 OnExit(cleanup)
 
+;#region  RPC 통신을 위한 클라이언트 및 종료 신호 관리자 생성
 
-client.regist(runPkgById, "runPkgInit")
+client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
+client.regist(runPkgById, "runPkg")
+client.regist(stopPkgById, "stopPkg")
 client.regist(shutdown, "doShutdown")
+client.spin()
+;#endregion 
 
-
-FileAppend("=== CALLBACKS REGISTERED ===" "`n", A_ScriptDir "\hub_debug.log")
-for name, funcc in client.callbacks {
-    FileAppend("Registered: " name "`n", A_ScriptDir "\hub_debug.log")
-}
+setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성. 
 
 ; 허브 상태를 '활성'으로 변경하고 파일에 기록
 hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
@@ -37,7 +37,7 @@ hub_status["is_active"] := "True"
 writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
 ; 상태 변경을 다른 GUI에 알림
 client.request("doCheckHubStatus", [], true)
-client.spin()
+
 
 
 ; ====================================================================
@@ -59,20 +59,163 @@ cleanup(exitReason, exitCode) {
     }
 }
 
+readPkgListJson() {
+    return readJsonFile(PKG_LIST_FILE_PATH)
+}
+
+readPkgStatusJson(){
+    return readJsonFile(PKG_STATUS_FILE_PATH)
+}
+
+setupPkgStatusJson() {
+    ; pList: 기준이 되는 "마스터" 목록
+    pList := readPkgListJson()
+
+    ; pStat: 현재 상태 목록 (동기화 대상)
+    pStat := readPkgStatusJson()
+
+    ; --- 로직 시작 ---
+
+    ; 1. 빠른 조회를 위해 각 리스트를 ID를 Key로 사용하는 Map으로 변환
+    pListMap := Map()
+    for pkg in pList {
+        pListMap[pkg["id"]] := pkg ; 오류 수정: pkg.id -> pkg["id"]
+    }
+
+    pStatMap := Map()
+    for pkg in pStat {
+        pStatMap[pkg["id"]] := pkg ; 오류 수정: pkg.id -> pkg["id"]
+    }
+
+    ; 2. 동기화 결과를 담을 새로운 배열
+    newPStat := []
+
+    ; 3. 마스터 목록(pList)을 기준으로 최종 목록을 구성
+    for id, masterPkg in pListMap {
+        ; CASE 1: 현재 상태(pStat)에 이미 ID가 존재하는 경우
+        if pStatMap.Has(id) {
+            ; 요구사항: 정보 수정을 전혀 하지 않음
+            ; 따라서 기존 pStat의 pkg를 아무런 변경 없이 그대로 가져와서 추가
+            newPStat.Push(pStatMap[id])
+        }
+        ; CASE 2: 마스터 목록에는 있지만 현재 상태에 없는 경우
+        else {
+            ; 새로운 항목이므로 'stopped' 상태로 새로 만들어 추가
+            newPStat.Push(Map(
+                "id", masterPkg["id"],
+                "process_name", 0,
+                "creation_time", 0,
+                "status", "stopped",
+                "pid", -1
+            ))
+        }
+    }
+
+    ; pList에 없는 항목('P4')은 이 과정에서 newPStat에 추가되지 않으므로 자동으로 제거됨
+
+    ; 4. 최종적으로 pStat을 새로운 리스트로 교체
+    pStat := newPStat
+
+    ; --- 결과 출력 ---
+    ; finalResult := ""
+    ; for pkg in pStat {
+    ;     finalResult .= "id=" pkg["id"]
+    ;         . "`nprocess_name=" pkg["process_name"]
+    ;         . "`ncreation_time=" pkg["creation_time"]
+    ;         . "`npid=" pkg["pid"]
+    ;         . "`nstatus=" pkg["status"]
+    ;         . "`n`n"
+    ; }
+    ; MsgBox finalResult
+    writeJsonFile(PKG_STATUS_FILE_PATH, pStat)
+}
+
+
 /**
  * 외부 요청을 받아 특정 패키지(init_path)를 실행하는 함수.
  */
-runPkgById(id) {
-    init_path := PathJoin(PKGS_PATH, String(id), "init.ahk")
+runPkgById(pkg_id) { ; id 받아서 패키지 경로 실행하고, 만약 됐으면 pid, 생성 시간 등 받아서 package-status에 기록, pid 리턴.
+    init_path := PathJoin(PKGS_PATH, String(pkg_id), String(pkg_id) ".ahk")
     try {
         Run(init_path, , , &pid)
+        getNameAndDtByPID(pid, &dt, &pName)
+        setPkgStatusById(pkg_id, "running", pid, pName, dt)
         client.request("reloadGui", [], true)
         return pid
     } catch as e {
-        throw Error("Fail to run pkg at: `n init_path, `n " (IsObject(e) ? e.Message : e))
+        throw Error("Fail to run pkg at:" init_path, "`n " (IsObject(e) ? e.Message : e))
+        return 1
     }
 }
 
+stopPkgById(pkg_id) { ; id 받아서 패키지 경로 종료 시도하고, 됐으면 스테이터스 수정, 0리턴
+    init_path := PathJoin(PKGS_PATH, String(pkg_id), String(pkg_id) ".ahk")
+    targetHwnd := WinExist(init_path " ahk_class AutoHotkey")
+    try{
+        if (targetHwnd) {
+            WinClose(targetHwnd)
+            setPkgStatusById(pkg_id, "stopped", -1, 0, 0)
+            client.request("reloadGui", [], true)
+            return 0
+        } else {
+            MsgBox("ERROR: Fail to stop Pkg; ID: " pkg_id)
+            return 1
+        }
+    }
+}
+
+setPkgStatusById(pkg_id, status, pid, pName, birth){
+    mutex_handle := AcquireServerLock(PKG_STATUS_FILE_PATH, 5000)
+    if (mutex_handle) {
+        try {
+            status_data := readPkgStatusJson()
+            idx := findIndexById(status_data, pkg_id)
+            status_data[idx]["status"] := status
+            status_data[idx]["pid"] := pid
+            status_data[idx]["process_name"] := pName
+            status_data[idx]["creation_time"] := birth
+            writeJsonFile(PKG_STATUS_FILE_PATH, status_data)
+        } finally {
+            ReleaseServerLock(mutex_handle, PKG_STATUS_FILE_PATH)
+        }
+    }
+}
+
+;#region Func def
+
+hasid(arr, target) {
+    for item in arr {
+        if item.Has("id") && item["id"] = target
+            return true
+    }
+    return false
+}
+
+findIndexById(arr, target) {
+    for idx, item in arr {
+        if item.Has("id") && item["id"] = target
+            return idx
+    }
+    return 0  ; 못 찾았을 때는 0 (AHK 배열은 1부터 시작하니까)
+}
+
+findIndexByPid(arr, target) {
+    for idx, item in arr {
+        if item.Has("pid") && item["pid"] = target
+            return idx
+    }
+    return 0  ; 못 찾았을 때는 0 (AHK 배열은 1부터 시작하니까)
+}
+
+getNameAndDtByPID(pid, &dt, &processName) {
+    for process in ComObjGet("winmgmts:").ExecQuery("SELECT * FROM Win32_Process WHERE ProcessId=" pid) {
+        ; WMI datetime → yyyyMMddHHmmss 형식
+        raw := process.CreationDate
+        dt := SubStr(raw, 1, 4) SubStr(raw, 5, 2) SubStr(raw, 7, 2) SubStr(raw, 9, 2) SubStr(raw, 11, 2) SubStr(raw, 13,
+            2)
+        processName := process.Name
+    }
+}
 /**
  * 외부 종료 신호를 받았을 때 스크립트를 완전히 종료하는 함수.
  */
@@ -81,7 +224,22 @@ shutdown() {
     ExitApp
 }
 
-; ====================================================================
-; 5. 핫키 정의
-; ====================================================================
-; 패키지 이동 요청
+class WatchDog {
+    __New() {
+
+    }
+
+
+    pkgs_status := readPkgStatusJson()
+
+    isThisPkgWellBeing(pkg) {
+        dt := 0
+        processName := 0
+        pkg_pid := pkg["pid"]
+        getNameAndDtByPID(pkg_pid, &dt, &processName)
+        if dt = 0 && processName = 0{
+            return false
+        }
+
+    }
+}

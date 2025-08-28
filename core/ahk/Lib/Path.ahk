@@ -57,6 +57,8 @@ ICONS_PATH := ASSETS_PATH "\icons"
 PKGS_PATH := PathJoin(ROOT_PATH, "packages")
 HUB_PATH := PathJoin(CORE_PATH,"ahk","Hub.ahk")
 HUB_STATUS_FILE_PATH := PathJoin(RUNTIME_PATH, "hub-status.json")
+PKG_STATUS_FILE_PATH := PathJoin(RUNTIME_PATH, "package-status.json")
+PKG_LIST_FILE_PATH := PathJoin(SCHEMA_PATH, "package-list.json")
 MAIN_IPC_PATH := PathJoin(TEMP_PATH, "ipc")
 if !DirExist(MAIN_IPC_PATH) {
     DirCreate(MAIN_IPC_PATH)

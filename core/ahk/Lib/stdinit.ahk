@@ -1,41 +1,45 @@
 #Requires AutoHotkey v2.0
 #Include Path.ahk
 #Include JSON_PLUS.ahk
+#Include AHKRPC2.ahk
 #SingleInstance Ignore
 
 pkg_json_path := A_ScriptDir "\package.json"
-status_path := PathJoin(RUNTIME_PATH, "package-status.json")
 
 packageInfo := readJsonFile(pkg_json_path)
-packageName := packageInfo["name"]
-Run(A_ScriptDir "\" packageInfo["id"] ".ahk")
+packageId := packageInfo["id"]
 
-status_data := readJsonFile(status_path)
+status_data := readJsonFile(PKG_STATUS_FILE_PATH)
 
-if (hasName(status_data, packageName)) {
-    status_data[findIndexByName(status_data, packageName)]["is_active"] := "True"
+if (hasid(status_data, packageId)) {
+    status_data[findIndexByid(status_data, packageId)]["status"] := "running"
 } else {
-    obj := Map("name", packageName, "is_active", "True")
+    obj := Map("id", packageId, "status", "running")
     status_data.Push(obj)
 }
 
-writeJsonFile(status_path, status_data)
+writeJsonFile(PKG_STATUS_FILE_PATH, status_data)
+
+
 
 ;#region Func def
 
-hasName(arr, target) {
+hasid(arr, target) {
     for item in arr {
-        if item.Has("name") && item["name"] = target
+        if item.Has("id") && item["id"] = target
             return true
     }
     return false
 }
 
-findIndexByName(arr, target) {
+findIndexByid(arr, target) {
     for idx, item in arr {
-        if item.Has("name") && item["name"] = target
+        if item.Has("id") && item["id"] = target
             return idx
-    }
-    return 0  ; 못 찾았을 때는 0 (AHK 배열은 1부터 시작하니까)
 }
+return 0  ; 못 찾았을 때는 0 (AHK 배열은 1부터 시작하니까)
+}
+
+Run(PathJoin(A_ScriptDir, packageInfo["id"]) ".ahk")
+
 ;#endregion 
