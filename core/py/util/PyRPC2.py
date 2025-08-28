@@ -236,9 +236,12 @@ class RPCManager:
 
                     for line in lines:
                         line = line.strip()
-                        if not line or not line.startswith("RPC|"):
-                            if line:
-                                new_lines.append(line)
+
+                        if not line:
+                            continue
+                        if not line.startswith("RPC|"):
+                            # 더미 문자열은 로그 후 제거 (보존하지 않음)
+                            # self._log(f"Invalid queue line removed: {line}")
                             continue
 
                         parts = line.split("|")

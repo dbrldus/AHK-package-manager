@@ -3892,3 +3892,183 @@
 [03:48:28] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
 [03:48:33] Queue content: 'RPC|UwOPB3pQcSYWvYaA|doCheckHubStatus|1|20250829034833\nRPC|tZgEBEEqkWXHVri3|doCheckHubStatus|1|20250829034833\n'
 [03:48:33] Queue content: 'RPC|tZgEBEEqkWXHVri3|doCheckHubStatus|1|20250829034833\n'
+[03:51:04] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:51:14] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:54:41] Queue content: 'RPC|KPAsaJ0OGQbUJmOJ|doCheckHubStatus|1|20250829035441\n'
+[03:54:42] Queue content: 'RPC|v0q11FeTyiwiVxhA|doCheckHubStatus|1|20250829035442\nRPC|ZaGCtDExADZM1zec|doCheckHubStatus|1|20250829035442\n'
+[03:54:42] Queue content: 'RPC|ZaGCtDExADZM1zec|doCheckHubStatus|1|20250829035442\n'
+[03:54:43] Queue content: 'RPC|xSE9sB4G43I2WEvD|doCheckHubStatus|1|20250829035442\n'
+[03:54:43] Queue content: 'RPC|gQY6DEnrxHrFejDG|doCheckHubStatus|1|20250829035443\nRPC|Z9uLOXwhK228CAqP|doCheckHubStatus|1|20250829035443\n'
+[03:54:43] Queue content: 'RPC|Z9uLOXwhK228CAqP|doCheckHubStatus|1|20250829035443\n'
+[03:54:46] Queue content: 'ㄴㅇㅀ'
+[03:54:48] Queue content: 'RPC|zx8dvd20vAdRObzr|doCheckHubStatus|1|20250829035448\n'
+[03:54:48] Queue content: 'RPC|ztaEw9XCYLAX44ws|doShutdown|1|20250829035448\nRPC|Z2yr4xkS1ZW1vrlK|doCheckHubStatus|1|20250829035448\n'
+[03:54:49] Queue content: 'RPC|CasfgzRFFJGNdD0f|doCheckHubStatus|1|20250829035448\n'
+[03:54:49] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:54:49] Queue content: 'RPC|Men4zmp5h6inGfe7|doCheckHubStatus|1|20250829035449\n'
+[03:54:50] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:50] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:50] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:50] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:50] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:50] Queue content: 'RPC|8m0c0e4OfmshCN7m|doShutdown|1|20250829035450\nRPC|x0FnLSEciuWMJY8E|doCheckHubStatus|1|20250829035450\n'
+[03:54:50] Queue content: 'RPC|G2qqcqnfuYxytA7Z|doCheckHubStatus|1|20250829035450\n'
+[03:54:51] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:51] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:51] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:52] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:53] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:54] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:55] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\n'
+[03:54:56] Queue content: 'RPC|5YoMAmV2IZkzQ9FF|runPkg|0|20250829035451|Latex\nRPC|6dryfzicJNOwZVg8|doCheckHubStatus|1|20250829035456\n'
+[03:54:56] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[03:54:57] Queue content: 'RPC|55SB3uwPHuQHdxx4|reloadGui|1|20250829035456\n'
+[03:54:59] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:54:59] Queue content: 'RPC|OQwwNFsearjuxPfj|reloadGui|1|20250829035459\n'
+[03:55:00] Queue content: 'RPC|RnC8Ul7H8YJbIT7X|runPkg|0|20250829035500|Latex\n'
+[03:55:01] Queue content: 'RPC|VLV6iV7I98u17fQs|reloadGui|1|20250829035501\n'
+[03:55:01] Queue content: 'RPC|E9VRMnFnZVxCMrCR|stopPkg|0|20250829035501|Latex\n'
+[03:55:02] Queue content: 'RPC|XJuTMNLDDjpUbujW|reloadGui|1|20250829035502\n'
+[03:55:03] Queue content: 'RPC|pmSUQ7UDUsLvIxZu|reloadGui|1|20250829035502\n'
+[03:55:03] Queue content: 'RPC|7bHlNTHRtPzXjg1K|stopPkg|0|20250829035503|Latex\n'
+[03:55:04] Queue content: 'RPC|ua6lfUEog3FaayQB|reloadGui|1|20250829035504\n'
+[03:55:06] Queue content: 'RPC|3e7xsjqEsEyWVPzw|reloadGui|1|20250829035506\n'
+[03:55:07] Queue content: 'RPC|SWOcurK1iqrHKT8y|stopPkg|0|20250829035507|Latex\n'
+[03:55:07] Queue content: 'RPC|GIl5zNg4vUiVZtRx|reloadGui|1|20250829035507\n'
+[03:55:08] Queue content: 'RPC|IVUsIpLcKcMESxqI|reloadGui|1|20250829035508\n'
+[03:55:09] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:55:09] Queue content: 'RPC|f5MUX4e7eKmseK2J|stopPkg|0|20250829035509|Latex\n'
+[03:55:09] Queue content: 'RPC|f5MUX4e7eKmseK2J|stopPkg|0|20250829035509|Latex\n'
+[03:55:09] Queue content: 'RPC|oLbHqaV2DfHqlgFV|reloadGui|1|20250829035509\n'
+[03:55:10] Queue content: 'RPC|rWh3fZpiskwS3FDU|runPkg|0|20250829035510|Latex\n'
+[03:55:15] Queue content: 'RPC|8r6NGxSqPdjl0Wt4|runPkg|0|20250829035515|Latex\n'
+[03:55:15] Queue content: 'RPC|hrMFQVWykwO6kH8n|reloadGui|1|20250829035515\n'
+[03:55:17] Queue content: 'RPC|STCY69FCQ8m0mCEO|stopPkg|0|20250829035517|Latex\n'
+[03:55:18] Queue content: 'RPC|uA57qJFvjkyHdRPc|reloadGui|1|20250829035518\n'
+[03:55:19] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:55:19] Queue content: 'RPC|AtdgNM64xoCNi6Fm|reloadGui|1|20250829035519\n'
+[03:55:20] Queue content: 'RPC|yNemsC3TP4NEcODe|stopPkg|0|20250829035520|Latex\n'
+[03:55:21] Queue content: 'RPC|A8ZH9qpntZQmdtgA|reloadGui|1|20250829035521\n'
+[03:55:22] Queue content: 'RPC|cgGKJY7QCCiqE4mZ|runPkg|0|20250829035522|Latex\n'
+[03:55:22] Queue content: 'RPC|XoeuuZA0LPYdSLl9|reloadGui|1|20250829035522\n'
+[03:55:23] Queue content: 'RPC|pW53WYwoOuXBEJh5|stopPkg|0|20250829035523|Latex\n'
+[03:55:23] Queue content: 'RPC|DvY6dKqWyNMk0stw|reloadGui|1|20250829035523\n'
+[03:55:25] Queue content: 'RPC|orHCCzfErLHuMkjC|doShutdown|1|20250829035525\nRPC|shICHJd5WwFZCkSE|doCheckHubStatus|1|20250829035525\n'
+[03:55:25] Queue content: 'RPC|ypP6s4aaL90xB0Fj|doCheckHubStatus|1|20250829035525\n'
+[03:55:57] Queue content: 'RPC|ekBPya1BRNBqwx7C|doCheckHubStatus|1|20250829035557\n'
+[03:56:00] Queue content: 'RPC|u2pEj19rRekQBJXA|runPkg|1|20250829035600|Latex\n'
+[03:56:01] Queue content: 'RPC|zbcdSAjVrUyZR9Bb|reloadGui|1|20250829035601\n'
+[03:56:02] Queue content: 'RPC|f8zGO2wfqbe2CGPy|stopPkg|1|20250829035602|Latex\n'
+[03:56:02] Queue content: 'RPC|NR0oTxFGBCav2cWU|reloadGui|1|20250829035602\n'
+[03:56:03] Queue content: 'RPC|XviDrIKiHCcJTxQp|runPkg|1|20250829035602|Latex\n'
+[03:56:03] Queue content: 'RPC|YdAbT5WSRKZFI6wa|reloadGui|1|20250829035603\n'
+[03:56:04] Queue content: 'RPC|bONiYLBLsw3eea7Z|reloadGui|1|20250829035604\n'
+[03:56:04] Queue content: 'RPC|V7PBm75jF9QJIbQ5|reloadGui|1|20250829035604\n'
+[03:56:05] Queue content: 'RPC|wbRSOMgSIDluRkps|reloadGui|1|20250829035605\n'
+[03:56:05] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:56:06] Queue content: 'RPC|OOOLxU2IY7ua5Jyd|reloadGui|1|20250829035606\n'
+[03:56:07] Queue content: 'RPC|3YG4TUk0ZAWdZYig|stopPkg|1|20250829035607|Latex\n'
+[03:56:07] Queue content: 'RPC|YhpxwclJLpSFLkFd|reloadGui|1|20250829035607\n'
+[03:56:08] Queue content: 'RPC|XRmyy6QYtwP7qj20|runPkg|1|20250829035607|Latex\n'
+[03:56:08] Queue content: 'RPC|qopKQjVE5ilU2mmX|reloadGui|1|20250829035608\n'
+[03:56:08] Queue content: 'RPC|T1uvuKGejAZ29FYt|stopPkg|1|20250829035608|Latex\n'
+[03:56:09] Queue content: 'RPC|jHd4jvFlzWSVQlWP|reloadGui|1|20250829035609\n'
+[03:56:10] Queue content: 'RPC|OWdZoMjoLHPnkCGc|runPkg|1|20250829035610|Latex\n'
+[03:56:10] Queue content: 'RPC|yrla03vb2NBBIkyR|reloadGui|1|20250829035610\n'
+[03:56:11] Queue content: 'RPC|97vD1JPcVuTTowkv|stopPkg|1|20250829035611|Latex\n'
+[03:56:11] Queue content: 'RPC|97vD1JPcVuTTowkv|stopPkg|1|20250829035611|Latex\n'
+[03:56:11] Queue content: 'RPC|nlJpFEGkLmPw89Rd|reloadGui|1|20250829035611\n'
+[03:56:16] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:56:23] Queue content: 'RPC|UQTeDeaN33fJQ7Vi|runPkg|1|20250829035623|Latex\n'
+[03:56:23] Queue content: 'RPC|uWd2yq4ZNV1xXmYx|reloadGui|1|20250829035623\n'
+[03:56:24] Queue content: 'RPC|7f3WFcg8JfDH8ErB|stopPkg|1|20250829035624|Latex\n'
+[03:56:24] Queue content: 'RPC|5deLjxVYGkJdpra7|reloadGui|1|20250829035624\n'
+[03:56:25] Queue content: 'RPC|fItWcqwuS7isOOo0|runPkg|1|20250829035625|Latex\n'
+[03:56:25] Queue content: 'RPC|oQ6ZGHzCHjQO8Sbu|reloadGui|1|20250829035625\n'
+[03:56:26] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:56:36] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:56:46] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:56:56] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:06] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:17] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:27] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:37] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:47] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:57:57] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:07] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:18] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:28] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:38] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:48] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:58:58] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:09] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:19] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:29] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:39] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:49] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[03:59:59] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:00:10] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:00:20] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:00:30] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:00:40] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:00:50] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:01] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:11] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:21] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:31] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:41] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:01:42] Queue content: 'RPC|yw6bjD2yL7POEPI5|doShutdown|1|20250829040142\nRPC|E8jt1dccGPbjBIMI|doCheckHubStatus|1|20250829040142\n'
+[04:01:42] Queue content: 'RPC|oao8KeTgwsWatTwq|doCheckHubStatus|1|20250829040142\n'
+[04:01:43] Queue content: 'RPC|k0KUpq8ngpSXqmFG|doCheckHubStatus|1|20250829040143\n'
+[04:01:45] Queue content: 'RPC|cEFddlg2OevA2yia|stopPkg|1|20250829040145|Latex\n'
+[04:01:45] Queue content: 'RPC|XhX7nJg9T9MS2p4q|reloadGui|1|20250829040145\n'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[04:01:46] Queue content: 'RPC|8A5UZa2bzbEjYp2B|doShutdown|1|20250829040146\nRPC|hL7Z3gYl0d2or7qk|doCheckHubStatus|1|20250829040146\n'
+[04:01:46] Queue content: 'RPC|zNkFBaJW4SQFQo3P|doCheckHubStatus|1|20250829040146\n'

@@ -719,7 +719,7 @@ class PackageManagementGUI(QWidget):
         self.activePkgIds = set(activePkgIdList)
 
     def runPkgById(self, id): # 인자 pkg라 함은 core 디렉토리의 package-list.json의 최외곽 리스트의 각 딕셔너리 타입 원소를 의미한다. 
-        if(self.client.request("runPkg",[id]) != 1):
+        if(self.client.request("runPkg",[id], True) != 1):
             return 0
         else:
             return 1
@@ -731,7 +731,7 @@ class PackageManagementGUI(QWidget):
             self.runPkgById(id)
 
     def stopPkgById(self, id):
-        if(self.client.request("stopPkg",[id]) != 1):
+        if(self.client.request("stopPkg",[id], True) != 1):
             return 0
         else:
             return 1

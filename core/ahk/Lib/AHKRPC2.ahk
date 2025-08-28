@@ -189,10 +189,12 @@ class RPCManager {
 
             for line in lines {
                 line := Trim(line)
-                if (line = "" || SubStr(line, 1, 4) != "RPC|") {
-                    if (line != "") {
-                        new_lines.Push(line)
-                    }
+                if (line = "") {
+                    continue  ; 빈 줄은 무시
+                }
+                if (SubStr(line, 1, 4) != "RPC|") {
+                    ; 더미 문자열은 로그 후 제거 (보존하지 않음)
+                    ; FileAppend("Invalid queue line removed: " line "`n", A_ScriptDir "\queue_cleanup.log")
                     continue
                 }
 
