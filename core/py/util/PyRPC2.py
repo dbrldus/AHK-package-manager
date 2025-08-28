@@ -6,31 +6,50 @@ import string
 import ctypes
 from ctypes import wintypes
 
+def file_auto_gen(filepath):
+    # 파일이 이미 존재하면 아무것도 안 함
+    if os.path.exists(filepath):
+        return True
+    
+    try:
+        # 디렉토리 경로 추출
+        dir_path = os.path.dirname(filepath)
+        
+        # 상위 디렉토리들을 재귀적으로 생성
+        if dir_path:
+            os.makedirs(dir_path, exist_ok=True)
+        
+        # 빈 파일 생성
+        with open(filepath, 'w', encoding='utf-8') as f:
+            pass  # 빈 파일 생성
+        
+        return True
+        
+    except Exception as e:
+        print(f"파일 경로 생성 실패: {e}")
+        return False
+
 class RPCManager:
-    def __init__(self, _temp_path: str):
+    def __init__(self, _communication_path: str):
         self.callbacks = {}
         self.running = False
-        self.temp_path = _temp_path
-        self.request_queue = os.path.join(self.temp_path, "rpc_requests.queue")
-        self.server_mutex_name = f"RPCServer_{_temp_path.replace('\\', '_').replace('/', '_').replace(':', '_')}"
-        
+        self.communication_path = _communication_path
+        self.request_queue = os.path.join(self.communication_path, "rpc_requests.queue")
+        self.server_mutex_name = f"RPCServer_{_communication_path.replace('\\', '_').replace('/', '_').replace(':', '_')}"
+        self.ENCODING = 'utf-8'
         # 디버깅용
-        self.debug_file = os.path.join(self.temp_path, "python_debug.log")
+        self.debug_file = os.path.join(self.communication_path, "python_debug.log")
         
         # 폴더 생성
-        os.makedirs(self.temp_path, exist_ok=True)
+        file_auto_gen(self.request_queue)
         
-        if not os.path.exists(self.request_queue):
-            with open(self.request_queue, 'w', encoding='utf-8'):
-                pass
-        
-        # self._log(f"RPCManager initialized with path: {self.temp_path}")
+        # self._log(f"RPCManager initialized with path: {self.communication_path}")
         # self._log(f"Mutex name: {self.server_mutex_name}")
 
     def _log(self, message):
         """디버깅용 로그"""
         try:
-            with open(self.debug_file, 'a', encoding='utf-8') as f:
+            with open(self.debug_file, 'a', encoding=self.ENCODING) as f:
                 f.write(f"[{time.strftime('%H:%M:%S')}] {message}\n")
             print(f"[PYTHON] {message}")
         except:
@@ -39,7 +58,7 @@ class RPCManager:
     def acquire_server_lock(self, timeout_ms=1000):
         """간단한 파일 기반 락으로 대체"""
         try:
-            lock_file = os.path.join(self.temp_path, "python_server.lock")
+            lock_file = os.path.join(self.communication_path, "python_server.lock")
             start_time = time.time() * 1000
             
             while (time.time() * 1000 - start_time) < timeout_ms:
@@ -95,13 +114,13 @@ class RPCManager:
         success = False
         for attempt in range(10):
             try:
-                with open(self.request_queue, 'a', encoding='utf-8') as f:
-                    f.write(text + '\n')
+                with open(self.request_queue, 'a', encoding=self.ENCODING, newline='') as f:
+                    f.write(text + '\n')  # \n으로 통일
+                    f.flush()
+                    os.fsync(f.fileno()) 
                 success = True
-                # self._log(f"Request written to queue (attempt {attempt + 1})")
                 break
             except Exception as e:
-                # self._log(f"Queue write failed (attempt {attempt + 1}): {e}")
                 time.sleep(0.01)
         
         if not success:
@@ -110,12 +129,12 @@ class RPCManager:
 
         # 응답 대기
         if(not ignore_response):
-            res_completed = os.path.join(self.temp_path, f"rpc_res_COMPLETED_{request_id}.txt")
-            res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+            res_completed = os.path.join(self.communication_path, f"rpc_res_COMPLETED_{request_id}.txt")
+            res_fail = os.path.join(self.communication_path, f"rpc_res_FAIL_{request_id}.txt")
             for i in range(50):
                 if os.path.exists(res_completed):
                     try:
-                        with open(res_completed, 'r', encoding='utf-8') as f:
+                        with open(res_completed, 'r', encoding=self.ENCODING) as f:
                             result = f.read()
                         os.remove(res_completed)
                         try:
@@ -131,7 +150,7 @@ class RPCManager:
 
             if os.path.exists(res_fail):
                 try:
-                    with open(res_fail, 'r', encoding='utf-8') as f:
+                    with open(res_fail, 'r', encoding=self.ENCODING) as f:
                         result = f.read()
                     os.remove(res_fail)
                     # self._log(f"Got fail response: {result}")
@@ -171,7 +190,7 @@ class RPCManager:
                 try:
                     # 큐 파일 읽기
                     try:
-                        with open(self.request_queue, 'r', encoding='utf-8') as f:
+                        with open(self.request_queue, 'r', encoding=self.ENCODING) as f:
                             text = f.read()
                         
                         if text.strip():  # 큐에 내용이 있으면 로그
@@ -210,9 +229,9 @@ class RPCManager:
 
                             # FAIL 파일 미리 생성
                             if(not ignore_response):
-                                res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+                                res_fail = os.path.join(self.communication_path, f"rpc_res_FAIL_{request_id}.txt")
                                 try:
-                                    with open(res_fail, 'w', encoding='utf-8') as f:
+                                    with open(res_fail, 'w', encoding=self.ENCODING) as f:
                                         f.write("srv_may_be_ended")
                                 except:
                                     pass
@@ -240,7 +259,7 @@ class RPCManager:
 
                     # 큐 업데이트
                     try:
-                        with open(self.request_queue, 'w', encoding='utf-8') as f:
+                        with open(self.request_queue, 'w', encoding=self.ENCODING) as f:
                             for l in new_lines:
                                 if l.strip():
                                     f.write(l + '\n')
@@ -272,8 +291,8 @@ class RPCManager:
                             result = cb(*params)
 
                         if(not ignore_response):
-                            res_completed = os.path.join(self.temp_path, f"rpc_res_COMPLETED_{request_id}.txt")
-                            res_fail = os.path.join(self.temp_path, f"rpc_res_FAIL_{request_id}.txt")
+                            res_completed = os.path.join(self.communication_path, f"rpc_res_COMPLETED_{request_id}.txt")
+                            res_fail = os.path.join(self.communication_path, f"rpc_res_FAIL_{request_id}.txt")
 
                             # 기존 파일들 삭제
                             try:
@@ -286,7 +305,7 @@ class RPCManager:
                                 pass
                             
                             # 결과 파일 생성
-                            with open(res_completed, 'w', encoding='utf-8') as f:
+                            with open(res_completed, 'w', encoding=self.ENCODING) as f:
                                 f.write(str(result))
                             
                             # self._log(f"Callback result: {result}")

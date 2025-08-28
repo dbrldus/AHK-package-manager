@@ -64,7 +64,7 @@ client.spin()
 /**
  * 스크립트가 종료될 때 호출되는 정리 함수.
  */
-MsgBox "!!!"
+; MsgBox "!!!"
 cleanup(exitReason, exitCode) {
     global hub_status, RUNTIME_PATH, client
     try {
@@ -102,11 +102,3 @@ shutdown() {
 ; 5. 핫키 정의
 ; ====================================================================
 ; 패키지 이동 요청
-^#D:: {
-    client.request("MovePkgRight", [])
-}
-
-; 스크립트 재시작
-^#h:: {
-    Run(A_ScriptFullPath)
-}

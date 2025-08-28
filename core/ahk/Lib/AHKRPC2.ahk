@@ -1,5 +1,5 @@
 #Requires AutoHotkey v2.0
-
+#Include Path.ahk
 ; 상호 배제 기본 연산을 위한 요구사항
 ; 상호 배제를 구현하기 위해선 아래 세 가지 조건을 만족해야 합니다.
 
@@ -14,16 +14,15 @@
 ; 계속 기다리는 상황을 만들지 말고 언젠간 들어갈 수 있게 하여 기아상태(starvation) 를 방지합니다.
 
 class RPCManager {
-    __New(tempPath) {
+    __New(communication_path) {
         this.callbacks := Map()
         this.running := false
-        this.temp_path := tempPath
-        this.request_queue := tempPath "\rpc_requests.queue"
-        this.server_mutex_name := "RPCServer_" StrReplace(tempPath, "\", "_")
-
+        this.temp_path := communication_path
+        this.request_queue := communication_path "\rpc_requests.queue"
+        this.server_mutex_name := "RPCServer_" StrReplace(communication_path, "\", "_")
+        this.ENCODING := 'UTF-8-RAW'
         ; 큐 파일이 없으면 생성
-        if !FileExist(this.request_queue)
-            FileAppend("", this.request_queue)
+        fileAutoGen(this.request_queue)
     }
 
     AcquireServerLock(timeout_ms := 1000) {
@@ -67,7 +66,7 @@ class RPCManager {
 
         loop 10 {
             try {
-                FileAppend(text "`n", this.request_queue)
+                FileAppend(text "`n", this.request_queue ,this.ENCODING)
                 break
             }
             catch {
@@ -89,7 +88,7 @@ class RPCManager {
                     ; }
                     ; lines := StrSplit(result, "`n")
                     ; result := lines[1]
-                    result := FileRead(res)
+                    result := FileRead(res, this.ENCODING)
                     try FileDelete(res)
                     try FileDelete(res_fail)
                     return result
@@ -97,7 +96,7 @@ class RPCManager {
                 Sleep(100)
             }
             if FileExist(res_fail) {
-                result := FileRead(res_fail)
+                result := FileRead(res_fail , this.ENCODING)
                 try FileDelete(res_fail)
                 return result
             }
@@ -120,7 +119,7 @@ class RPCManager {
     }
 
     check() {
-        FileAppend(A_Now, "*")
+        ; FileAppend(A_Now, "*")
         if !FileExist(this.request_queue)
             return
 
@@ -132,7 +131,7 @@ class RPCManager {
         ; 큐 파일 독점 열기
         try {
             ; 큐 파일은 공유 모드로 열기 (클라이언트 FileAppend 허용)
-            queue_file := FileOpen(this.request_queue, "rw")
+            queue_file := FileOpen(this.request_queue, "rw", this.ENCODING)
             if (!queue_file) {
                 return
             }
@@ -140,6 +139,11 @@ class RPCManager {
             ; 기존 처리 로직과 동일
             queue_file.Pos := 0
             text := queue_file.Read()
+
+            ; 개행 문자 통일 처리
+            text := StrReplace(text, "`r`n", "`n")  ; Windows 스타일 줄바꿈을 Unix로
+            text := StrReplace(text, "`r", "`n")    ; 혹시 남은 \r도 \n으로
+
             lines := StrSplit(text, "`n")
             processed := false
             new_lines := []
@@ -158,9 +162,9 @@ class RPCManager {
 
                 if (!processed && SubStr(line, 1, 4) = "RPC|") {
                     parts := StrSplit(line, "|")
-                    for part in parts{
-                        MsgBox part " !!"
-                    }
+                    ; for part in parts{
+                    ;     MsgBox part " !!"
+                    ; }
 
                     if (parts.Length < 4){
                         continue
@@ -172,7 +176,7 @@ class RPCManager {
                     resIgnore := Number(parts[4])
                     if(!resIgnore){
                         res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
-                        try FileAppend("srv_may_be_ended", res)
+                        try FileAppend("srv_may_be_ended", res , this.ENCODING)
                     }
                         
                     ; FileAppend("222`n", "*")
@@ -252,7 +256,7 @@ class RPCManager {
 
                     try FileDelete(res_fail)
                     try FileDelete(res_success)
-                    FileAppend(String(result), res_success)
+                    FileAppend(String(result), res_success , this.ENCODING)
                     ; FileAppend("Response file created`n", "*")
                 }
             } catch as e {
@@ -261,7 +265,7 @@ class RPCManager {
                     ; FileAppend("Error at line: " e.Line "`n", "*")
                     res := this.temp_path "\rpc_res_FAIL_" request_id ".txt"
                     FileDelete(res)
-                    FileAppend("ERROR: " e.Message, res)
+                    FileAppend("ERROR: " e.Message, res , this.ENCODING)
                 }
             }
         }

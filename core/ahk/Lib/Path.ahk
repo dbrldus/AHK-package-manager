@@ -63,3 +63,31 @@ if !DirExist(MAIN_IPC_PATH) {
 }
 ; 확인용
 ; MsgBox(CORE_PATH)
+
+fileAutoGen(filepath) {
+    ; 파일이 이미 존재하면 아무것도 안 함
+    if FileExist(filepath)
+        return true
+
+    ; 디렉토리 경로 추출
+    SplitPath(filepath, , &dir_path)
+
+    ; 디렉토리가 없으면 생성 (재귀적으로 모든 상위 디렉토리 생성)
+    if dir_path && !DirExist(dir_path) {
+        try {
+            DirCreate(dir_path)
+        } catch as e {
+            ; MsgBox("디렉토리 생성 실패: " e.Message)
+            return false
+        }
+    }
+
+    ; 빈 파일 생성
+    try {
+        FileAppend("", filepath)
+        return true
+    } catch as e {
+        ; MsgBox("파일 생성 실패: " e.Message)
+        return false
+    }
+}

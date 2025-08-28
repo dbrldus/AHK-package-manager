@@ -23,5 +23,5 @@ try {
 ; hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
 ; hub_status["is_active"] := "False"
 ; writeJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"), hub_status)
-client.request("doCheckHubStatus", [])
+client.request("doCheckHubStatus", [], true)
 ExitApp

@@ -745,7 +745,6 @@ class PackageManagementGUI(QWidget):
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
-        time.sleep(0.8)
             
 
     #endregion 

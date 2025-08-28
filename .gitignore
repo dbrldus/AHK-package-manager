@@ -1,3 +1,5 @@
 core/runtime/*
 __pycache__/
 !core/runtime/.gitignore
+tmp/*
+!tmp/
