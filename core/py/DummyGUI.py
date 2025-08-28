@@ -41,7 +41,7 @@ def find_ahk_path():
 ahk_exe_path = find_ahk_path()
 #endregion 
 
-#region 우월한 리스트 위젯
+#region 우월한 리스트 위젯(QListWidget 상속)
 class ToggleList(QListWidget):
     def mousePressEvent(self, event):
         item = self.itemAt(event.pos())
@@ -112,6 +112,9 @@ class UiBridge(QObject):
 class PackageManagementGUI(QWidget):
     def __init__(self):
         super().__init__()
+
+        # region GUI 관련 세팅
+
         self.setWindowFlags(Qt.FramelessWindowHint)
         # 창 크기 가변으로 변경 - setGeometry 대신 resize 사용
         self.resize(800, 500)  # 초기 크기만 설정
@@ -123,20 +126,22 @@ class PackageManagementGUI(QWidget):
         self.resize_start_pos = None
         self.resize_start_geo = None
         self.setMouseTracking(True)  # 버튼 안 눌러도 move 이벤트 받기
-        
         QApplication.instance().installEventFilter(self)
+
+        self._anims = [] #텍스트 여러 개 옮길 때 애니메이션 각각 저장하기 위함
+        #endregion
         
+        #region 패키지 관리 관련 변수들
         self.pkgJson = self.openJson(package_list_path)
         self.pkgInfos : list[tuple[str,str]] = [ (item.get("id"), item.get("name")) for item in self.pkgJson]
         self.activePkgIds = set()
         self.pkgNames : list[str] = [_.get("name") for _ in self.pkgJson]
         if isDebugging:
             print(self.pkgNames)
-        self._anims = [] #텍스트 여러 개 옮길 때 애니메이션 각각 저장하기 위함
-        
-        #region RPC 통신용 셋업
+        #endregion
 
-        self.client = RPCManager(MAIN_IPC_PATH)
+        #region RPC 통신용 셋업
+        self.client = RPCManager(rpc_communication_path)
         self.bridge = UiBridge()
         self.bridge.reloadGuiSig.connect(self.reloadGUI, Qt.QueuedConnection)
         self.bridge.hubStatusSig.connect(self.checkHubStatus, Qt.QueuedConnection)
@@ -145,7 +150,7 @@ class PackageManagementGUI(QWidget):
         self.client.spin()
         #endregion 
 
-        #region 눈에보이는거
+        #region GUI Design
         #region 메인 레이아웃 설정
         mainLayout = QVBoxLayout()
         
@@ -417,17 +422,18 @@ class PackageManagementGUI(QWidget):
         """)
         #endregion 
         #endregion 
-
-    #region 함수 영역
+        #endregion
     
+    #region 함수 영역
+
     # 사이드바 버튼 클릭 핸들러
     def onSideBarClick(self, index):
         buttons = ["Home", "Packages", "Settings", "Add", "Help"]
         print(f"Clicked: {buttons[index]}")
         if(index == 3):
             self.addPkg()
-        
-    #region 창 크기변경 관련
+
+    #region ===== 창 크기변경 관련 =====
     def _hit_edges(self, pos):
         rect = self.rect()
         m = self.resize_margin
@@ -526,6 +532,7 @@ class PackageManagementGUI(QWidget):
             self.unsetCursor()
         return super().leaveEvent(event)
     #endregion 
+    
     #region  ===== 애니메이션 관련 =====
     def animateTransfer(self, text, start_pos, end_pos, callback):
         label = QLabel(text, self)
@@ -549,7 +556,6 @@ class PackageManagementGUI(QWidget):
         if not hasattr(self, "_anims"):
             self._anims = []
         self._anims.append(anim)
-
 
     def moveRight(self, item = None):
         selected = list(self.leftList.selectedItems())
@@ -595,6 +601,15 @@ class PackageManagementGUI(QWidget):
 
             self.animateTransfer(text, start, end, finish)
 
+    def moveItemRightById(self, id):
+        target_item = self.findItemById(self.leftList, id)
+        self.moveRight(item=target_item)
+        return 0
+    
+    def moveItemLeftById(self, id):
+        target_item = self.findItemById(self.rightList, id)
+        self.moveLeft(item=target_item)
+        return 0
     #endregion 
     
     #region ===== 타이틀바 드래그 =====
@@ -607,7 +622,7 @@ class PackageManagementGUI(QWidget):
             self.move(event.globalPos() - self.offset)
     #endregion 
     
-    #region ===== 리스트 관련 함수 =====
+    #region ===== 리스트(QListWidget) 관련 함수 =====
     def genListWidgetItemWithId(self, id : str, title : str) :
         listItem = QListWidgetItem(title)
         listItem.setData(Qt.UserRole, id)
@@ -616,11 +631,18 @@ class PackageManagementGUI(QWidget):
     def delRightSelectedItems(self, _):
         if len(self.rightList.selectedItems()):
             self.rightList.clearSelection()
+    
     def delLeftSelectedItems(self, _):
         if len(self.leftList.selectedItems()):
             self.leftList.clearSelection()
-    #endregion 
     
+    def findItemById(self, qlist:QListWidget, id):
+        for i in range(qlist.count()):
+            item = qlist.item(i)
+            if item.data(Qt.UserRole) == id:
+                return item
+    #endregion 
+
     #region 정보통신. json을 열고, 읽고, (쓸 수는 없음), 각종 ahk실행 및 
     
     def openJson(self, path):
@@ -682,7 +704,7 @@ class PackageManagementGUI(QWidget):
         for id, _ in self.pkgInfos:
             if id in self.activePkgIds and id in leftIds: #active #animation?
                 self.moveItemRightById(id)
-            elif id in rightIds: #not active
+            elif not id in self.activePkgIds and id in rightIds: #not active
                 self.moveItemLeftById(id)
 
     def checkActivePkg(self):
@@ -690,8 +712,8 @@ class PackageManagementGUI(QWidget):
         activePkgIdList = []
         for singlePkg in pkgStatus:
             try:
-                if(singlePkg.get("status", "dummy") == "running"):
-                    activePkgIdList.append(pkgStatus["id"])
+                if(singlePkg["status"] == "running"):
+                    activePkgIdList.append(singlePkg["id"])
             except:
                 print("Invalid Package Status")
         self.activePkgIds = set(activePkgIdList)
@@ -715,22 +737,7 @@ class PackageManagementGUI(QWidget):
         self.checkActivePkg()
         self.bridge.reloadGuiSig.emit()
         return 0
-    
-    def findItemById(self, qlist:QListWidget, id):
-        for i in range(qlist.count()):
-            item = qlist.item(i)
-            if item.data(Qt.UserRole) == id:
-                return item
-    
-    def moveItemRightById(self, id):
-        target_item = self.findItemById(self.leftList, id)
-        self.moveRight(item=target_item)
-        return 0
-    
-    def moveItemLeftById(self, id):
-        target_item = self.findItemById(self.rightList, id)
-        self.moveLeft(item=target_item)
-        return 0
+    #endregion
 
     #region HUB ON/OFF 관련
     def _check_hub(self, *args):
@@ -778,7 +785,7 @@ class PackageManagementGUI(QWidget):
             
 
     #endregion 
-    #endregion 
+     
     #endregion 
     
 if __name__ == "__main__":
