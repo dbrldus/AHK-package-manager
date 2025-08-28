@@ -12,8 +12,12 @@ aaa:=0
 bbb:=0
 
 getNameAndDtByPID(26104, &aaa, &bbb)
+; MsgBox aaa " " bbb
+; if (aaa = Number()) {
+;     return false
 
-MsgBox aaa " " bbb "`n" StrSplit(A_AhkPath, "\").Pop()
+
+; MsgBox aaa " " bbb "`n" StrSplit(A_AhkPath, "\").Pop()
 
 ; setupPkgStatusJson()
 

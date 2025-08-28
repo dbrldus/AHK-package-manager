@@ -150,6 +150,7 @@ class RPCManager {
             request_id := "", name := "", params := []
             
             for line in lines{
+
                 line := Trim(line)
                 if (line = ""){
                     ; MsgBox "Line is empty"

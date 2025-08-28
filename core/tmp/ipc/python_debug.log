@@ -550,3 +550,6 @@
 [01:48:54] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
 [01:49:00] Queue content: 'RPC|m4HCql4D2RTa7lru|doShutdown|1\nRPC|A5cL2kP0LJoZAiz6|doCheckHubStatus|1\n'
 [01:49:00] Queue content: 'RPC|QIHnSQyfNfGRu8YP|doCheckHubStatus|1\n'
+[01:58:55] Queue content: 'RPC|G0h5pzz6CMhRP4wS|doCheckHubStatus|1\n'
+[01:58:56] Queue content: 'RPC|BhJ69hJHowSLet6Y|runPkg|0|Latex\n'
+[01:58:56] Queue content: 'RPC|CXJEa2FEbhXEd4ix|reloadGui|1\n'

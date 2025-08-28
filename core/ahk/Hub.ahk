@@ -148,7 +148,7 @@ runPkgById(pkg_id) { ; id 받아서 패키지 경로 실행하고, 만약 됐으
 }
 
 stopPkgById(pkg_id) { ; id 받아서 패키지 경로 종료 시도하고, 됐으면 스테이터스 수정, 0리턴
-    init_path := PathJoin(PKGS_PATH, String(pkg_id), String(pkg_id) ".ahk")
+    init_path := String(pkg_id) ".ahk"
     targetHwnd := WinExist(init_path " ahk_class AutoHotkey")
     try{
         if (targetHwnd) {
@@ -221,16 +221,20 @@ class WatchDog {
 
     }
     pkgs_status := readPkgStatusJson()
-
+    
     isThisPkgWellBeing(pkg) {
         dt := 0
         processName := 0
         pkg_pid := pkg["pid"]
-        getNameAndDtByPID(pkg_pid, &dt, &processName)
-        if dt = 0 && processName = 0{
+        getNameAndDtByPID(pkg_pid, &dt, &processName) 
+        if dt = 0 && processName = 0{ ; pid가 정상이라면 여기서 실행 시간 나와야함
+            return false ; not well being
+        }else If (processName = StrSplit(A_AhkPath, "\").Pop()){ ; ahk프로그램인지 확인
+            if(Number(dt) = Number(pkg["creation_time"])){
+                return false
+            }
+        }else{
             return false
         }
-
-
     }
 }
