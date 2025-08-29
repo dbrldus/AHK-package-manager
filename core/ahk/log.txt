@@ -1,0 +1,10 @@
+서비스 등록 결과: 1
+서비스 디렉토리: C:\Users\acalo\AppData\Local\Temp\rpc_services_myapp
+디렉토리 존재: D
+발견된 서비스: ping_proc16484_port9000.service
+발견된 서비스: ping_proc35632_port9000.service
+
+
+발견된 서버 수: 1
+서버: 127.0.0.1:9000
+응답: TIMEOUT
