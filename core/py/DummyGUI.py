@@ -725,10 +725,11 @@ class PackageManagementGUI(QWidget):
             return 1
     
     def runPkgCall(self):
-        selected = list(self.leftList.selectedItems())
-        ids = [item.data(Qt.UserRole) for item in selected]
-        for id in ids:
-            self.runPkgById(id)
+        if(self.getHubStatus()["is_active"] == "True"):
+            selected = list(self.leftList.selectedItems())
+            ids = [item.data(Qt.UserRole) for item in selected]
+            for id in ids:
+                self.runPkgById(id)
 
     def stopPkgById(self, id):
         if(self.client.request("stopPkg",[id], True) != 1):
@@ -737,10 +738,11 @@ class PackageManagementGUI(QWidget):
             return 1
           
     def stopPkgCall(self):
-        selected = list(self.rightList.selectedItems())
-        ids = [item.data(Qt.UserRole) for item in selected]
-        for id in ids:
-            self.stopPkgById(id)
+        if(self.getHubStatus()["is_active"] == "True"):
+            selected = list(self.rightList.selectedItems())
+            ids = [item.data(Qt.UserRole) for item in selected]
+            for id in ids:
+                self.stopPkgById(id)
         
     def _rpc_run_wrapper(self, *args):
         self.checkActivePkg()
@@ -763,10 +765,11 @@ class PackageManagementGUI(QWidget):
         else:
             self.hubStatusLable.setStyleSheet("color: red;")
             self.hubStatusLable.setText("Hub status: Off")
-    
-    def hubOnOff(self):
+    def getHubStatus(self):
         path = os.path.join(RUNTIME_PATH, "hub-status.json")
-        data = self.openJson(path)
+        return self.openJson(path)
+    def hubOnOff(self):
+        data = self.getHubStatus()
 
         if data["is_active"] == "True":
             creation_flags = subprocess.DETACHED_PROCESS | 0x01000000

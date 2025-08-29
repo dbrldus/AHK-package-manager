@@ -31,6 +31,7 @@ client.spin()
 ;#endregion
 
 Daniel := graveKeeper(client)
+Daniel.cleanCorpse() ; 시작시 빠르게 정리
 ; SetTimer(() => Daniel.cleanCorpse(), 500)
 ; 허브 상태를 '활성'으로 변경하고 파일에 기록
 hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
