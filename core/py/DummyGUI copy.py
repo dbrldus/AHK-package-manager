@@ -12,7 +12,7 @@ from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
     QListWidget, QPushButton, QListWidgetItem, QLabel, QFrame, QScroller, QLineEdit, QSpacerItem, QSizePolicy,
-    QStyledItemDelegate, QSplitter, QFileDialog
+    QStyledItemDelegate, QSplitter, QFileDialog, QStackedWidget, QTabWidget, QTextEdit
 )
 from util.PyRPC2 import RPCManager
 from PyQt5.QtCore import Qt, QTimer, QPoint, QPropertyAnimation, QEasingCurve, QRectF, pyqtSignal, QObject, QRect, QEvent
@@ -129,6 +129,9 @@ class PackageManagementGUI(QWidget):
         QApplication.instance().installEventFilter(self)
 
         self._anims = [] #텍스트 여러 개 옮길 때 애니메이션 각각 저장하기 위함
+        
+        # 현재 활성 화면 상태 (0: 패키지 관리, 1: 콘솔)
+        self.current_view = 0
         #endregion
         
         #region 패키지 관리 관련 변수들
@@ -212,26 +215,7 @@ class PackageManagementGUI(QWidget):
         
         #endregion
 
-        #region 검색바
-        
-        searchLayout = QHBoxLayout()
-        searchBar = QLineEdit()
-        searchLayout.setContentsMargins(10, 5, 10, 5) 
-
-        leftSpacer  = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-        rightSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        searchBar = QLineEdit()
-        searchBar.setPlaceholderText("Search Pkg...")
-        searchBar.setFixedWidth(200)  # 폭 고정
-        
-        searchLayout.addItem(leftSpacer)
-        searchLayout.addWidget(searchBar)
-        searchLayout.addItem(rightSpacer)
-        
-        #endregion 
-        
-        #region 새로운 전체 body (사이드바 + 기존 body)
+        #region 전체 body (사이드바 + 메인 콘텐츠)
         fullBodyLayout = QHBoxLayout()
         fullBodyLayout.setContentsMargins(0, 0, 0, 0)
         fullBodyLayout.setSpacing(0)
@@ -251,12 +235,15 @@ class PackageManagementGUI(QWidget):
         sideBarLayout.setSpacing(5)
         #endregion 
         #region 사이드바 버튼들
-        sideBarButtons = []
-        sideBarIcons = ["🏠", "📦", "⚙️", "➕", "❓"]  # 이모지 대신 실제 아이콘 파일 사용 가능
-        sideBarTooltips = ["Home", "Packages", "Settings", "Add", "Help"]
+        self.sideBarButtons = []
+        sideBarIcons = [os.path.join(ICONS_PATH,"homeIcon2.svg"), os.path.join(ICONS_PATH,"consoleIcon2.svg"),os.path.join(ICONS_PATH,"pkgAdd2.svg") , "⚙️", "❓"]
+        sideBarTooltips = ["Home", "Console", "Add Package", "Settings", "Help"]
         
         for i, (icon, tooltip) in enumerate(zip(sideBarIcons, sideBarTooltips)):
-            btn = QPushButton(icon)
+            if icon.endswith('.svg'):
+                btn = QPushButton(QIcon(icon), "")
+            else:
+                btn = QPushButton(icon)  # 이모지인 경우
             btn.setFixedSize(50, 50)
             btn.setToolTip(tooltip)
             btn.setStyleSheet("""
@@ -266,6 +253,7 @@ class PackageManagementGUI(QWidget):
                     border-radius: 8px;
                     color: #D8DEE9;
                     font-size: 20px;
+                    qproperty-iconSize: 32px 32px;
                 }
                 QPushButton:hover {
                     background-color: #4C566A;
@@ -276,13 +264,165 @@ class PackageManagementGUI(QWidget):
             """)
             btn.clicked.connect(lambda checked, idx=i: self.onSideBarClick(idx))
             sideBarLayout.addWidget(btn)
-            sideBarButtons.append(btn)
+            self.sideBarButtons.append(btn)
         
         sideBarLayout.addStretch()
         sideBar.setLayout(sideBarLayout)
         #endregion
         
-        #region body 설정 (기존 body)
+        # 스택드 위젯으로 화면 전환 관리
+        self.stackedWidget = QStackedWidget()
+        
+        # 첫 번째 화면: 기존 패키지 관리 화면
+        self.packageManagementWidget = self.createPackageManagementWidget()
+        self.stackedWidget.addWidget(self.packageManagementWidget)
+        
+        # 두 번째 화면: 콘솔 화면
+        self.consoleWidget = self.createConsoleWidget()
+        self.stackedWidget.addWidget(self.consoleWidget)
+        
+        # 사이드바와 스택드 위젯을 fullBodyLayout에 추가
+        fullBodyLayout.addWidget(sideBar)
+        fullBodyLayout.addWidget(self.stackedWidget, 1)
+
+        mainLayout.addWidget(titleBar)
+        mainLayout.addLayout(fullBodyLayout)
+        self.setLayout(mainLayout)
+        #endregion 
+
+        # 초기 화면 설정
+        self.updateSideBarButtons()
+
+        #region 스타일시트
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #2E3440;
+                color: #ECEFF4;
+                font-family: 'Segoe UI';
+                font-size: 14px;
+            }
+            QListWidget {
+                border: 2px solid #4C566A;
+                border-radius: 8px;
+                padding: 5px;
+                background-color: #3B4252;
+            }
+            QListWidget::item {
+                padding: 6px;
+            }
+            QListWidget::item:selected {
+                background-color: #81A1C1;
+                color: white;
+            }
+            QPushButton {
+                background-color: #5E81AC;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 16px;
+                color: white;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #88C0D0;
+            }
+            QPushButton:pressed {
+                background-color: #4C566A;
+            }
+            
+            /* 탭 위젯 스타일 */
+            QTabWidget::pane {
+                border: 2px solid #4C566A;
+                background-color: #3B4252;
+            }
+            QTabBar::tab {
+                background-color: #3B4252;
+                color: #D8DEE9;
+                border: 1px solid #4C566A;
+                padding: 8px 16px;
+                margin-right: 2px;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+            }
+            QTabBar::tab:selected {
+                background-color: #5E81AC;
+                color: white;
+            }
+            QTabBar::tab:hover {
+                background-color: #4C566A;
+            }
+            
+            /* 텍스트 에디트 (콘솔 출력) 스타일 */
+            QTextEdit {
+                background-color: #2E3440;
+                border: 2px solid #4C566A;
+                border-radius: 8px;
+                padding: 8px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 12px;
+            }
+            
+            /* 라인 에디트 (입력창) 스타일 */
+            QLineEdit {
+                background-color: #3B4252;
+                border: 2px solid #4C566A;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 12px;
+            }
+            QLineEdit:focus {
+                border-color: #5E81AC;
+            }
+
+            /* ===== 스크롤바 커스터마이즈 ===== */
+            QScrollBar:vertical {
+                background: #3B4252;
+                width: 12px;
+                margin: 2px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:vertical {
+                background: #81A1C1;
+                min-height: 20px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background: #88C0D0;
+            }
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+                height: 0px;
+            }
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+        """)
+
+    def createPackageManagementWidget(self):
+        """기존 패키지 관리 화면 생성"""
+        widget = QWidget()
+        layout = QVBoxLayout()
+        layout.setContentsMargins(10, 10, 10, 10)
+        
+        #region 검색바
+        searchLayout = QHBoxLayout()
+        searchLayout.setContentsMargins(10, 5, 10, 5) 
+
+        leftSpacer  = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        rightSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        searchBar = QLineEdit()
+        searchBar.setPlaceholderText("Search Pkg...")
+        searchBar.setFixedWidth(200)
+        
+        searchLayout.addItem(leftSpacer)
+        searchLayout.addWidget(searchBar)
+        searchLayout.addItem(rightSpacer)
+        #endregion 
+        
+        #region body 설정
         bodyLayout = QHBoxLayout()
         bodyLayout.setContentsMargins(10, 10, 10, 10)
         #endregion 
@@ -307,7 +447,6 @@ class PackageManagementGUI(QWidget):
         self.btnOnOffHub = QPushButton(QIcon(os.path.join(ICONS_PATH, "onOff.svg")), "")
         self.hubStatusLable = QLabel(text="Hub: Off")
         self.hubStatusLable.setStyleSheet("color: red;")
-        
         
         # 버튼설정
         self.btnRight.clicked.connect(self.runPkgCallWhenHubIsOn)
@@ -345,93 +484,187 @@ class PackageManagementGUI(QWidget):
         self.reloadGUI()
         #endregion
         
-        #region 최종 화면 설정. 
-        bodyFrame = QFrame()
-        bodyFrame.setLayout(bodyLayout)
+        layout.addLayout(searchLayout)
+        layout.addLayout(bodyLayout)
+        widget.setLayout(layout)
+        return widget
+
+    def createConsoleWidget(self):
+        """콘솔 화면 생성"""
+        widget = QWidget()
+        layout = QVBoxLayout()
+        layout.setContentsMargins(10, 10, 10, 10)
         
-        # 사이드바와 body를 fullBodyLayout에 추가
-        fullBodyLayout.addWidget(sideBar)
-        fullBodyLayout.addWidget(bodyFrame, 1)  # stretch factor 1로 body가 늘어나도록
+        # 탭 위젯 생성
+        self.tabWidget = QTabWidget()
+        self.tabWidget.setTabsClosable(True)
+        self.tabWidget.tabCloseRequested.connect(self.closeConsoleTab)
+        
+        # 첫 번째 탭 추가
+        self.addConsoleTab("Console 1")
+        
+        # 새 탭 추가 버튼
+        addTabBtn = QPushButton("+ New Tab")
+        addTabBtn.setFixedSize(80, 30)
+        addTabBtn.clicked.connect(self.addNewConsoleTab)
+        
+        # 탭과 버튼을 위한 상단 레이아웃
+        topLayout = QHBoxLayout()
+        topLayout.addWidget(self.tabWidget)
+        topLayout.addWidget(addTabBtn)
+        topLayout.setStretch(0, 1)  # 탭 위젯이 늘어나도록
+        
+        layout.addLayout(topLayout)
+        widget.setLayout(layout)
+        return widget
 
-        mainLayout.addWidget(titleBar)
-        mainLayout.addLayout(searchLayout)
-        mainLayout.addLayout(fullBodyLayout)
-        self.setLayout(mainLayout)
-        #endregion 
+    def addConsoleTab(self, name):
+        """새 콘솔 탭 추가"""
+        tabWidget = QWidget()
+        tabLayout = QVBoxLayout()
+        tabLayout.setContentsMargins(5, 5, 5, 5)
+        
+        # 콘솔 출력 영역
+        consoleOutput = QTextEdit()
+        consoleOutput.setReadOnly(True)
+        consoleOutput.append(f"Welcome to {name}")
+        consoleOutput.append("Type your commands below...")
+        consoleOutput.append("=" * 50)
+        
+        # 입력 영역을 위한 레이아웃
+        inputLayout = QHBoxLayout()
+        inputLayout.setContentsMargins(0, 0, 0, 0)
+        
+        # 프롬프트 라벨
+        promptLabel = QLabel("> ")
+        promptLabel.setStyleSheet("color: #88C0D0; font-weight: bold;")
+        
+        # 명령어 입력창
+        commandInput = QLineEdit()
+        commandInput.setPlaceholderText("Enter command...")
+        commandInput.returnPressed.connect(lambda: self.executeCommand(consoleOutput, commandInput))
+        
+        # 실행 버튼
+        executeBtn = QPushButton("Execute")
+        executeBtn.setFixedWidth(80)
+        executeBtn.clicked.connect(lambda: self.executeCommand(consoleOutput, commandInput))
+        
+        inputLayout.addWidget(promptLabel)
+        inputLayout.addWidget(commandInput)
+        inputLayout.addWidget(executeBtn)
+        
+        tabLayout.addWidget(consoleOutput, 1)  # stretch factor 1로 콘솔이 늘어나도록
+        tabLayout.addLayout(inputLayout)
+        
+        tabWidget.setLayout(tabLayout)
+        
+        # 탭에 위젯 추가
+        tabIndex = self.tabWidget.addTab(tabWidget, name)
+        self.tabWidget.setCurrentIndex(tabIndex)
 
-        #region 스타일시트
-        self.setStyleSheet("""
-            QWidget {
-                background-color: #2E3440;
-                color: #ECEFF4;
-                font-family: 'Segoe UI';
-                font-size: 14px;
-            }
-            QListWidget {
-                border: 2px solid #4C566A;
-                border-radius: 8px;
-                padding: 5px;
-                background-color: #3B4252;
-            }
-            QListWidget::item {
-                padding: 6px;
-            }
-            QListWidget::item:selected {
-                background-color: #81A1C1;
-                color: white;
-            }
-            QPushButton {
-                background-color: #5E81AC;
-                border: none;
-                border-radius: 6px;
-                padding: 8px 16px;
-                color: white;
-                font-weight: bold;
-            }
-            QPushButton:hover {
-                background-color: #88C0D0;
-            }
-            QPushButton:pressed {
-                background-color: #4C566A;
-            }
+    def addNewConsoleTab(self):
+        """새 콘솔 탭 추가"""
+        tabCount = self.tabWidget.count() + 1
+        self.addConsoleTab(f"Console {tabCount}")
 
-            /* ===== 스크롤바 커스터마이즈 ===== */
-            QScrollBar:vertical {
-                background: #3B4252;
-                width: 12px;
-                margin: 2px;
-                border-radius: 6px;
-            }
-            QScrollBar::handle:vertical {
-                background: #81A1C1;
-                min-height: 20px;
-                border-radius: 6px;
-            }
-            QScrollBar::handle:vertical:hover {
-                background: #88C0D0;
-            }
-            QScrollBar::add-line:vertical,
-            QScrollBar::sub-line:vertical {
-                background: none;
-                height: 0px;
-            }
-            QScrollBar::add-page:vertical,
-            QScrollBar::sub-page:vertical {
-                background: none;
-            }
-        """)
-        #endregion 
-        #endregion 
-        #endregion
-    
+    def closeConsoleTab(self, index):
+        """콘솔 탭 닫기"""
+        if self.tabWidget.count() > 1:  # 최소 1개 탭은 유지
+            self.tabWidget.removeTab(index)
+
+    def executeCommand(self, consoleOutput, commandInput):
+        """명령어 실행"""
+        command = commandInput.text().strip()
+        if not command:
+            return
+            
+        # 명령어를 콘솔에 표시
+        consoleOutput.append(f"> {command}")
+        
+        # 간단한 명령어 처리 (실제로는 더 복잡한 로직이 필요)
+        if command.lower() == "clear":
+            consoleOutput.clear()
+        elif command.lower() == "help":
+            consoleOutput.append("Available commands:")
+            consoleOutput.append("- clear: Clear console")
+            consoleOutput.append("- help: Show this help")
+            consoleOutput.append("- pkglist: Show package list")
+            consoleOutput.append("- status: Show hub status")
+        elif command.lower() == "pkglist":
+            consoleOutput.append("Package List:")
+            for pkg in self.pkgNames:
+                consoleOutput.append(f"  - {pkg}")
+        elif command.lower() == "status":
+            consoleOutput.append("Hub Status: " + ("On" if hasattr(self, 'hubStatusLable') and "On" in self.hubStatusLable.text() else "Off"))
+        else:
+            consoleOutput.append(f"Unknown command: {command}")
+            consoleOutput.append("Type 'help' for available commands.")
+        
+        consoleOutput.append("")  # 빈 줄 추가
+        
+        # 입력창 초기화
+        commandInput.clear()
+        
+        # 스크롤을 맨 아래로
+        consoleOutput.verticalScrollBar().setValue(consoleOutput.verticalScrollBar().maximum())
+        
+        self.updateSideBarButtons()
+
+    def updateSideBarButtons(self):
+        """사이드바 버튼 상태 업데이트"""
+        for i, btn in enumerate(self.sideBarButtons):
+            if i == self.current_view:
+                btn.setStyleSheet("""
+                    QPushButton {
+                        background-color: #5E81AC;
+                        border: none;
+                        border-radius: 8px;
+                        color: white;
+                        font-size: 20px;
+                    }
+                    QPushButton:hover {
+                        background-color: #88C0D0;
+                    }
+                """)
+            else:
+                btn.setStyleSheet("""
+                    QPushButton {
+                        background-color: #3B4252;
+                        border: none;
+                        border-radius: 8px;
+                        color: #D8DEE9;
+                        font-size: 20px;
+                    }
+                    QPushButton:hover {
+                        background-color: #4C566A;
+                    }
+                    QPushButton:pressed {
+                        background-color: #5E81AC;
+                    }
+                """)
+
+    # 기존 메서드들은 그대로 유지...
+
+    # 기존 메서드들은 그대로 유지...    
     #region 함수 영역
 
     # 사이드바 버튼 클릭 핸들러
     def onSideBarClick(self, index):
         buttons = ["Home", "Packages", "Settings", "Add", "Help"]
         print(f"Clicked: {buttons[index]}")
-        if(index == 3):
+        if(index == 2):
             self.addPkg()
+        if index == 0:  # Home - 패키지 관리 화면
+            self.current_view = 0
+            self.stackedWidget.setCurrentIndex(0)
+            self.titleLabel.setText("AHK packages Manager")
+        elif index == 1:  # Console - 콘솔 화면
+            self.current_view = 1
+            self.stackedWidget.setCurrentIndex(1)
+            self.titleLabel.setText("AHK Console")
+        # 다른 버튼들은 나중에 구현
+        
+        self.updateSideBarButtons()
 
     #region ===== 창 크기변경 관련 =====
     def _hit_edges(self, pos):

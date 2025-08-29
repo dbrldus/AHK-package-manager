@@ -5578,3 +5578,855 @@
 [18:49:55] Queue content: 'RPC|YlMXqfbK8aYpLbrQ|doCheckHubStatus|1|20250829184955\nRPC|CPWQ6m4DL8HpVdqM|doCheckHubStatus|1|20250829184955\n'
 [18:49:55] Queue content: 'RPC|CPWQ6m4DL8HpVdqM|doCheckHubStatus|1|20250829184955\n'
 [18:49:55] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:09:19] Queue content: 'RPC|HxcPhmyguXxFOa5t|doCheckHubStatus|1|20250829200919\n'
+[20:09:21] Queue content: 'RPC|kWvCQqvWZ8YvF4c9|reloadGui|1|20250829200921\n'
+[20:09:22] Queue content: 'RPC|pzuM1BFHW0on9peD|doShutdown|1|20250829200922\nRPC|6kjbClCU8ppi1s2p|doCheckHubStatus|1|20250829200922\n'
+[20:09:22] Duplicate request ignored: pzuM1BFHW0on9peD
+[20:09:22] Queue content: 'RPC|QTorxoGIeG2KEGqC|doCheckHubStatus|1|20250829200922\n'
+[20:09:25] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:09:32] Queue content: 'RPC|elfQ1s1Xmgq9yCyq|doCheckHubStatus|1|20250829200932\n'
+[20:09:33] Queue content: 'RPC|zDfim7oiUVKlRe0Y|reloadGui|1|20250829200933\nRPC|1LfmGHFDSODU6eFt|reloadGui|1|20250829200933\n'
+[20:09:34] Queue content: 'RPC|zDfim7oiUVKlRe0Y|reloadGui|1|20250829200933\nRPC|1LfmGHFDSODU6eFt|reloadGui|1|20250829200933\n'
+[20:09:34] Duplicate request ignored: zDfim7oiUVKlRe0Y
+[20:09:34] Queue content: 'RPC|Nd9o6SmioJk4pPm0|doShutdown|1|20250829200934\nRPC|aSgcIewTmW5i0iBc|doCheckHubStatus|1|20250829200934\n'
+[20:09:34] Queue content: 'RPC|al7u8lbOZM6K1Y1m|doCheckHubStatus|1|20250829200934\n'
+[20:09:35] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:14:26] Queue content: 'RPC|oDh2uIppv62uHi2q|doCheckHubStatus|1|20250829201426\n'
+[20:14:27] Queue content: 'RPC|gjZdIBQNmVupsJjF|runPkg|1|20250829201427|Latex\n'
+[20:14:27] Queue content: 'RPC|4J2dzk4SFV2VzF4r|reloadGui|1|20250829201427\n'
+[20:14:27] Queue content: 'RPC|c7MX4aaEPhXQKcLR|doShutdown|1|20250829201427\nRPC|UjtItoet51Qcb8zy|doCheckHubStatus|1|20250829201427\n'
+[20:14:27] Duplicate request ignored: c7MX4aaEPhXQKcLR
+[20:14:31] Queue content: 'RPC|V5bkWwKxXOqbpQQX|doCheckHubStatus|1|20250829201431\n'
+[20:14:34] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:14:44] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:14:44] Queue content: 'RPC|H8ktowTpUihW2IR9|stopPkg|1|20250829201444|Latex\n'
+[20:14:44] Queue content: 'RPC|LNd2sPoCHPVglWjY|reloadGui|1|20250829201444\nRPC|cE6hTIiCLdelIg6d|reloadGui|1|20250829201444\n'
+[20:14:44] Queue content: 'RPC|cE6hTIiCLdelIg6d|reloadGui|1|20250829201444\n'
+[20:14:44] Queue content: 'RPC|dJWe8t3KMFzT8lNL|doShutdown|1|20250829201444\nRPC|Z7dAJ9a49khsQqDa|doCheckHubStatus|1|20250829201444\n'
+[20:14:44] Duplicate request ignored: dJWe8t3KMFzT8lNL
+[20:14:45] Queue content: 'RPC|TT5rSMoeIJdJfW4o|doCheckHubStatus|1|20250829201444\n'
+[20:30:49] Queue content: 'RPC|18EiuFDtszcRidJG|doCheckHubStatus|1|20250829203049\n'
+[20:30:51] Queue content: 'RPC|qHK99Dl1tUrAhsuB|reloadGui|1|20250829203051\n'
+[20:30:52] Queue content: 'RPC|FXETocvvwoGHl3bq|doShutdown|1|20250829203052\nRPC|bHoS5OOcdpWbmUDw|doCheckHubStatus|1|20250829203052\n'
+[20:30:52] Queue content: 'RPC|uZx6vkXi10z7enDI|doCheckHubStatus|1|20250829203052\n'
+[20:30:53] Queue content: 'RPC|8LZBAlw8kO6Cwe5u|doCheckHubStatus|1|20250829203053\n'
+[20:30:58] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:08] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:10] Queue content: 'RPC|5OA62UO6ayvxgSwK|reloadGui|1|20250829203110\n'
+[20:31:10] Queue content: 'RPC|P710fMZCTVLuegt9|doCheckHubStatus|1|20250829203110\nRPC|bxLewdONnNtXgNl7|doCheckHubStatus|1|20250829203110\n'
+[20:31:10] Queue content: 'RPC|bxLewdONnNtXgNl7|doCheckHubStatus|1|20250829203110\n'
+[20:31:15] Queue content: 'RPC|kfHyOY2bIcYB1hj1|doCheckHubStatus|1|20250829203115\n'
+[20:31:15] Queue content: 'RPC|GVBM06dkbrvZZwbA|reloadGui|1|20250829203115\n'
+[20:31:16] Queue content: 'RPC|Kn1bLCq5HZjCmYQD|doShutdown|1|20250829203116\nRPC|wBtltV1l9BipocnW|doCheckHubStatus|1|20250829203116\n'
+[20:31:16] Queue content: 'RPC|D1f5Za3QRmkJC72O|doCheckHubStatus|1|20250829203116\n'
+[20:31:18] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:28] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:38] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:48] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:31:59] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:09] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:19] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:29] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:39] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:49] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:32:59] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:33:09] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:33:20] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:33:30] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:33:40] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:33:50] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:00] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:10] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:20] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:31] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:41] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:34:51] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:01] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:11] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:21] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:32] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:42] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:35:52] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:02] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:12] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:22] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:32] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:43] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:36:53] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:03] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:13] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:23] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:33] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:43] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:37:53] Check cycle 4200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:04] Check cycle 4300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:14] Check cycle 4400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:24] Check cycle 4500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:34] Check cycle 4600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:44] Check cycle 4700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:38:54] Check cycle 4800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:04] Check cycle 4900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:14] Check cycle 5000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:25] Check cycle 5100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:35] Check cycle 5200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:45] Check cycle 5300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:39:55] Check cycle 5400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:05] Check cycle 5500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:15] Check cycle 5600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:25] Check cycle 5700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:36] Check cycle 5800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:46] Check cycle 5900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:40:56] Check cycle 6000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:06] Check cycle 6100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:16] Check cycle 6200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:26] Check cycle 6300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:36] Check cycle 6400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:47] Check cycle 6500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:41:57] Check cycle 6600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:08] Check cycle 6700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:18] Check cycle 6800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:28] Check cycle 6900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:38] Check cycle 7000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:48] Check cycle 7100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:42:58] Check cycle 7200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:08] Check cycle 7300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:18] Check cycle 7400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:29] Check cycle 7500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:39] Check cycle 7600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:49] Check cycle 7700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:43:59] Check cycle 7800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:44:09] Check cycle 7900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:44:19] Check cycle 8000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:44:29] Check cycle 8100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:44:40] Check cycle 8200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:44:50] Check cycle 8300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:00] Check cycle 8400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:10] Check cycle 8500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:20] Check cycle 8600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:30] Check cycle 8700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:40] Check cycle 8800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:45:51] Check cycle 8900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:01] Check cycle 9000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:11] Check cycle 9100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:21] Check cycle 9200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:31] Check cycle 9300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:41] Check cycle 9400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:46:51] Check cycle 9500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:02] Check cycle 9600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:12] Check cycle 9700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:22] Check cycle 9800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:32] Check cycle 9900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:42] Check cycle 10000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:47:52] Check cycle 10100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:02] Check cycle 10200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:13] Check cycle 10300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:23] Check cycle 10400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:33] Check cycle 10500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:43] Check cycle 10600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:48:53] Check cycle 10700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:49:03] Check cycle 10800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:49:13] Check cycle 10900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:49:27] Queue content: 'RPC|X3txxY494eY5Ab3K|doCheckHubStatus|1|20250829204927\n'
+[20:49:28] Queue content: 'RPC|Fmk3KLtDDbzIhk9H|reloadGui|1|20250829204928\n'
+[20:49:33] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:49:34] Queue content: 'RPC|3ulNMNxy5OrnpyYo|doShutdown|1|20250829204934\nRPC|uDsRgjaWHVIhDT9T|doCheckHubStatus|1|20250829204934\n'
+[20:49:34] Queue content: 'RPC|G7SnuTimc3CZY9ke|doCheckHubStatus|1|20250829204934\n'
+[20:49:37] Queue content: 'RPC|mkAl6L6K0PfZVZ1r|doCheckHubStatus|1|20250829204937\n'
+[20:49:38] Queue content: 'RPC|E0TFLiCrhE3Qcjhj|stopPkg|1|20250829204938|Latex\n'
+[20:49:38] Queue content: 'RPC|9BfpHaXrZeAzx0Da|reloadGui|1|20250829204938\n'
+[20:49:39] Queue content: 'RPC|NZ2EFd3MhM8eRPCv|doShutdown|1|20250829204939\nRPC|82SuRTEuHAGA3Xsd|doCheckHubStatus|1|20250829204939\n'
+[20:49:39] Queue content: 'RPC|LdWspTatcMOhL9lr|doCheckHubStatus|1|20250829204939\n'
+[20:49:44] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:49:54] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:04] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:14] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:24] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:34] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:44] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:50:54] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:05] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:15] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:25] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:35] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:45] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:51:55] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:05] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:15] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:26] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:36] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:46] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:52:56] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:06] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:16] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:26] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:37] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:47] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:53:57] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:07] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:17] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:27] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:37] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:48] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:54:58] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:08] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:18] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:28] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:38] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:48] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:55:59] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:09] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:19] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:29] Check cycle 4200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:39] Check cycle 4300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:49] Check cycle 4400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:56:59] Check cycle 4500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:57:10] Check cycle 4600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:57:20] Check cycle 4700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:57:30] Check cycle 4800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:57:40] Check cycle 4900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:57:50] Check cycle 5000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:00] Check cycle 5100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:10] Check cycle 5200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:21] Check cycle 5300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:31] Check cycle 5400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:41] Check cycle 5500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:58:51] Check cycle 5600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:01] Check cycle 5700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:11] Check cycle 5800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:22] Check cycle 5900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:32] Check cycle 6000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:42] Check cycle 6100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[20:59:52] Check cycle 6200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:02] Check cycle 6300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:12] Check cycle 6400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:22] Check cycle 6500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:33] Check cycle 6600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:43] Check cycle 6700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:00:53] Check cycle 6800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:03] Check cycle 6900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:13] Check cycle 7000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:23] Check cycle 7100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:33] Check cycle 7200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:44] Check cycle 7300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:01:54] Check cycle 7400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:04] Check cycle 7500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:14] Check cycle 7600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:24] Check cycle 7700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:34] Check cycle 7800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:44] Check cycle 7900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:02:55] Check cycle 8000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:05] Check cycle 8100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:15] Check cycle 8200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:25] Check cycle 8300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:35] Check cycle 8400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:45] Check cycle 8500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:03:55] Check cycle 8600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:05] Check cycle 8700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:16] Check cycle 8800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:26] Check cycle 8900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:36] Check cycle 9000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:46] Check cycle 9100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:04:56] Check cycle 9200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:06] Check cycle 9300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:16] Check cycle 9400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:27] Check cycle 9500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:37] Check cycle 9600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:47] Check cycle 9700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:05:57] Check cycle 9800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:07] Check cycle 9900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:17] Check cycle 10000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:27] Check cycle 10100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:38] Check cycle 10200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:48] Check cycle 10300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:06:58] Check cycle 10400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:08] Check cycle 10500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:18] Check cycle 10600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:28] Check cycle 10700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:39] Check cycle 10800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:49] Check cycle 10900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:07:59] Check cycle 11000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:08:09] Check cycle 11100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:08:19] Check cycle 11200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:08:29] Check cycle 11300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:08:39] Check cycle 11400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:08:50] Check cycle 11500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:00] Check cycle 11600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:10] Check cycle 11700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:20] Check cycle 11800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:31] Check cycle 11900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:41] Check cycle 12000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:09:52] Check cycle 12100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:02] Check cycle 12200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:12] Check cycle 12300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:22] Check cycle 12400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:32] Check cycle 12500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:42] Check cycle 12600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:10:52] Check cycle 12700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:02] Check cycle 12800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:13] Check cycle 12900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:23] Check cycle 13000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:33] Check cycle 13100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:43] Check cycle 13200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:11:53] Check cycle 13300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:03] Check cycle 13400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:13] Check cycle 13500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:24] Check cycle 13600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:34] Check cycle 13700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:44] Check cycle 13800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:12:54] Check cycle 13900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:04] Check cycle 14000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:14] Check cycle 14100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:24] Check cycle 14200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:35] Check cycle 14300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:45] Check cycle 14400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:13:55] Check cycle 14500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:05] Check cycle 14600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:15] Check cycle 14700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:25] Check cycle 14800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:35] Check cycle 14900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:45] Check cycle 15000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:14:56] Check cycle 15100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:06] Check cycle 15200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:16] Check cycle 15300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:26] Check cycle 15400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:36] Check cycle 15500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:46] Check cycle 15600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:15:56] Check cycle 15700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:07] Check cycle 15800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:17] Check cycle 15900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:27] Check cycle 16000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:37] Check cycle 16100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:47] Check cycle 16200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:16:57] Check cycle 16300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:07] Check cycle 16400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:18] Check cycle 16500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:28] Check cycle 16600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:38] Check cycle 16700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:48] Check cycle 16800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:17:58] Check cycle 16900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:08] Check cycle 17000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:18] Check cycle 17100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:29] Check cycle 17200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:39] Check cycle 17300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:49] Check cycle 17400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:18:59] Check cycle 17500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:19:09] Check cycle 17600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:19:19] Check cycle 17700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:19:29] Check cycle 17800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:19:39] Check cycle 17900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:19:50] Check cycle 18000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:00] Check cycle 18100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:10] Check cycle 18200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:20] Check cycle 18300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:30] Check cycle 18400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:40] Check cycle 18500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:20:50] Check cycle 18600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:01] Check cycle 18700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:11] Check cycle 18800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:21] Check cycle 18900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:31] Check cycle 19000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:41] Check cycle 19100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:21:51] Check cycle 19200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:01] Check cycle 19300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:12] Check cycle 19400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:22] Check cycle 19500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:32] Check cycle 19600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:42] Check cycle 19700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:22:52] Check cycle 19800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:02] Check cycle 19900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:12] Check cycle 20000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:22] Check cycle 20100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:33] Check cycle 20200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:43] Check cycle 20300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:23:53] Check cycle 20400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:03] Check cycle 20500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:13] Check cycle 20600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:23] Check cycle 20700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:33] Check cycle 20800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:44] Check cycle 20900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:24:54] Check cycle 21000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:04] Check cycle 21100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:14] Check cycle 21200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:24] Check cycle 21300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:34] Check cycle 21400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:44] Check cycle 21500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:25:55] Check cycle 21600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:05] Check cycle 21700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:15] Check cycle 21800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:25] Check cycle 21900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:35] Check cycle 22000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:45] Check cycle 22100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:26:55] Check cycle 22200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:06] Check cycle 22300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:16] Check cycle 22400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:26] Check cycle 22500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:36] Check cycle 22600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:46] Check cycle 22700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:27:56] Check cycle 22800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:06] Check cycle 22900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:17] Check cycle 23000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:27] Check cycle 23100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:37] Check cycle 23200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:47] Check cycle 23300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:28:57] Check cycle 23400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:07] Check cycle 23500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:17] Check cycle 23600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:28] Check cycle 23700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:38] Check cycle 23800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:48] Check cycle 23900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:29:58] Check cycle 24000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:08] Check cycle 24100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:18] Check cycle 24200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:28] Check cycle 24300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:39] Check cycle 24400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:49] Check cycle 24500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:30:59] Check cycle 24600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:31:09] Check cycle 24700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:31:19] Check cycle 24800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:31:29] Check cycle 24900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:31:39] Check cycle 25000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:31:50] Check cycle 25100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:00] Check cycle 25200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:10] Check cycle 25300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:20] Check cycle 25400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:30] Check cycle 25500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:40] Check cycle 25600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:32:50] Check cycle 25700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:01] Check cycle 25800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:11] Check cycle 25900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:21] Check cycle 26000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:31] Check cycle 26100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:41] Check cycle 26200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:33:51] Check cycle 26300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:01] Check cycle 26400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:11] Check cycle 26500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:22] Check cycle 26600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:32] Check cycle 26700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:42] Check cycle 26800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:34:52] Check cycle 26900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:02] Check cycle 27000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:12] Check cycle 27100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:22] Check cycle 27200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:33] Check cycle 27300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:43] Check cycle 27400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:35:53] Check cycle 27500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:03] Check cycle 27600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:13] Check cycle 27700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:23] Check cycle 27800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:33] Check cycle 27900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:44] Check cycle 28000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:36:54] Check cycle 28100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:04] Check cycle 28200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:14] Check cycle 28300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:24] Check cycle 28400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:34] Check cycle 28500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:44] Check cycle 28600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:37:55] Check cycle 28700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:05] Check cycle 28800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:15] Check cycle 28900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:25] Check cycle 29000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:35] Check cycle 29100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:45] Check cycle 29200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:38:55] Check cycle 29300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:05] Check cycle 29400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:16] Check cycle 29500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:26] Check cycle 29600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:36] Check cycle 29700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:46] Check cycle 29800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:39:56] Check cycle 29900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:06] Check cycle 30000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:16] Check cycle 30100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:27] Check cycle 30200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:37] Check cycle 30300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:47] Check cycle 30400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:40:57] Check cycle 30500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:07] Check cycle 30600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:17] Check cycle 30700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:27] Check cycle 30800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:38] Check cycle 30900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:48] Check cycle 31000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:41:58] Check cycle 31100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:08] Check cycle 31200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:18] Check cycle 31300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:28] Check cycle 31400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:38] Check cycle 31500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:49] Check cycle 31600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:42:53] Queue content: 'RPC|zM9jx4azoXiZIson|doCheckHubStatus|1|20250829214253\n'
+[21:42:56] Queue content: 'RPC|DuSmiS3LcEUWaz6i|reloadGui|1|20250829214256\n'
+[21:42:58] Queue content: 'RPC|VcbViMU1qtm6bv94|stopPkg|1|20250829214258|Latex\n'
+[21:42:58] Queue content: 'RPC|DIa6viVBhnhpaoI9|reloadGui|1|20250829214258\n'
+[21:42:59] Check cycle 31700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:43:00] Queue content: 'RPC|ohYeGPEHGG5YacIZ|doShutdown|1|20250829214300\nRPC|X0VzexHZAThl1X1T|doCheckHubStatus|1|20250829214300\n'
+[21:43:00] Queue content: 'RPC|GDULCkt0e8p3GKKh|doCheckHubStatus|1|20250829214300\n'
+[21:43:03] Queue content: 'RPC|9BaMZK9JnNrU56Jn|doCheckHubStatus|1|20250829214303\n'
+[21:43:04] Queue content: 'RPC|yYofe6UmolSo5oH7|runPkg|1|20250829214304|Latex\n'
+[21:43:04] Queue content: 'RPC|3YewuXmsn2jEAZXH|reloadGui|1|20250829214304\n'
+[21:43:05] Queue content: 'RPC|7IueJHC7rqs58Rsz|stopPkg|1|20250829214305|Latex\n'
+[21:43:05] Queue content: 'RPC|iUBjnSH9q871rPUm|reloadGui|1|20250829214305\n'
+[21:43:06] Queue content: 'RPC|fn5icTSLOBU9D8du|reloadGui|1|20250829214306\n'
+[21:43:07] Queue content: 'RPC|csk2qKfLrOJc0v5z|reloadGui|1|20250829214307\n'
+[21:43:08] Queue content: 'RPC|oDmbfM2NEF1qTkwR|doShutdown|1|20250829214307\nRPC|4WGIdPMRZrU9BLtd|doCheckHubStatus|1|20250829214307\n'
+[21:43:08] Queue content: 'RPC|AsNsb5nHLa2qNcQp|doCheckHubStatus|1|20250829214308\n'
+[21:43:09] Check cycle 31800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:46:44] Queue content: 'RPC|DwXJPN88WpTGetkd|doCheckHubStatus|1|20250829214644\n'
+[21:46:45] Queue content: 'RPC|qI49cQNSIb7ObQ6C|doCheckHubStatus|1|20250829214645\nRPC|mw9MJlJHkWF5dGVE|doCheckHubStatus|1|20250829214645\n'
+[21:46:45] Queue content: 'RPC|mw9MJlJHkWF5dGVE|doCheckHubStatus|1|20250829214645\n'
+[21:46:48] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:46:58] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:46:59] Queue content: 'RPC|H5R6TMsirpNiKoLE|doCheckHubStatus|1|20250829214659\n'
+[21:47:01] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:02] Queue content: 'RPC|TafiEnBxTPVvKrRq|doShutdown|1|20250829214701\nRPC|vNdERrRs8oGDj1Fb|doCheckHubStatus|1|20250829214701\n'
+[21:47:02] Queue content: 'RPC|TafiEnBxTPVvKrRq|doShutdown|1|20250829214701\nRPC|vNdERrRs8oGDj1Fb|doCheckHubStatus|1|20250829214701\n'
+[21:47:02] Queue content: 'RPC|PxsULwcKzQDfWSfJ|doCheckHubStatus|1|20250829214702\n'
+[21:47:02] Queue content: 'RPC|PxsULwcKzQDfWSfJ|doCheckHubStatus|1|20250829214702\n'
+[21:47:03] Queue content: 'RPC|5ywVhh5K57UN8ny1|doCheckHubStatus|1|20250829214703\n'
+[21:47:03] Queue content: 'RPC|5ywVhh5K57UN8ny1|doCheckHubStatus|1|20250829214703\n'
+[21:47:05] Queue content: 'RPC|f9LVSKubUmNc3PaL|doCheckHubStatus|1|20250829214704\nRPC|fi2u5F3j5qHTRn38|doCheckHubStatus|1|20250829214705\n'
+[21:47:05] Queue content: 'RPC|f9LVSKubUmNc3PaL|doCheckHubStatus|1|20250829214704\nRPC|fi2u5F3j5qHTRn38|doCheckHubStatus|1|20250829214705\n'
+[21:47:05] Duplicate request ignored: f9LVSKubUmNc3PaL
+[21:47:06] Queue content: 'RPC|JoFkXQExWo5nqved|doCheckHubStatus|1|20250829214706\n'
+[21:47:06] Queue content: 'RPC|JoFkXQExWo5nqved|doCheckHubStatus|1|20250829214706\n'
+[21:47:08] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:11] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:11] Queue content: 'RPC|DwBRb5t9oAduTOPp|runPkg|1|20250829214711|Latex\n'
+[21:47:11] Queue content: 'RPC|DwBRb5t9oAduTOPp|runPkg|1|20250829214711|Latex\n'
+[21:47:11] Queue content: 'RPC|w3NvzD9neASCLtBD|reloadGui|1|20250829214711\n'
+[21:47:11] Queue content: 'RPC|w3NvzD9neASCLtBD|reloadGui|1|20250829214711\n'
+[21:47:13] Queue content: 'RPC|ma7uP9uicrUJesh5|stopPkg|1|20250829214713|Latex\n'
+[21:47:13] Queue content: 'RPC|bQSQ8awOXjoJN8Tq|reloadGui|1|20250829214713\n'
+[21:47:13] Queue content: 'RPC|bQSQ8awOXjoJN8Tq|reloadGui|1|20250829214713\n'
+[21:47:13] Duplicate request ignored: bQSQ8awOXjoJN8Tq
+[21:47:18] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:21] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:28] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:32] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:42] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:52] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:47:52] Queue content: 'RPC|ikEb3gogLe2mjgKu|stopPkg|1|20250829214752|Latex\n'
+[21:47:55] Queue content: 'RPC|2avs0fSLu9PH1koi|doShutdown|1|20250829214755\nRPC|AwFfnBD2jD8A8zUX|doCheckHubStatus|1|20250829214755\n'
+[21:47:55] Queue content: 'RPC|JBypJWw7RPFKwKVs|doCheckHubStatus|1|20250829214755\n'
+[21:47:56] Queue content: 'RPC|FboLp4PFuwruBwsR|doCheckHubStatus|1|20250829214756\n'
+[21:48:02] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:12] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:18] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:22] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:28] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:31] Queue content: 'RPC|EE2E8inggHCIzApm|doShutdown|1|20250829214831\nRPC|wH0pZmtfDEezROiH|doCheckHubStatus|1|20250829214831\n'
+[21:48:31] Queue content: 'RPC|EE2E8inggHCIzApm|doShutdown|1|20250829214831\n'
+[21:48:31] Queue content: 'RPC|XUTudfnRxZiJhpGq|doCheckHubStatus|1|20250829214831\n'
+[21:48:31] Queue content: 'RPC|lmyPqLqez4L3PvNr|doCheckHubStatus|1|20250829214831\n'
+[21:48:32] Queue content: 'RPC|LUGshDr7qs8ApSws|doShutdown|1|20250829214832\nRPC|CmIsL8VwJTefgmEX|doCheckHubStatus|1|20250829214832\n'
+[21:48:32] Queue content: 'RPC|LUGshDr7qs8ApSws|doShutdown|1|20250829214832\n'
+[21:48:32] Queue content: 'RPC|qWBTmAPEdkcp6vYv|doCheckHubStatus|1|20250829214832\n'
+[21:48:32] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:33] Queue content: 'RPC|4YhZwLu353G2FQMM|doCheckHubStatus|1|20250829214833\n'
+[21:48:35] Queue content: 'RPC|ccqrovWXZmvFNJq9|doShutdown|1|20250829214835\nRPC|0ZORj1O1k6H4CjHP|doCheckHubStatus|1|20250829214835\n'
+[21:48:35] Queue content: 'RPC|ckpOnR7nRuSjPjDV|doCheckHubStatus|1|20250829214835\n'
+[21:48:36] Queue content: 'RPC|fUKUmYwnHF7Ylcxv|doCheckHubStatus|1|20250829214836\n'
+[21:48:38] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:39] Queue content: 'RPC|z8SpMd3DGmj7kc26|doShutdown|1|20250829214839\nRPC|xMEYFptTBV0RtZYg|doCheckHubStatus|1|20250829214839\n'
+[21:48:39] Queue content: 'RPC|z8SpMd3DGmj7kc26|doShutdown|1|20250829214839\n'
+[21:48:39] Queue content: 'RPC|g0L1ygJP7br1cAHC|doCheckHubStatus|1|20250829214839\n'
+[21:48:41] Queue content: 'RPC|rznUs5VRWsZB7LWw|doCheckHubStatus|1|20250829214841\n'
+[21:48:43] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:49] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:49] Queue content: 'RPC|hFK2O6vQIAoS48LV|doShutdown|1|20250829214849\nRPC|25WxOsST382nucvn|doCheckHubStatus|1|20250829214849\n'
+[21:48:49] Queue content: 'RPC|QcMA5jR4TU97YObv|doCheckHubStatus|1|20250829214849\n'
+[21:48:53] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:56] Queue content: 'RPC|agfVJfIycd7yr8q9|doCheckHubStatus|1|20250829214856\n'
+[21:48:59] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:48:59] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[21:48:59] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[21:48:59] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[21:48:59] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[21:48:59] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[21:48:59] Queue content: 'RPC|3A5Nhf62oWXdFnfB|doCheckHubStatus|1|20250829214859\nRPC|dgwdpgEbMOTM592z|doCheckHubStatus|1|20250829214859\n'
+[21:48:59] Queue content: 'RPC|dgwdpgEbMOTM592z|doCheckHubStatus|1|20250829214859\n'
+[21:49:00] Queue content: 'RPC|DBS6luvwNKEvHytM|doCheckHubStatus|1|20250829214900\n'
+[21:49:01] Queue content: 'RPC|4mLNCeG5xek8D17W|doCheckHubStatus|1|20250829214901\nRPC|fvpEzU3g2TEOFUlI|doCheckHubStatus|1|20250829214901\n'
+[21:49:01] Queue content: 'RPC|fvpEzU3g2TEOFUlI|doCheckHubStatus|1|20250829214901\n'
+[21:49:02] Queue content: 'RPC|XetrZzfyFK532Vss|doCheckHubStatus|1|20250829214902\n'
+[21:49:08] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:49:19] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:49:29] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:49:39] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:49:49] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:49:59] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:50:09] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:50:19] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:50:29] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:50:40] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:50:50] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:00] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:10] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:20] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:30] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:40] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:51:50] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:01] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:11] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:21] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:31] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:41] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:52:51] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:01] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:11] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:22] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:32] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:42] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:53:52] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:02] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:12] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:22] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:32] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:43] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:54:53] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:03] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:13] Check cycle 4200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:23] Check cycle 4300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:33] Check cycle 4400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:43] Check cycle 4500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:55:54] Check cycle 4600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:04] Check cycle 4700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:14] Check cycle 4800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:24] Check cycle 4900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:34] Check cycle 5000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:40] Queue content: 'RPC|PyN10hmyxrwOGaXF|doShutdown|1|20250829215640\nRPC|crMUN4l8clgCVzwp|doCheckHubStatus|1|20250829215640\n'
+[21:56:41] Queue content: 'RPC|crMUN4l8clgCVzwp|doCheckHubStatus|1|20250829215640\nRPC|kNq5vwlh4SDtWwUw|doCheckHubStatus|1|20250829215640\n'
+[21:56:41] Duplicate request ignored: crMUN4l8clgCVzwp
+[21:56:41] Queue content: 'RPC|lwL8a71EMv7D9i6W|doCheckHubStatus|1|20250829215641\n'
+[21:56:49] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:56:59] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:57:09] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:57:19] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:57:29] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:57:39] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:57:49] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:00] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:10] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:20] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:30] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:40] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:58:50] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:00] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:10] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:21] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:31] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:41] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[21:59:51] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:01] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:11] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:21] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:31] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:41] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:00:52] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:02] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:12] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:22] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:32] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:42] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:01:52] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:02] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:13] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:23] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:33] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:43] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:02:53] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:03] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:13] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:23] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:34] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:44] Check cycle 4200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:03:54] Check cycle 4300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:04] Check cycle 4400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:14] Check cycle 4500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:24] Check cycle 4600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:34] Check cycle 4700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:44] Check cycle 4800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:04:55] Check cycle 4900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:05] Check cycle 5000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:15] Check cycle 5100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:25] Check cycle 5200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:35] Check cycle 5300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:45] Check cycle 5400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:05:55] Check cycle 5500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:05] Check cycle 5600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:15] Check cycle 5700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:26] Check cycle 5800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:36] Check cycle 5900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:46] Check cycle 6000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:06:56] Check cycle 6100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:06] Check cycle 6200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:16] Check cycle 6300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:26] Check cycle 6400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:36] Check cycle 6500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:47] Check cycle 6600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:07:57] Check cycle 6700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:07] Check cycle 6800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:17] Check cycle 6900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:27] Check cycle 7000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:37] Check cycle 7100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:47] Check cycle 7200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:08:57] Check cycle 7300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:08] Check cycle 7400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:18] Check cycle 7500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:28] Check cycle 7600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:38] Check cycle 7700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:48] Check cycle 7800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:09:58] Check cycle 7900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:08] Check cycle 8000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:18] Check cycle 8100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:28] Check cycle 8200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:39] Check cycle 8300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:49] Check cycle 8400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:10:59] Check cycle 8500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:11:09] Check cycle 8600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:11:19] Check cycle 8700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:11:29] Check cycle 8800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:11:39] Check cycle 8900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:11:49] Check cycle 9000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:00] Check cycle 9100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:10] Check cycle 9200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:20] Check cycle 9300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:30] Check cycle 9400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:40] Check cycle 9500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:12:50] Check cycle 9600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:00] Check cycle 9700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:10] Check cycle 9800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:21] Check cycle 9900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:31] Check cycle 10000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:41] Check cycle 10100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:13:51] Check cycle 10200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:01] Check cycle 10300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:11] Check cycle 10400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:21] Check cycle 10500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:31] Check cycle 10600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:41] Check cycle 10700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:14:52] Check cycle 10800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:02] Check cycle 10900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:12] Check cycle 11000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:22] Check cycle 11100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:32] Check cycle 11200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:42] Check cycle 11300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:15:52] Check cycle 11400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:02] Check cycle 11500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:13] Check cycle 11600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:23] Check cycle 11700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:33] Check cycle 11800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:43] Check cycle 11900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:16:53] Check cycle 12000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:17:03] Check cycle 12100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:17:18] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:23:47] Queue content: 'RPC|Sw6QHqcG34jrWhJp|doCheckHubStatus|1|20250829222341\n'
+[22:23:53] Queue content: 'RPC|o30NBFdTtES9IQVv|doCheckHubStatus|1|20250829222353\n'
+[22:23:55] Queue content: 'RPC|ZlsKUtNYbiqzTK1C|runPkg|1|20250829222355|Latex\n'
+[22:23:55] Queue content: 'RPC|ppVSinQRGQyqJMlP|reloadGui|1|20250829222355\n'
+[22:23:58] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:08] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:18] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:28] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:38] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:47] Queue content: 'RPC|kfbaoevaDweKFLld|stopPkg|1|20250829222447|Latex\n'
+[22:24:47] Queue content: 'RPC|919RqveBZ8eGgGH4|reloadGui|1|20250829222447\n'
+[22:24:48] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:24:54] Queue content: 'RPC|n6sJqQOVzUrZXSC1|runPkg|1|20250829222454|Latex\n'
+[22:24:54] Queue content: 'RPC|2NW2QJnvqJF6vfNO|reloadGui|1|20250829222454\n'
+[22:24:58] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:09] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:19] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:29] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:39] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:49] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:25:59] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:26:09] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:26:19] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:26:30] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:26:40] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:26:50] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:00] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:10] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:20] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:30] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:40] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:27:51] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:28:01] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:28:11] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:28:21] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:28:31] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:28:41] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:29:12] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:29:22] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:29:33] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:29:43] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:38:13] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:38:23] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:38:33] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:38:43] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:38:53] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:03] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:13] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:24] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:34] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:48] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:57] Queue content: 'RPC|BfW9hpmgQTsb9Jj1|doCheckHubStatus|1|20250829223956\nRPC|8QdsOrXUkXsHKCgB|doCheckHubStatus|1|20250829223957\n'
+[22:39:57] Queue content: 'RPC|8QdsOrXUkXsHKCgB|doCheckHubStatus|1|20250829223957\n'
+[22:39:57] Queue content: 'RPC|w8rLLFh5PnHwSRFT|doCheckHubStatus|1|20250829223957\n'
+[22:39:58] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:39:58] Queue content: 'RPC|3sv2sehahEICFzEw|reloadGui|1|20250829223958\n'
+[22:39:59] Queue content: 'RPC|H6dN39zqIlzHdVt1|stopPkg|1|20250829223959|Latex\n'
+[22:39:59] Queue content: 'RPC|LYwUcEwpuA0YQUYZ|reloadGui|1|20250829223959\n'
+[22:40:00] Queue content: 'RPC|hnNKnuF30d85X9OY|runPkg|1|20250829224000|Latex\n'
+[22:40:00] Queue content: 'RPC|3WGLZieJxWG9Gdwv|reloadGui|1|20250829224000\n'
+[22:40:08] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:40:18] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:40:28] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:40:38] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:40:48] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:40:58] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:41:09] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:41:19] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:19] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:41:19] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:19] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:19] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:19] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:19] Queue content: 'RPC|IMJI3Zebz7GRsyD5|reloadGui|1|20250829224119\nRPC|Y06ZWsKw1cX0hPJt|reloadGui|1|20250829224119\n'
+[22:41:19] Queue content: 'RPC|Y06ZWsKw1cX0hPJt|reloadGui|1|20250829224119\n'
+[22:41:19] Queue content: 'RPC|T16kZ4IchAY0nQui|doShutdown|1|20250829224119\nRPC|toBkxnYP285Rox7m|doCheckHubStatus|1|20250829224119\n'
+[22:41:19] Queue content: 'RPC|yGIwfeAEdF0AW0yo|doCheckHubStatus|1|20250829224119\n'
+[22:41:21] Queue content: 'RPC|LUztFOOkEhMN8O9D|doCheckHubStatus|1|20250829224121\n'
+[22:41:22] Queue content: 'RPC|H7ZB57A2mIZWeA2T|doShutdown|1|20250829224122\nRPC|shVmTMRcYH4MUlJT|doCheckHubStatus|1|20250829224122\n'
+[22:41:22] Queue content: 'RPC|Wfziutote4b4iCxw|doCheckHubStatus|1|20250829224122\n'
+[22:41:23] Queue content: 'RPC|i5kAAYRknW7ASrB7|doCheckHubStatus|1|20250829224123\n'
+[22:41:23] Queue content: 'RPC|j2MoGQEpP7ToAZ1y|doShutdown|1|20250829224123\nRPC|NKF7FMcfj41CBsQn|doCheckHubStatus|1|20250829224123\n'
+[22:41:23] Queue content: 'RPC|vTprDWKAQFGiFymQ|doCheckHubStatus|1|20250829224123\n'
+[22:41:24] Queue content: 'RPC|xc8gX0TXAV867M0i|doCheckHubStatus|1|20250829224124\n'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:24] Queue content: 'RPC|NADCVSAbjDvQvE40|doCheckHubStatus|1|20250829224124\nRPC|ZmrnLBMRag0KY37u|doCheckHubStatus|1|20250829224124\n'
+[22:41:25] Queue content: 'RPC|ZmrnLBMRag0KY37u|doCheckHubStatus|1|20250829224124\n'
+[22:41:28] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:41:28] Queue content: 'RPC|lTfGWtUyZV7GiQIH|doCheckHubStatus|1|20250829224128\n'
+[22:41:38] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[22:41:39] Queue content: 'RPC|8I6aGPqHAh3AtbPL|doCheckHubStatus|1|20250829224139\nRPC|aRu2P2a5PM1ole4x|doCheckHubStatus|1|20250829224139\n'
+[22:41:39] Queue content: 'RPC|aRu2P2a5PM1ole4x|doCheckHubStatus|1|20250829224139\n'
+[22:41:39] Queue content: 'RPC|UpYaR4nyQ1w9pg2b|doCheckHubStatus|1|20250829224139\n'
+[22:41:47] Queue content: 'RPC|BnvQGf1pXTKtydcl|doShutdown|1|20250829224147\nRPC|r9U4Vc8e4gkyrfDm|doCheckHubStatus|1|20250829224147\n'
+[22:41:47] Duplicate request ignored: BnvQGf1pXTKtydcl
+[22:41:47] Queue update error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[22:41:47] Queue content: 'RPC|r9U4Vc8e4gkyrfDm|doCheckHubStatus|1|20250829224147\nRPC|xuHpnl1kUV79KkWi|doCheckHubStatus|1|20250829224147\n'
+[22:41:47] Duplicate request ignored: r9U4Vc8e4gkyrfDm
+[22:41:48] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[01:17:07] Queue content: 'RPC|aJQc80gN1pX1JtqS|doCheckHubStatus|1|20250830011707\n'
+[01:17:15] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[01:17:16] Queue content: 'RPC|WF3q7l7QvgyUfqKl|runPkg|1|20250830011716|Latex\n'
+[01:17:16] Queue content: 'RPC|U4eSgpihQk7O5AWk|reloadGui|1|20250830011716\n'
+[01:17:18] Queue content: 'RPC|I0EJAmtSZWiygVEX|reloadGui|1|20250830011718\n'
+[01:17:19] Queue content: 'RPC|AUIlzDvtCzULreYF|doCheckHubStatus|1|20250830011719\nRPC|03L7eDDBC6hpsKQy|doCheckHubStatus|1|20250830011719\n'
+[01:17:19] Queue content: 'RPC|03L7eDDBC6hpsKQy|doCheckHubStatus|1|20250830011719\n'

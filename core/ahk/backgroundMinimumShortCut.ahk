@@ -8,8 +8,9 @@ if (python_exe_path = "") {
     findPythonInterpreterGUI()
     python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
 }
+pyw := StrReplace(python_exe_path, "python.exe", "pythonw.exe")
 
 ^#g:: {
-    obj := '"' python_exe_path '"' " " '"' PathJoin(CORE_PATH, "py", "DummyGUI.py") '"'
+    obj := '"' pyw '"' " " '"' PathJoin(CORE_PATH, "py", "DummyGUI.py") '"'
     Run obj
 }
