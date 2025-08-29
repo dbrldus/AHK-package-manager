@@ -4600,3 +4600,856 @@
 [04:47:50] Queue content: 'RPC|BImIGpOXcIPgJEWB|doCheckHubStatus|1|20250829044750\nRPC|v7tQ3cp9p2NzCutA|doCheckHubStatus|1|20250829044750\n'
 [04:47:51] Queue content: 'RPC|v7tQ3cp9p2NzCutA|doCheckHubStatus|1|20250829044750\n'
 [04:47:52] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[17:33:38] Queue content: 'RPC|QYzDqsaeSYcmuoQt|doCheckHubStatus|1|20250829173338\n'
+[17:33:39] Queue content: 'RPC|uYPQTBDJF4eZL4r7|runPkg|1|20250829173339|Latex\n'
+[17:33:39] Queue content: 'RPC|rmUj7tuPpg6910LP|reloadGui|1|20250829173339\n'
+[17:33:41] Queue content: 'RPC|omjaarjyDh0K6zb2|stopPkg|1|20250829173340|Latex\n'
+[17:33:41] Queue content: 'RPC|tFi5e75URL5I2uMX|reloadGui|1|20250829173341\n'
+[17:33:42] Queue content: 'RPC|f6a0Wju9ntv8k5fb|runPkg|1|20250829173342|Latex\n'
+[17:33:42] Queue content: 'RPC|wXRUJAZgcYL8T3Ne|reloadGui|1|20250829173342\n'
+[17:33:43] Queue content: 'RPC|3DVCzOJiYxpB1IMj|reloadGui|1|20250829173343\n'
+[17:33:45] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[17:33:48] Queue content: 'RPC|SmMrHw852E5P6h58|runPkg|1|20250829173348|Latex\n'
+[17:33:48] Queue content: 'RPC|nGu9ydF5KChBoAIi|reloadGui|1|20250829173348\n'
+[17:33:49] Queue content: 'RPC|cmEjgSmaP3PkrvdD|stopPkg|1|20250829173349|Latex\n'
+[17:33:49] Queue content: 'RPC|YY3AztTyyQJnxnCy|reloadGui|1|20250829173349\n'
+[17:33:50] Queue content: 'RPC|uHJlZNws44eTlnbx|doCheckHubStatus|1|20250829173349\nRPC|96iVId1tmQBzIEgU|doCheckHubStatus|1|20250829173350\n'
+[17:33:50] Queue content: 'RPC|96iVId1tmQBzIEgU|doCheckHubStatus|1|20250829173350\n'
+[18:00:59] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:01:04] Queue content: 'RPC|SwDdtjlKGo4Fogw4|doCheckHubStatus|1|20250829180104\n'
+[18:01:06] Queue content: 'RPC|2CdYEGOB8sEQA6pp|runPkg|1|20250829180106|Latex\n'
+[18:01:06] Queue content: 'RPC|9w4UKlp1qJeAQi83|reloadGui|1|20250829180106\n'
+[18:01:09] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:01:20] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:01:30] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:01:40] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:01:50] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:00] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:08] Queue content: 'RPC|tXunmTh3bDwr7YFy|stopPkg|1|20250829180208|Latex\n'
+[18:02:08] Queue content: 'RPC|AI8aCp6SsKmowS1n|reloadGui|1|20250829180208\n'
+[18:02:10] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:11] Queue content: 'RPC|anYbT4tMbVZjcY90|runPkg|1|20250829180211|Latex\n'
+[18:02:11] Queue content: 'RPC|yKxHVnXMky6I6s1K|reloadGui|1|20250829180211\n'
+[18:02:20] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:30] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:41] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:02:51] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:01] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:11] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:21] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:31] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:41] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:03:51] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:02] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:12] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:22] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:32] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:42] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:04:52] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:02] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:12] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:23] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:33] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:43] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:05:53] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:03] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:13] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:23] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:33] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:44] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:06:54] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:04] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:14] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:24] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:34] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:44] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:07:54] Check cycle 4200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Check cycle 4300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:08:04] Queue content: 'RPC|MOCX9mz04et6kMTG|doShutdown|1|20250829180804\nRPC|zfoeGIuP86PCFU48|doCheckHubStatus|1|20250829180804\n'
+[18:08:04] Queue content: 'RPC|uw95V8OMJSVAhrPI|doCheckHubStatus|1|20250829180804\n'
+[18:08:14] Check cycle 4400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:24] Check cycle 4500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:34] Check cycle 4600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:44] Check cycle 4700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:08:54] Check cycle 4800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:04] Check cycle 4900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:15] Check cycle 5000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:25] Check cycle 5100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:35] Check cycle 5200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:45] Check cycle 5300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:09:55] Check cycle 5400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:05] Check cycle 5500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:15] Check cycle 5600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:25] Check cycle 5700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:36] Check cycle 5800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:46] Check cycle 5900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:10:56] Check cycle 6000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:06] Check cycle 6100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:16] Check cycle 6200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:26] Check cycle 6300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:36] Check cycle 6400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:46] Check cycle 6500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:11:57] Check cycle 6600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:07] Check cycle 6700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:17] Check cycle 6800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:27] Check cycle 6900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:37] Check cycle 7000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:47] Check cycle 7100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:12:54] Queue content: 'RPC|5IhaRdgVbPT43OGL|doCheckHubStatus|1|20250829181254\n'
+[18:12:57] Check cycle 7200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:07] Check cycle 7300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:18] Check cycle 7400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:28] Check cycle 7500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:38] Check cycle 7600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:48] Check cycle 7700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:13:58] Check cycle 7800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:08] Check cycle 7900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:17] Queue content: 'RPC|CGGZF9g1btpgG7Yf|doCheckHubStatus|1|20250829181417\n'
+[18:14:17] Queue content: 'RPC|tCMKajUdWNypzXZH|doCheckHubStatus|1|20250829181417\n'
+[18:14:18] Queue content: 'RPC|UxXbBxW2RSTeWEiW|doCheckHubStatus|1|20250829181418\n'
+[18:14:18] Queue content: 'RPC|TLEwD6BrpO1HMnRl|doCheckHubStatus|1|20250829181418\n'
+[18:14:18] Check cycle 8000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:19] Queue content: 'RPC|VYKYepsHfIb5SPMw|doCheckHubStatus|1|20250829181419\n'
+[18:14:19] Queue content: 'RPC|mP5tuX2B7YvsRpmT|doCheckHubStatus|1|20250829181419\n'
+[18:14:20] Queue content: 'RPC|f7wFGqg9loWwOBK0|doCheckHubStatus|1|20250829181420\n'
+[18:14:20] Queue content: 'RPC|ml45wDY6wAaKbzLJ|doCheckHubStatus|1|20250829181420\n'
+[18:14:21] Queue content: 'RPC|Ju9MJzoTdbRJrOzk|doCheckHubStatus|1|20250829181421\n'
+[18:14:21] Queue content: 'RPC|pfzv3YZAAlffwM9L|doCheckHubStatus|1|20250829181421\nRPC|gnuVv2tsHV7IRLX8|doCheckHubStatus|1|20250829181421\n'
+[18:14:21] Queue content: 'RPC|gnuVv2tsHV7IRLX8|doCheckHubStatus|1|20250829181421\n'
+[18:14:22] Queue content: 'RPC|g44UdrBKvHg6CO5u|doCheckHubStatus|1|20250829181422\n'
+[18:14:23] Queue content: 'RPC|d771vlOe0UukzimF|doCheckHubStatus|1|20250829181423\n'
+[18:14:23] Queue content: 'RPC|Ejs1Dz73kmtMiMqo|doShutdown|1|20250829181423\nRPC|wUHG9oBRCDQ3rGb9|doCheckHubStatus|1|20250829181423\n'
+[18:14:23] Queue content: 'RPC|wUHG9oBRCDQ3rGb9|doCheckHubStatus|1|20250829181423\nRPC|KtoV1P2L3Tr7Grzy|doCheckHubStatus|1|20250829181423\n'
+[18:14:23] Queue content: 'RPC|KtoV1P2L3Tr7Grzy|doCheckHubStatus|1|20250829181423\n'
+[18:14:25] Queue content: 'RPC|sv3X7YWyYOES7ugj|doCheckHubStatus|1|20250829181425\n'
+[18:14:26] Queue content: 'RPC|Qv4SpcL0A5V9p806|doCheckHubStatus|1|20250829181426\n'
+[18:14:26] Queue content: '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+[18:14:26] Queue content: 'RPC|mXyPGUdMdkUrQ2Rt|doShutdown|1|20250829181426\nRPC|uHs5Fli4Z9HZdHu0|doCheckHubStatus|1|20250829181426\n'
+[18:14:26] Queue content: 'RPC|uHs5Fli4Z9HZdHu0|doCheckHubStatus|1|20250829181426\nRPC|pZdv6XZwvliyJRGa|doCheckHubStatus|1|20250829181426\n'
+[18:14:26] Duplicate request ignored: uHs5Fli4Z9HZdHu0
+[18:14:29] Check cycle 8100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:30] Queue content: 'RPC|WTcJms8GsCcfhTTi|doCheckHubStatus|1|20250829181430\n'
+[18:14:30] Queue content: 'RPC|JZhaU8fjQaFDBOCu|doCheckHubStatus|1|20250829181430\n'
+[18:14:31] Queue content: 'RPC|y4rlSS0DtaN63jur|doCheckHubStatus|1|20250829181431\n'
+[18:14:31] Queue content: 'RPC|VS4aFLCPRdHlLE6v|doShutdown|1|20250829181431\nRPC|47o1PJ7Itw9JLeTA|doCheckHubStatus|1|20250829181431\n'
+[18:14:31] Queue content: 'RPC|1h9SJmekNWzcL8F5|doCheckHubStatus|1|20250829181431\n'
+[18:14:32] Queue content: 'RPC|h14VTA1nHUaNOviL|doCheckHubStatus|1|20250829181432\n'
+[18:14:33] Queue content: 'RPC|myT8ejfzDCakeJPN|doCheckHubStatus|1|20250829181433\n'
+[18:14:33] Queue content: 'RPC|igh5uckb6xGshgXc|doCheckHubStatus|1|20250829181433\n'
+[18:14:33] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:14:33] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:14:33] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:14:33] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:14:33] Queue content: 'RPC|REyWi3hUUm0rGCmz|doCheckHubStatus|1|20250829181433\nRPC|XFlDF1BAa9Iwt6aI|doCheckHubStatus|1|20250829181433\n'
+[18:14:34] Queue content: 'RPC|XFlDF1BAa9Iwt6aI|doCheckHubStatus|1|20250829181433\n'
+[18:14:35] Queue content: 'RPC|ZYdgkyYZqn23rwIr|doCheckHubStatus|1|20250829181435\n'
+[18:14:35] Queue content: 'RPC|iwRZgr9y0MrOJx9g|doCheckHubStatus|1|20250829181435\n'
+[18:14:36] Queue content: 'RPC|NRSRMrrmN7BLOCQf|doCheckHubStatus|1|20250829181436\n'
+[18:14:36] Queue content: 'RPC|egoRLKfMfSsPPvg7|doShutdown|1|20250829181436\nRPC|Yq0182EP3cwuAMYy|doCheckHubStatus|1|20250829181436\n'
+[18:14:36] Queue content: 'RPC|JoC6BUJtkzrvThhv|doCheckHubStatus|1|20250829181436\n'
+[18:14:37] Queue content: 'RPC|2CLWq153HhbbEfaL|doCheckHubStatus|1|20250829181437\n'
+[18:14:37] Queue content: 'RPC|8Vg6gjm09p5zDeZf|doCheckHubStatus|1|20250829181437\n'
+[18:14:38] Queue content: 'RPC|qyd3MBqMkutjl5Z9|doCheckHubStatus|1|20250829181438\n'
+[18:14:38] Check cycle 8200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:38] Queue content: 'RPC|KiiLGxJYlpaZIzTk|doCheckHubStatus|1|20250829181438\n'
+[18:14:39] Queue content: 'RPC|zgkZymW4ZiVlPtLh|doCheckHubStatus|1|20250829181439\n'
+[18:14:39] Queue content: 'RPC|yNbGvT6FKAMmSY1W|doCheckHubStatus|1|20250829181439\n'
+[18:14:40] Queue content: 'RPC|W0BPZKpRAZxNMXLx|doCheckHubStatus|1|20250829181440\n'
+[18:14:40] Queue content: 'RPC|FPRlG460O3B1AkiJ|doCheckHubStatus|1|20250829181440\n'
+[18:14:41] Queue content: 'RPC|uTdLscNSazjsBS3k|doCheckHubStatus|1|20250829181441\n'
+[18:14:41] Queue content: 'RPC|FIBfPtIdYC1HTjPJ|doCheckHubStatus|1|20250829181441\n'
+[18:14:42] Queue content: 'RPC|u2xLcftZLeFJ6wVd|doCheckHubStatus|1|20250829181442\n'
+[18:14:42] Queue content: 'RPC|Fa59DgiMSWQggLlv|doCheckHubStatus|1|20250829181442\n'
+[18:14:43] Queue content: 'RPC|LgVkVZTeDypECRcb|doCheckHubStatus|1|20250829181443\n'
+[18:14:43] Queue content: 'RPC|1R9721nL7RM27uBe|doCheckHubStatus|1|20250829181443\n'
+[18:14:44] Queue content: 'RPC|mNAOniXiBnBMJoU5|doCheckHubStatus|1|20250829181444\n'
+[18:14:44] Queue content: 'RPC|lqm0fsJKmhNiWsf9|doCheckHubStatus|1|20250829181444\n'
+[18:14:45] Queue content: 'RPC|6Q16y1wsXdqbuU4P|doCheckHubStatus|1|20250829181445\n'
+[18:14:45] Queue content: 'RPC|glr3TEgfgjb1LLKT|doCheckHubStatus|1|20250829181445\n'
+[18:14:46] Queue content: 'RPC|OTIwTeWeCTyVhKe0|doCheckHubStatus|1|20250829181446\n'
+[18:14:46] Queue content: 'RPC|bxFXK1kjKX06NU8h|doCheckHubStatus|1|20250829181446\n'
+[18:14:47] Queue content: 'RPC|T4XsS2OPQqNevrrk|doCheckHubStatus|1|20250829181447\n'
+[18:14:47] Queue content: 'RPC|1in1QuGpw2esYoBh|doCheckHubStatus|1|20250829181447\n'
+[18:14:48] Queue content: 'RPC|jSRn2kOsEQn4rX4U|doCheckHubStatus|1|20250829181448\n'
+[18:14:48] Queue content: 'RPC|C7QHIJ9tUjJSW0X7|doCheckHubStatus|1|20250829181448\n'
+[18:14:49] Check cycle 8300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:49] Queue content: 'RPC|q5zAB9u9NSObdB6h|doCheckHubStatus|1|20250829181449\n'
+[18:14:49] Queue content: 'RPC|BD5eNnB9TxANyIY7|doCheckHubStatus|1|20250829181449\n'
+[18:14:50] Queue content: 'RPC|XVSGqrmA7fcohBtt|doCheckHubStatus|1|20250829181450\n'
+[18:14:50] Queue content: 'RPC|ffOMZFwiofDV7iyi|doCheckHubStatus|1|20250829181450\n'
+[18:14:51] Queue content: 'RPC|yDwDqgZmm2UYw5Zk|doCheckHubStatus|1|20250829181451\n'
+[18:14:51] Queue content: 'RPC|joIeCu86UrTlueWA|doCheckHubStatus|1|20250829181451\n'
+[18:14:52] Queue content: 'RPC|M1VD4FKHLV6UI12k|doCheckHubStatus|1|20250829181452\n'
+[18:14:52] Queue content: 'RPC|8w3bU43yHz2zRk1P|doCheckHubStatus|1|20250829181452\n'
+[18:14:53] Queue content: 'RPC|uMGIwHFs1zNTU9Fm|doCheckHubStatus|1|20250829181453\n'
+[18:14:53] Queue content: 'RPC|8r4GWsvruqXUyhYb|doCheckHubStatus|1|20250829181453\n'
+[18:14:54] Queue content: 'RPC|T0l3knCqPYDTOVDh|doCheckHubStatus|1|20250829181454\n'
+[18:14:54] Queue content: 'RPC|Qf8LnP3ahAgyHKu2|doCheckHubStatus|1|20250829181454\n'
+[18:14:55] Queue content: 'RPC|UNeBGnZBYzN2OWa7|doCheckHubStatus|1|20250829181455\n'
+[18:14:55] Queue content: 'RPC|NQME9PEsCVVm947g|doCheckHubStatus|1|20250829181455\n'
+[18:14:56] Queue content: 'RPC|Xp7Ev4Wr0cFgRJhg|doCheckHubStatus|1|20250829181456\n'
+[18:14:56] Queue content: 'RPC|5NLjyjdZU6YnvFhf|doCheckHubStatus|1|20250829181456\n'
+[18:14:57] Queue content: 'RPC|NygzYPrdtFCVksNX|doCheckHubStatus|1|20250829181457\n'
+[18:14:57] Queue content: 'RPC|Nl7RCU1aNefxfOTf|doCheckHubStatus|1|20250829181457\n'
+[18:14:58] Queue content: 'RPC|irLagMZWVaN4fne6|doCheckHubStatus|1|20250829181458\n'
+[18:14:58] Queue content: 'RPC|2fevt3IccZbrV54Z|doCheckHubStatus|1|20250829181458\n'
+[18:14:59] Check cycle 8400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:14:59] Queue content: 'RPC|ZBp4yuB4O0W7dXQj|doCheckHubStatus|1|20250829181459\n'
+[18:14:59] Queue content: 'RPC|TDHKbR4wf0q5ph43|doCheckHubStatus|1|20250829181459\n'
+[18:15:00] Queue content: 'RPC|hYyKcwoXuBS9nJjw|doCheckHubStatus|1|20250829181500\n'
+[18:15:00] Queue content: 'RPC|WCRX88YflSsSgu2Z|doCheckHubStatus|1|20250829181500\n'
+[18:15:01] Queue content: 'RPC|Y8FzZL8B8lnHqyac|doCheckHubStatus|1|20250829181501\n'
+[18:15:01] Queue content: 'RPC|ve4J6t8a1eGwcyyc|doCheckHubStatus|1|20250829181501\n'
+[18:15:02] Queue content: 'RPC|187Q79BOCtD10o9O|doCheckHubStatus|1|20250829181502\n'
+[18:15:02] Queue content: 'RPC|LcjGqPGE3isNT6KV|doCheckHubStatus|1|20250829181502\n'
+[18:15:03] Queue content: 'RPC|mfosjEqojXmfxdxu|doCheckHubStatus|1|20250829181503\n'
+[18:15:03] Queue content: 'RPC|nhkXrQh5ojcwYViv|doCheckHubStatus|1|20250829181503\n'
+[18:15:04] Queue content: 'RPC|CGriSHZotb3su9dh|doCheckHubStatus|1|20250829181504\n'
+[18:15:04] Queue content: 'RPC|nlk9KitPtjDguYcp|doCheckHubStatus|1|20250829181504\n'
+[18:15:05] Queue content: 'RPC|ahiT5nmaRQEzTiSu|doCheckHubStatus|1|20250829181505\n'
+[18:15:05] Queue content: 'RPC|oeqegoxDsBTosIdx|doCheckHubStatus|1|20250829181505\n'
+[18:15:06] Queue content: 'RPC|mJCarECDkVuhFvtZ|doCheckHubStatus|1|20250829181506\n'
+[18:15:06] Queue content: 'RPC|oVCK5WnHUqYnA8p4|doCheckHubStatus|1|20250829181506\n'
+[18:15:07] Queue content: 'RPC|jA5hyYzp03GH0E1l|doCheckHubStatus|1|20250829181507\n'
+[18:15:07] Queue content: 'RPC|BKr2S3jewbKvi96C|doCheckHubStatus|1|20250829181507\n'
+[18:15:08] Queue content: 'RPC|iqIXnUNS6wFKxizC|doCheckHubStatus|1|20250829181508\n'
+[18:15:08] Queue content: 'RPC|pVV7G5mqVYFV9sKB|doCheckHubStatus|1|20250829181508\n'
+[18:15:09] Queue content: 'RPC|AD5vqHZNBDCXXU8s|doCheckHubStatus|1|20250829181509\n'
+[18:15:09] Check cycle 8500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:15:09] Queue content: 'RPC|rHrddWTsb7jeFClG|doCheckHubStatus|1|20250829181509\n'
+[18:15:10] Queue content: 'RPC|wlHwjoz5jgbqWZ3A|doCheckHubStatus|1|20250829181510\n'
+[18:15:10] Queue content: 'RPC|wlHwjoz5jgbqWZ3A|doCheckHubStatus|1|20250829181510\n'
+[18:15:10] Duplicate request ignored: wlHwjoz5jgbqWZ3A
+[18:15:10] Queue content: 'RPC|1HcyXGy1kBatVVoW|doCheckHubStatus|1|20250829181510\n'
+[18:15:11] Queue content: 'RPC|mQQ2DOewP2h120bH|doCheckHubStatus|1|20250829181511\n'
+[18:15:11] Queue content: 'RPC|8Vin8JIiUP8WVjjp|doCheckHubStatus|1|20250829181511\n'
+[18:15:12] Queue content: 'RPC|M7DpKtj8FRC3KUrd|doCheckHubStatus|1|20250829181512\n'
+[18:15:12] Queue content: 'RPC|3ZpnabCM2M4pRU8B|doCheckHubStatus|1|20250829181512\n'
+[18:15:13] Queue content: 'RPC|jSI5uuVlsjYoYEdH|doCheckHubStatus|1|20250829181513\n'
+[18:15:13] Queue content: 'RPC|vXPiGNEBq5rlh34C|doCheckHubStatus|1|20250829181513\n'
+[18:15:14] Queue content: 'RPC|QydGopUUKcJUFi4M|doCheckHubStatus|1|20250829181514\n'
+[18:15:14] Queue content: 'RPC|bFFOFiVEvYCS4yFp|doCheckHubStatus|1|20250829181514\n'
+[18:15:15] Queue content: 'RPC|mlSKZpMKNhcnnp5P|doCheckHubStatus|1|20250829181515\n'
+[18:15:15] Queue content: 'RPC|JvLKntdsEEetuNTp|doCheckHubStatus|1|20250829181515\n'
+[18:15:16] Queue content: 'RPC|WqCERXwE2dJbVRtO|doCheckHubStatus|1|20250829181516\n'
+[18:15:16] Queue content: 'RPC|8XKtlSt9C3Q7MTS2|doCheckHubStatus|1|20250829181516\n'
+[18:15:17] Queue content: 'RPC|bktfqpRBB0xijVYk|doCheckHubStatus|1|20250829181517\n'
+[18:15:17] Queue content: 'RPC|l08l276ZwQeQG0BD|doCheckHubStatus|1|20250829181517\n'
+[18:15:18] Queue content: 'RPC|clGRdXntmbtQa77B|doCheckHubStatus|1|20250829181518\n'
+[18:15:18] Queue content: 'RPC|FknK5916tJj9eajj|doCheckHubStatus|1|20250829181518\n'
+[18:15:19] Queue content: 'RPC|MUy3JKnGMmQI1Wcg|doCheckHubStatus|1|20250829181519\n'
+[18:15:19] Check cycle 8600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:15:19] Queue content: 'RPC|HzbIQ8sLf8e7Vdju|doCheckHubStatus|1|20250829181519\n'
+[18:15:20] Queue content: 'RPC|lKnoFRLWgigERRLB|doCheckHubStatus|1|20250829181520\n'
+[18:15:20] Queue content: 'RPC|SLhu492GqZ5B6rGd|doCheckHubStatus|1|20250829181520\n'
+[18:15:21] Queue content: 'RPC|p2yoU0i7o00dQh0W|doCheckHubStatus|1|20250829181521\n'
+[18:15:21] Queue content: 'RPC|UgjbPaYusGCmiQF7|doCheckHubStatus|1|20250829181521\n'
+[18:15:22] Queue content: 'RPC|9EGU59i8ObwuTfdf|doCheckHubStatus|1|20250829181522\n'
+[18:15:22] Queue content: 'RPC|PzZ2vkcOmKaie3cl|doCheckHubStatus|1|20250829181522\n'
+[18:15:23] Queue content: 'RPC|KAMuAHEXSlwzy50v|doCheckHubStatus|1|20250829181523\n'
+[18:15:24] Queue content: 'RPC|ITiuq6TknoTDT2O1|doCheckHubStatus|1|20250829181523\n'
+[18:15:24] Queue content: 'RPC|GlQhqfoJdrQnuwlT|doCheckHubStatus|1|20250829181524\n'
+[18:15:24] Queue content: 'RPC|DF9NQkE9rhpoJDs6|doCheckHubStatus|1|20250829181524\n'
+[18:15:25] Queue content: 'RPC|8Emcsqq44k2B0VO5|doCheckHubStatus|1|20250829181525\n'
+[18:15:25] Queue content: 'RPC|1AnmzZt0fH5gAyzV|doCheckHubStatus|1|20250829181525\n'
+[18:15:26] Queue content: 'RPC|cq6g8S5kEMgaFjhU|doCheckHubStatus|1|20250829181526\n'
+[18:15:26] Queue content: 'RPC|9R0M8RbusJAGfClK|doCheckHubStatus|1|20250829181526\n'
+[18:15:27] Queue content: 'RPC|d6yHAd4uhf83luFD|doCheckHubStatus|1|20250829181527\n'
+[18:15:27] Queue content: 'RPC|xcDLBIwTZWw9LxCx|doCheckHubStatus|1|20250829181527\n'
+[18:15:28] Queue content: 'RPC|e7qa6xVglsiVd1td|doCheckHubStatus|1|20250829181528\n'
+[18:15:28] Queue content: 'RPC|LbeZnSi9YNtAC1Lq|doCheckHubStatus|1|20250829181528\n'
+[18:15:29] Queue content: 'RPC|mELQv6jGPUd4i5K9|doCheckHubStatus|1|20250829181529\n'
+[18:15:29] Queue content: 'RPC|YdxcxdMQ0NNpUw2W|doCheckHubStatus|1|20250829181529\n'
+[18:15:30] Check cycle 8700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:15:30] Queue content: 'RPC|hCOMc2hqyxWI8yQM|doCheckHubStatus|1|20250829181530\n'
+[18:15:30] Queue content: 'RPC|4r2i5NZK3UvGVEyo|doCheckHubStatus|1|20250829181530\n'
+[18:15:31] Queue content: 'RPC|55EnsLozEkS0TL10|doCheckHubStatus|1|20250829181531\n'
+[18:15:31] Queue content: 'RPC|fCbFSnWeGXgrH7IP|doCheckHubStatus|1|20250829181531\n'
+[18:15:32] Queue content: 'RPC|J0agQxk3W2SS7mDj|doCheckHubStatus|1|20250829181532\n'
+[18:15:32] Queue content: 'RPC|AgDz0ijVuKqNDlxD|doCheckHubStatus|1|20250829181532\n'
+[18:15:33] Queue content: 'RPC|cRN0mlZ4wiJWHRCd|doCheckHubStatus|1|20250829181533\n'
+[18:15:33] Queue content: 'RPC|RuvvJdjuExbZJuII|doCheckHubStatus|1|20250829181533\n'
+[18:15:34] Queue content: 'RPC|2labqGO0B1uxKtma|doCheckHubStatus|1|20250829181534\n'
+[18:15:34] Queue content: 'RPC|ULuPLdzihGNpgNLR|doCheckHubStatus|1|20250829181534\n'
+[18:15:35] Queue content: 'RPC|5tpXIo2v1m8FqZjj|doCheckHubStatus|1|20250829181535\n'
+[18:15:35] Queue content: 'RPC|3t3OymomS8HEhn9Y|doCheckHubStatus|1|20250829181535\n'
+[18:15:36] Queue content: 'RPC|gHhT9fMHxxyLNhgV|doCheckHubStatus|1|20250829181536\n'
+[18:15:36] Queue content: 'RPC|0EtT0wjIgXlMUGYs|doCheckHubStatus|1|20250829181536\n'
+[18:15:37] Queue content: 'RPC|WERGRHGPAqXBN1od|doCheckHubStatus|1|20250829181537\n'
+[18:15:38] Queue content: 'RPC|UdGm0Kqjg8B0cl3X|doCheckHubStatus|1|20250829181537\n'
+[18:15:38] Queue content: 'RPC|Q2NV1npffPlWdrg6|doCheckHubStatus|1|20250829181538\n'
+[18:15:38] Queue content: 'RPC|vSWxRx7qFpTzfBSt|doCheckHubStatus|1|20250829181538\n'
+[18:15:39] Queue content: 'RPC|fIKIenOSskQdl3ty|doCheckHubStatus|1|20250829181539\n'
+[18:15:39] Queue content: 'RPC|NZioRhZBD5FaLCHV|doCheckHubStatus|1|20250829181539\n'
+[18:15:40] Check cycle 8800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:15:40] Queue content: 'RPC|G4HNDV75LmufhaTM|doCheckHubStatus|1|20250829181540\n'
+[18:15:40] Queue content: 'RPC|d1Hp6KrmJlT2GpHq|doCheckHubStatus|1|20250829181540\n'
+[18:15:41] Queue content: 'RPC|FkpFaVx4rJnnMbq0|doCheckHubStatus|1|20250829181541\n'
+[18:15:41] Queue content: 'RPC|bpnK2UNZiyAU2ILl|doCheckHubStatus|1|20250829181541\n'
+[18:15:42] Queue content: 'RPC|gOyoxFYAQztOJKMZ|doCheckHubStatus|1|20250829181542\n'
+[18:15:42] Queue content: 'RPC|5lZIA2LkdJIPRPuS|doCheckHubStatus|1|20250829181542\n'
+[18:15:43] Queue content: 'RPC|EZyWAvlZFjaSvoOm|doCheckHubStatus|1|20250829181543\n'
+[18:15:43] Queue content: 'RPC|n5RE0FKvHS76myWo|doCheckHubStatus|1|20250829181543\n'
+[18:15:44] Queue content: 'RPC|Ecq4ZgkyBzk9rNRV|doCheckHubStatus|1|20250829181544\n'
+[18:15:44] Queue content: 'RPC|Qtoavb7r0H1ee5eo|doCheckHubStatus|1|20250829181544\n'
+[18:15:45] Queue content: 'RPC|HIyFbml1XhqCsmqU|doCheckHubStatus|1|20250829181545\n'
+[18:15:45] Queue content: 'RPC|L5xmhoUVaIoO3vZS|doCheckHubStatus|1|20250829181545\n'
+[18:15:46] Queue content: 'RPC|gaWLRUD2M9nfllxe|doCheckHubStatus|1|20250829181546\n'
+[18:15:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:15:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:15:46] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:15:47] Queue content: 'RPC|ssTjFw7lTZyCfsgs|doCheckHubStatus|1|20250829181546\nRPC|e8lekdiYGJIJE7Lq|doShutdown|1|20250829181546\nRPC|55u5jrHuG18BOTHW|doCheckHubStatus|1|20250829181546\n'
+[18:15:47] Queue content: 'RPC|55u5jrHuG18BOTHW|doCheckHubStatus|1|20250829181546\nRPC|WkBwyYFf4417e6S3|doCheckHubStatus|1|20250829181547\n'
+[18:15:47] Queue content: 'RPC|WkBwyYFf4417e6S3|doCheckHubStatus|1|20250829181547\n'
+[18:15:48] Queue content: 'RPC|Pq2M5VEu7dZzJTC4|doCheckHubStatus|1|20250829181548\n'
+[18:15:48] Queue content: 'RPC|HIdboIp8set9HvL8|reloadGui|1|20250829181548\n'
+[18:15:49] Queue content: 'RPC|UE4LiLYTMI1CijqM|reloadGui|1|20250829181549\n'
+[18:15:49] Queue content: 'RPC|jQbg0gH0yo2JTshr|reloadGui|1|20250829181549\n'
+[18:15:50] Check cycle 8900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:15:50] Queue content: 'RPC|X0HyUJ0uSA7Ycnzm|reloadGui|1|20250829181550\n'
+[18:15:50] Queue content: 'RPC|xK047a6KeOdU5dPx|reloadGui|1|20250829181550\n'
+[18:15:51] Queue content: 'RPC|txochPsqHZ9re4T9|reloadGui|1|20250829181551\n'
+[18:15:51] Queue content: 'RPC|5skeIqvgBIANxK1v|reloadGui|1|20250829181551\n'
+[18:15:52] Queue content: 'RPC|5r261XDklQpI4z58|reloadGui|1|20250829181552\n'
+[18:15:52] Queue content: 'RPC|riRSW4IPsor05yVl|reloadGui|1|20250829181552\n'
+[18:15:53] Queue content: 'RPC|LxJxK0yjrzsnlg2S|reloadGui|1|20250829181553\n'
+[18:15:53] Queue content: 'RPC|dU4B2MrxjQaqGngE|reloadGui|1|20250829181553\n'
+[18:15:54] Queue content: 'RPC|fSAuZb3zpTWhbEy1|reloadGui|1|20250829181554\n'
+[18:15:54] Queue content: 'RPC|Z55ZXjLgFGttdCjk|reloadGui|1|20250829181554\n'
+[18:15:55] Queue content: 'RPC|WkBqTabyvXXZSmHX|reloadGui|1|20250829181555\n'
+[18:15:55] Queue content: 'RPC|G1s0yOdhxtemz3fC|reloadGui|1|20250829181555\n'
+[18:15:56] Queue content: 'RPC|fsjHU5sjVKf51pM2|reloadGui|1|20250829181556\n'
+[18:15:56] Queue content: 'RPC|M5udepXvhpLYBhKo|reloadGui|1|20250829181556\n'
+[18:15:57] Queue content: 'RPC|IxyE3XrWXyYEmSp9|reloadGui|1|20250829181557\n'
+[18:15:57] Queue content: 'RPC|romI44IK2y2VtREt|reloadGui|1|20250829181557\n'
+[18:15:58] Queue content: 'RPC|e7ezaN1P5yc4wR1e|reloadGui|1|20250829181558\n'
+[18:15:58] Queue content: 'RPC|zphZGXPnk6cMdiPr|reloadGui|1|20250829181558\n'
+[18:15:59] Queue content: 'RPC|HmbpOJLEDp1dI6zS|reloadGui|1|20250829181559\n'
+[18:15:59] Queue content: 'RPC|cQKbwat7Ewqikf3E|reloadGui|1|20250829181559\n'
+[18:16:00] Queue content: 'RPC|U8jk4S4eYq8SkR65|reloadGui|1|20250829181600\n'
+[18:16:00] Check cycle 9000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:00] Queue content: 'RPC|dA1jevOBe0k9gxzJ|reloadGui|1|20250829181600\n'
+[18:16:01] Queue content: 'RPC|EH5y5mHUNZImnrnD|reloadGui|1|20250829181601\n'
+[18:16:01] Queue content: 'RPC|YrLydsjGy2yNtPkJ|reloadGui|1|20250829181601\n'
+[18:16:02] Queue content: 'RPC|tI8QyvYB6d6ejpsc|reloadGui|1|20250829181602\n'
+[18:16:02] Queue content: 'RPC|U29mBQnu6XIfcFK8|reloadGui|1|20250829181602\n'
+[18:16:03] Queue content: 'RPC|DjMazcmQ2r3eslVa|reloadGui|1|20250829181603\n'
+[18:16:03] Queue content: 'RPC|3ni9VRoM1EvnHcgH|reloadGui|1|20250829181603\n'
+[18:16:04] Queue content: 'RPC|kHSrrEZkK1WrC6D4|reloadGui|1|20250829181604\n'
+[18:16:04] Queue content: 'RPC|DFjQPgD2jqn0zMrJ|reloadGui|1|20250829181604\n'
+[18:16:05] Queue content: 'RPC|HbMqpOVc1b4eF9dK|reloadGui|1|20250829181605\n'
+[18:16:05] Queue content: 'RPC|KMaVkYspEHwe96JD|reloadGui|1|20250829181605\n'
+[18:16:06] Queue content: 'RPC|lRXjkDVFvZChhTN5|reloadGui|1|20250829181606\n'
+[18:16:06] Queue content: 'RPC|0nwGcq7S5bZDXAD0|reloadGui|1|20250829181606\n'
+[18:16:07] Queue content: 'RPC|77Q1RxoWNcO51Hbn|reloadGui|1|20250829181607\n'
+[18:16:07] Queue content: 'RPC|8qnDH48uEXhDhfGc|reloadGui|1|20250829181607\n'
+[18:16:08] Queue content: 'RPC|lHMgVYwD3Ycjl70C|reloadGui|1|20250829181608\n'
+[18:16:08] Queue content: 'RPC|t8kTI2egkb9WiuLD|reloadGui|1|20250829181608\n'
+[18:16:09] Queue content: 'RPC|Ov6mUQqongbbsX1M|reloadGui|1|20250829181609\n'
+[18:16:09] Queue content: 'RPC|r1bJTq0G2pIHH54i|reloadGui|1|20250829181609\n'
+[18:16:10] Queue content: 'RPC|9t8OoDzQTN4YGhYL|reloadGui|1|20250829181610\n'
+[18:16:10] Check cycle 9100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:10] Queue content: 'RPC|TAOnaIAIWcSJDlzH|reloadGui|1|20250829181610\n'
+[18:16:11] Queue content: 'RPC|Jva80WYAeezekSYN|reloadGui|1|20250829181611\n'
+[18:16:11] Queue content: 'RPC|HONE5foAtjyKdIqT|reloadGui|1|20250829181611\n'
+[18:16:12] Queue content: 'RPC|YmGFglhdJhcyhfFq|reloadGui|1|20250829181612\n'
+[18:16:12] Queue content: 'RPC|VwCODrDDJZ5K8H6m|reloadGui|1|20250829181612\n'
+[18:16:13] Queue content: 'RPC|HC8l1f4eu4MnBv5q|reloadGui|1|20250829181613\n'
+[18:16:13] Queue content: 'RPC|RkgOQsJExyJi0Cvb|reloadGui|1|20250829181613\n'
+[18:16:14] Queue content: 'RPC|T4xFqTAquHzsfKxH|reloadGui|1|20250829181614\n'
+[18:16:14] Queue content: 'RPC|b2zgyQTdfGYSIoID|reloadGui|1|20250829181614\n'
+[18:16:15] Queue content: 'RPC|oOjyhbmRmvTs489N|reloadGui|1|20250829181615\n'
+[18:16:15] Queue content: 'RPC|8RiAyIkw3q7DNs37|reloadGui|1|20250829181615\n'
+[18:16:16] Queue content: 'RPC|YBAHnfdZtVyFdFy0|reloadGui|1|20250829181616\n'
+[18:16:16] Queue content: 'RPC|tNV9oflHscgFd3jW|reloadGui|1|20250829181616\n'
+[18:16:17] Queue content: 'RPC|fEzXIssOAXN7MqpY|reloadGui|1|20250829181617\n'
+[18:16:17] Queue content: 'RPC|SIEAEJgeoK0sPDDw|reloadGui|1|20250829181617\n'
+[18:16:18] Queue content: 'RPC|JNACCqQmTsOCieA9|reloadGui|1|20250829181618\n'
+[18:16:18] Queue content: 'RPC|Yc6xMzEmig22Zsp3|reloadGui|1|20250829181618\n'
+[18:16:19] Queue content: 'RPC|8fwTSSglg7HnZJoS|reloadGui|1|20250829181619\n'
+[18:16:19] Queue content: 'RPC|6nK2CrPj0fTdAZOg|reloadGui|1|20250829181619\n'
+[18:16:20] Queue content: 'RPC|APz6H2hjVXeVenIL|reloadGui|1|20250829181620\n'
+[18:16:20] Queue content: 'RPC|cPVaE0mBEJndwL9Y|reloadGui|1|20250829181620\n'
+[18:16:20] Check cycle 9200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:21] Queue content: 'RPC|WkIQXMqYtDdkcsWo|reloadGui|1|20250829181621\n'
+[18:16:21] Queue content: 'RPC|vhzd7d53seQHaA6x|reloadGui|1|20250829181621\n'
+[18:16:22] Queue content: 'RPC|zkAk6rsBvuJNXKSa|reloadGui|1|20250829181622\n'
+[18:16:22] Queue content: 'RPC|0auNvJwTRxZsj6rK|reloadGui|1|20250829181622\n'
+[18:16:23] Queue content: 'RPC|NMp76HZClm8gPLmM|reloadGui|1|20250829181623\n'
+[18:16:23] Queue content: 'RPC|0mpS3nDbrKIdfgyO|reloadGui|1|20250829181623\n'
+[18:16:24] Queue content: 'RPC|28aQeAnU3PkETFxG|reloadGui|1|20250829181624\n'
+[18:16:24] Queue content: 'RPC|lfY7eJeabyh84G3m|reloadGui|1|20250829181624\n'
+[18:16:25] Queue content: 'RPC|p97uT2Wsh0WdklVj|reloadGui|1|20250829181625\n'
+[18:16:25] Queue content: 'RPC|f5445q36QUFXP9hM|reloadGui|1|20250829181625\n'
+[18:16:26] Queue content: 'RPC|6357pjPcwhPiIV5x|reloadGui|1|20250829181626\n'
+[18:16:26] Queue content: 'RPC|g8oaHpqbOmWW8eYP|reloadGui|1|20250829181626\n'
+[18:16:27] Queue content: 'RPC|ZK3Ipqf8VYMgQnia|reloadGui|1|20250829181627\n'
+[18:16:27] Queue content: 'RPC|CBQvIay4nXyj7o9g|reloadGui|1|20250829181627\n'
+[18:16:28] Queue content: 'RPC|68iTP2X0nG0E9Blz|reloadGui|1|20250829181628\n'
+[18:16:28] Queue content: 'RPC|KzatppSGRrm6SREZ|reloadGui|1|20250829181628\n'
+[18:16:29] Queue content: 'RPC|R8UsfGRSnSGqY5O6|reloadGui|1|20250829181629\n'
+[18:16:29] Queue content: 'RPC|EvlXxRqHeeitsFDR|reloadGui|1|20250829181629\n'
+[18:16:30] Queue content: 'RPC|RuvxNIepfqHvwRfx|reloadGui|1|20250829181630\n'
+[18:16:30] Queue content: 'RPC|Ze2W4vvmynHiYvJt|reloadGui|1|20250829181630\n'
+[18:16:31] Check cycle 9300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:31] Queue content: 'RPC|0FI5I5P4B5FaNxxA|reloadGui|1|20250829181631\n'
+[18:16:31] Queue content: 'RPC|oHhd48UyGdF8eQNj|reloadGui|1|20250829181631\n'
+[18:16:32] Queue content: 'RPC|axbDf1Hc8hJgzL6s|reloadGui|1|20250829181632\n'
+[18:16:32] Queue content: 'RPC|9vGVaBFuYXNWWGda|reloadGui|1|20250829181632\n'
+[18:16:33] Queue content: 'RPC|t4xUPdEBs36a4MMv|reloadGui|1|20250829181633\n'
+[18:16:33] Queue content: 'RPC|D9Ck1iETbv6Bo1I0|reloadGui|1|20250829181633\nRPC|H12m6AbAogIPj5eL|reloadGui|1|20250829181633\n'
+[18:16:33] Queue content: 'RPC|H12m6AbAogIPj5eL|reloadGui|1|20250829181633\n'
+[18:16:34] Queue content: 'RPC|6Q8L2SnWYi0eCcfv|reloadGui|1|20250829181634\n'
+[18:16:34] Queue content: 'RPC|pvXeloJQopgO6ECI|reloadGui|1|20250829181634\n'
+[18:16:35] Queue content: 'RPC|o5sReTVhjxtFXjxf|reloadGui|1|20250829181635\n'
+[18:16:35] Queue content: 'RPC|y0jki8DY98P4c5GC|reloadGui|1|20250829181635\n'
+[18:16:36] Queue content: 'RPC|3Um171RczFbhWEXU|reloadGui|1|20250829181636\n'
+[18:16:36] Queue content: 'RPC|BA0fK95HBE9YW3LL|reloadGui|1|20250829181636\n'
+[18:16:37] Queue content: 'RPC|YrRlpUVVognCFxsu|reloadGui|1|20250829181637\n'
+[18:16:37] Queue content: 'RPC|AXpUjjNImslaxMSl|reloadGui|1|20250829181637\n'
+[18:16:38] Queue content: 'RPC|lB4yZLmuRHEoHVuH|reloadGui|1|20250829181638\n'
+[18:16:38] Queue content: 'RPC|sytlDBRgtE9N2Tzj|reloadGui|1|20250829181638\n'
+[18:16:39] Queue content: 'RPC|ZLZdnUjWff3jGR8H|reloadGui|1|20250829181639\n'
+[18:16:39] Queue content: 'RPC|K44SEw09oKsJ6KWX|reloadGui|1|20250829181639\n'
+[18:16:40] Queue content: 'RPC|YogkqW7RwWVkOcDP|reloadGui|1|20250829181640\n'
+[18:16:40] Queue content: 'RPC|2Mcqmyjayv7gAcJQ|reloadGui|1|20250829181640\n'
+[18:16:41] Queue content: 'RPC|hw9beI9JZe2Uk8K4|reloadGui|1|20250829181641\n'
+[18:16:41] Check cycle 9400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:41] Queue content: 'RPC|jbaLeCJC1Rd14L8A|reloadGui|1|20250829181641\n'
+[18:16:42] Queue content: 'RPC|Q35Plrhaf4nr8dGQ|reloadGui|1|20250829181642\n'
+[18:16:42] Queue content: 'RPC|byjpVzmau5HbMENE|reloadGui|1|20250829181642\n'
+[18:16:43] Queue content: 'RPC|P5mzwCeJWDysx6EL|reloadGui|1|20250829181643\n'
+[18:16:43] Queue content: 'RPC|RSp3GWlVaBoo7SLA|reloadGui|1|20250829181643\n'
+[18:16:44] Queue content: 'RPC|RDR6l1PSsD2KATNI|reloadGui|1|20250829181644\n'
+[18:16:44] Queue content: 'RPC|B31TxnA3qA4cTrYU|reloadGui|1|20250829181644\n'
+[18:16:45] Queue content: 'RPC|GW21Gk7KeVDLVDrc|reloadGui|1|20250829181645\n'
+[18:16:45] Queue content: 'RPC|v8w9KJR692TFBTbO|reloadGui|1|20250829181645\n'
+[18:16:46] Queue content: 'RPC|TSrvbVHwzHCV6G1d|reloadGui|1|20250829181646\n'
+[18:16:46] Queue content: 'RPC|DwNrw7kuhYRBYJfZ|reloadGui|1|20250829181646\n'
+[18:16:47] Queue content: 'RPC|w6ZuDfUJmSaSU6nV|reloadGui|1|20250829181647\n'
+[18:16:47] Queue content: 'RPC|FajrWEA7gkeBrb88|reloadGui|1|20250829181647\n'
+[18:16:48] Queue content: 'RPC|VzGtM1z4O1Pz0eQO|reloadGui|1|20250829181648\n'
+[18:16:48] Queue content: 'RPC|Y5k7ID00wnfcL7vZ|reloadGui|1|20250829181648\n'
+[18:16:49] Queue content: 'RPC|WK6fjqPXHJejZcei|reloadGui|1|20250829181649\n'
+[18:16:49] Queue content: 'RPC|LFziZQEitEo74LFn|reloadGui|1|20250829181649\n'
+[18:16:50] Queue content: 'RPC|dsKqanRLBCt9EXIB|reloadGui|1|20250829181650\n'
+[18:16:50] Queue content: 'RPC|rmYuhGUHGod8hsJG|reloadGui|1|20250829181650\n'
+[18:16:51] Queue content: 'RPC|PoLV8fpQkpVfD5Tu|reloadGui|1|20250829181651\n'
+[18:16:51] Check cycle 9500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:16:51] Queue content: 'RPC|6xWO7eipLuk5Fvyf|reloadGui|1|20250829181651\n'
+[18:16:52] Queue content: 'RPC|HwGLlO5JISV1Nw1w|reloadGui|1|20250829181652\n'
+[18:16:52] Queue content: 'RPC|HwGLlO5JISV1Nw1w|reloadGui|1|20250829181652\n'
+[18:16:52] Duplicate request ignored: HwGLlO5JISV1Nw1w
+[18:16:52] Queue content: 'RPC|GqFRc0jV4qsK5Bg1|reloadGui|1|20250829181652\n'
+[18:16:53] Queue content: 'RPC|BQfQ8KtzLqZI10CN|reloadGui|1|20250829181653\n'
+[18:16:53] Queue content: 'RPC|FAbJ44yu4t5NDXjO|reloadGui|1|20250829181653\n'
+[18:16:54] Queue content: 'RPC|KuGKUNtMyU682E0i|reloadGui|1|20250829181654\n'
+[18:16:54] Queue content: 'RPC|IUL8S3kNebWKyUCv|reloadGui|1|20250829181654\n'
+[18:16:55] Queue content: 'RPC|4mkAN88tRUkTWiFN|reloadGui|1|20250829181655\n'
+[18:16:55] Queue content: 'RPC|kvNIWSoGTnyYkqek|reloadGui|1|20250829181655\n'
+[18:16:55] Queue content: 'RPC|kvNIWSoGTnyYkqek|reloadGui|1|20250829181655\n'
+[18:16:55] Duplicate request ignored: kvNIWSoGTnyYkqek
+[18:16:56] Queue content: 'RPC|aSG549dtPRNiegQ7|reloadGui|1|20250829181656\n'
+[18:16:56] Queue content: 'RPC|tPwhPetrRrgfCrfd|reloadGui|1|20250829181656\n'
+[18:16:57] Queue content: 'RPC|ODu3JplQEzZaUFA1|reloadGui|1|20250829181657\n'
+[18:16:57] Queue content: 'RPC|56f2W13wrUCo79rD|reloadGui|1|20250829181657\n'
+[18:16:58] Queue content: 'RPC|yAOxSEtuhNCHiQTA|reloadGui|1|20250829181658\n'
+[18:16:58] Queue content: 'RPC|erjDxy06kjbFjaqv|reloadGui|1|20250829181658\n'
+[18:16:59] Queue content: 'RPC|4p5lcbO93y42fTFu|reloadGui|1|20250829181659\n'
+[18:16:59] Queue content: 'RPC|gISmp70xB1UJogg6|reloadGui|1|20250829181659\n'
+[18:17:00] Queue content: 'RPC|8vRws8DB21LcF23T|reloadGui|1|20250829181700\n'
+[18:17:00] Queue content: 'RPC|IP0784MZyyi4X8fd|reloadGui|1|20250829181700\n'
+[18:17:01] Queue content: 'RPC|4ApLrs9Lu9NVf2lQ|reloadGui|1|20250829181701\n'
+[18:17:01] Check cycle 9600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:17:02] Queue content: 'RPC|OrbKOtFaA5USg4FY|reloadGui|1|20250829181702\n'
+[18:17:02] Queue content: 'RPC|OXCmbN1LnPn7YiUe|reloadGui|1|20250829181702\n'
+[18:17:03] Queue content: 'RPC|q0Vloc31gSQldaAp|reloadGui|1|20250829181703\n'
+[18:17:03] Queue content: 'RPC|BYxvDbuSrM3VQz9O|reloadGui|1|20250829181703\n'
+[18:17:04] Queue content: 'RPC|LoWcDT0taNzVn59C|reloadGui|1|20250829181704\n'
+[18:17:04] Queue content: 'RPC|qauIK7hb04FzyrSh|reloadGui|1|20250829181704\n'
+[18:17:05] Queue content: 'RPC|pk74cHBb6rDXFILX|reloadGui|1|20250829181705\n'
+[18:17:05] Queue content: 'RPC|QFLyldgEQQbCr7w9|reloadGui|1|20250829181705\n'
+[18:17:06] Queue content: 'RPC|5AGd3SUXVGAKwifO|reloadGui|1|20250829181706\n'
+[18:17:06] Queue content: 'RPC|31GxH1AoonUPs4rz|reloadGui|1|20250829181706\n'
+[18:17:07] Queue content: 'RPC|9UHH7KljOsRN3zH6|reloadGui|1|20250829181707\n'
+[18:17:07] Queue content: 'RPC|s5U6bbtnHUilzeNl|reloadGui|1|20250829181707\n'
+[18:17:08] Queue content: 'RPC|HTzHg5Zo6qEVbDgZ|reloadGui|1|20250829181708\n'
+[18:17:08] Queue content: 'RPC|dUxg5krT4np3Pr36|reloadGui|1|20250829181708\n'
+[18:17:09] Queue content: 'RPC|Qd87twggwAFhlFzC|reloadGui|1|20250829181709\n'
+[18:17:09] Queue content: 'RPC|xUaQG2ySJ2DVQwJz|reloadGui|1|20250829181709\n'
+[18:17:09] Queue content: '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+[18:17:10] Queue content: 'RPC|2rZdIesTJgiPFifq|reloadGui|1|20250829181710\n'
+[18:17:10] Queue content: 'RPC|JUNDASmXbGdEP7Mh|reloadGui|1|20250829181710\n'
+[18:17:11] Queue content: 'RPC|VjgGPHogumBC9S6g|reloadGui|1|20250829181711\n'
+[18:17:11] Queue content: 'RPC|jEHqwfrbAtdRHnNC|reloadGui|1|20250829181711\n'
+[18:17:12] Check cycle 9700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:17:12] Queue content: 'RPC|vzvNj6E1yVI4UNNI|reloadGui|1|20250829181712\n'
+[18:17:12] Queue content: 'RPC|rg7S4Sk2Dm3KtmsL|reloadGui|1|20250829181712\n'
+[18:17:13] Queue content: 'RPC|PaL6BRoQUmpOdDZ7|reloadGui|1|20250829181713\n'
+[18:17:13] Queue content: 'RPC|oUhKcKOjqFkmn35S|reloadGui|1|20250829181713\n'
+[18:17:14] Queue content: 'RPC|fFcQiRzU9i4tKxPx|reloadGui|1|20250829181714\n'
+[18:17:14] Queue content: 'RPC|kayxIqgftVoyuqFL|reloadGui|1|20250829181714\n'
+[18:17:15] Queue content: 'RPC|2J05CjwCSMkMAw3O|reloadGui|1|20250829181715\n'
+[18:17:15] Queue content: 'RPC|NrJ4Y9l6TYpT1YS2|reloadGui|1|20250829181715\n'
+[18:17:16] Queue content: 'RPC|JuDditgeAr45UgoK|reloadGui|1|20250829181716\n'
+[18:17:16] Queue content: 'RPC|LAEjBmEj8VguRunr|reloadGui|1|20250829181716\n'
+[18:17:17] Queue content: 'RPC|JRvfgzEOwdagQcm4|reloadGui|1|20250829181717\n'
+[18:17:17] Queue content: 'RPC|6xtKUpKNUWmQDMLz|reloadGui|1|20250829181717\n'
+[18:17:18] Queue content: 'RPC|F1LhhbZYyoSEXPKc|reloadGui|1|20250829181718\n'
+[18:17:18] Queue content: 'RPC|kCrNQ33aKZKHr7wK|reloadGui|1|20250829181718\n'
+[18:17:19] Queue content: 'RPC|ZoUumzN422hJ7gr1|reloadGui|1|20250829181719\n'
+[18:17:19] Queue content: 'RPC|T7vpPnfNlD5KPLQr|reloadGui|1|20250829181719\n'
+[18:17:20] Queue content: 'RPC|rQMcUIOx3YQyKLGB|reloadGui|1|20250829181720\n'
+[18:17:20] Queue content: 'RPC|fyqBwmU0ucmCcZBE|reloadGui|1|20250829181720\n'
+[18:17:21] Queue content: 'RPC|pXduSFXPOC0iyec1|reloadGui|1|20250829181721\n'
+[18:17:21] Queue content: 'RPC|LwgbpRUYiN3vnXst|reloadGui|1|20250829181721\n'
+[18:17:22] Queue content: 'RPC|Uk9IgJQzOpb0C57T|reloadGui|1|20250829181722\n'
+[18:17:22] Check cycle 9800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:17:22] Queue content: 'RPC|DI3tcNsevn8Wl7Rp|reloadGui|1|20250829181722\n'
+[18:17:23] Queue content: 'RPC|c9AFzQ8PL6NoU87z|reloadGui|1|20250829181723\n'
+[18:17:23] Queue content: 'RPC|shbFSKRgcOTANmkk|reloadGui|1|20250829181723\n'
+[18:17:24] Queue content: 'RPC|93Uk6hPlBDXfI96n|reloadGui|1|20250829181724\n'
+[18:17:24] Queue content: 'RPC|6imrFV6uIHNawxiu|reloadGui|1|20250829181724\n'
+[18:17:25] Queue content: 'RPC|DWAt2EAvd2iX0paL|reloadGui|1|20250829181725\n'
+[18:17:25] Queue content: 'RPC|8vf3qVOCgYzQuJ8V|reloadGui|1|20250829181725\n'
+[18:17:26] Queue content: 'RPC|xEXBnTwlX5e9BRXS|reloadGui|1|20250829181726\n'
+[18:17:26] Queue content: 'RPC|A5RMqpwsttGuaEZa|reloadGui|1|20250829181726\n'
+[18:17:27] Queue content: 'RPC|eO6FHvNnryE3zbwA|reloadGui|1|20250829181727\n'
+[18:17:27] Queue content: 'RPC|Xvv2C1afeoeQMPZe|reloadGui|1|20250829181727\n'
+[18:17:27] Queue content: 'RPC|Xvv2C1afeoeQMPZe|reloadGui|1|20250829181727\n'
+[18:17:27] Duplicate request ignored: Xvv2C1afeoeQMPZe
+[18:17:28] Queue content: 'RPC|qGbWaKNOiduBUFqC|reloadGui|1|20250829181728\n'
+[18:17:28] Queue content: 'RPC|gPTbJSjCr7vpy11l|reloadGui|1|20250829181728\n'
+[18:17:29] Queue content: 'RPC|6YiJ7q9PYqKPJtXA|reloadGui|1|20250829181729\n'
+[18:17:29] Queue content: 'RPC|6YiJ7q9PYqKPJtXA|reloadGui|1|20250829181729\n'
+[18:17:29] Duplicate request ignored: 6YiJ7q9PYqKPJtXA
+[18:17:29] Queue content: 'RPC|5VHKNUVCUQmo6rq8|reloadGui|1|20250829181729\n'
+[18:17:30] Queue content: 'RPC|Pq4gDp21MwZpXjhU|reloadGui|1|20250829181730\n'
+[18:17:30] Queue content: 'RPC|RpMOXLc2TFaxbjzP|reloadGui|1|20250829181730\n'
+[18:17:30] Queue content: 'RPC|RpMOXLc2TFaxbjzP|reloadGui|1|20250829181730\n'
+[18:17:30] Duplicate request ignored: RpMOXLc2TFaxbjzP
+[18:17:31] Queue content: 'RPC|pYsB6VVLhei1f6HK|reloadGui|1|20250829181731\n'
+[18:17:31] Queue content: 'RPC|UiEjz2jv4V4HgZoU|reloadGui|1|20250829181731\n'
+[18:17:32] Queue content: 'RPC|l46JKpwSjwZ8sVS8|reloadGui|1|20250829181732\n'
+[18:17:32] Check cycle 9900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:17:32] Queue content: 'RPC|4RZ3tRY89LgyZtc5|reloadGui|1|20250829181732\n'
+[18:17:33] Queue content: 'RPC|OiOJTq6xiXC44XnO|reloadGui|1|20250829181733\n'
+[18:17:33] Queue content: 'RPC|gZKRQXtepnxrD0gh|reloadGui|1|20250829181733\n'
+[18:17:34] Queue content: 'RPC|KeZrz1jAbwRiStgI|reloadGui|1|20250829181734\n'
+[18:17:34] Queue content: 'RPC|I9JJyP7rb6sUleJ9|doShutdown|1|20250829181734\nRPC|lFSr5J3VMooBZNLi|doCheckHubStatus|1|20250829181734\n'
+[18:17:34] Queue content: 'RPC|6KsXG0TGE8VIef4B|doCheckHubStatus|1|20250829181734\n'
+[18:17:35] Queue content: 'RPC|G6U1A9xMGYhhLF9R|doCheckHubStatus|1|20250829181735\n'
+[18:17:39] Queue content: 'RPC|CV9Un67Z5ZB41tDA|reloadGui|1|20250829181739\n'
+[18:17:42] Check cycle 10000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:17:46] Queue content: 'RPC|kzIvfbt9kJo24myW|reloadGui|1|20250829181746\n'
+[18:17:51] Queue content: 'RPC|e635nsHEHxbNwcKd|runPkg|1|20250829181751|Latex\n'
+[18:17:51] Queue content: 'RPC|klzTrgoMKreQ7fXf|reloadGui|1|20250829181751\n'
+[18:17:52] Check cycle 10100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:02] Check cycle 10200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:13] Check cycle 10300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:23] Check cycle 10400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:33] Check cycle 10500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:43] Check cycle 10600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:18:53] Check cycle 10700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:03] Check cycle 10800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:13] Check cycle 10900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:23] Check cycle 11000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:34] Check cycle 11100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:44] Check cycle 11200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:50] Queue content: 'RPC|H0x3xrcw1FvPLQGv|doShutdown|1|20250829181950\nRPC|SxJDATEUefzsIBFA|doCheckHubStatus|1|20250829181950\n'
+[18:19:50] Queue content: 'RPC|SxJDATEUefzsIBFA|doCheckHubStatus|1|20250829181950\nRPC|Yiu3KEsHMPxbYqnS|doCheckHubStatus|1|20250829181950\n'
+[18:19:50] Duplicate request ignored: SxJDATEUefzsIBFA
+[18:19:51] Queue content: 'RPC|EqaxqaFZSqMBGhik|doCheckHubStatus|1|20250829181951\n'
+[18:19:54] Check cycle 11300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:19:57] Queue content: 'RPC|I0yPvZ7woMrkYfeg|reloadGui|1|20250829181957\n'
+[18:20:04] Check cycle 11400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:20:14] Check cycle 11500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:20:23] Queue content: 'RPC|GLQrAN1Hv1X6b3NF|runPkg|1|20250829182023|Latex\n'
+[18:20:23] Queue content: 'RPC|l9kesqlSdYmromcF|reloadGui|1|20250829182023\n'
+[18:20:24] Check cycle 11600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:20:34] Check cycle 11700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:20:44] Check cycle 11800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:20:55] Check cycle 11900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:05] Check cycle 12000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:15] Check cycle 12100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:25] Check cycle 12200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:34] Queue content: 'RPC|uCyBolvsC0n7J6YH|doCheckHubStatus|1|20250829182134\nRPC|CrZLTE70sY5NKH6m|doCheckHubStatus|1|20250829182134\n'
+[18:21:34] Queue content: 'RPC|CrZLTE70sY5NKH6m|doCheckHubStatus|1|20250829182134\n'
+[18:21:35] Check cycle 12300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:40] Queue content: 'RPC|zBrQUZcZ5qNhfaAx|doCheckHubStatus|1|20250829182140\n'
+[18:21:45] Check cycle 12400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:21:55] Check cycle 12500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:05] Check cycle 12600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:16] Check cycle 12700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:26] Check cycle 12800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:36] Check cycle 12900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:40] Queue content: 'RPC|dnCXor4zHzGwS4me|reloadGui|1|20250829182240\n'
+[18:22:43] Queue content: 'RPC|gX3u6HEMfge8zY3o|reloadGui|1|20250829182243\n'
+[18:22:46] Check cycle 13000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:22:56] Check cycle 13100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:06] Check cycle 13200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:16] Check cycle 13300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:26] Check cycle 13400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:37] Check cycle 13500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:47] Check cycle 13600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:50] Queue content: 'RPC|dfotYHRmcmZHgAuj|doShutdown|1|20250829182350\nRPC|NcZhLZ00CwE6BUuf|doCheckHubStatus|1|20250829182350\n'
+[18:23:55] Queue content: 'RPC|chFsHOv4KzNLhPel|doShutdown|1|20250829182355\nRPC|OPFhsB2lCSOi1gwS|doCheckHubStatus|1|20250829182355\n'
+[18:23:55] Queue content: 'RPC|yrzLomCMEtMX5XPO|doCheckHubStatus|1|20250829182355\n'
+[18:23:57] Check cycle 13700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:23:59] Queue content: 'RPC|1UnvA0iKCQX7NfMW|doCheckHubStatus|1|20250829182359\n'
+[18:24:07] Check cycle 13800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:24:07] Queue content: 'RPC|AXRqO3WytKOSMYuv|doShutdown|1|20250829182407\nRPC|Dg70e7QYfkV83yIP|doCheckHubStatus|1|20250829182407\n'
+[18:24:07] Queue content: 'RPC|EgqHQSw04LKcgDHD|doCheckHubStatus|1|20250829182407\n'
+[18:24:10] Queue content: 'RPC|YL20KZryLabJOuLS|doCheckHubStatus|1|20250829182410\n'
+[18:24:17] Check cycle 13900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:24:20] Queue content: 'RPC|GW0zkFxNclhofLLx|runPkg|1|20250829182420|Latex\n'
+[18:24:20] Queue content: 'RPC|WTKs7XBKuca3imVh|reloadGui|1|20250829182420\n'
+[18:24:27] Check cycle 14000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:24:36] Queue content: 'RPC|VhvmX0XoLL8WoS1D|reloadGui|1|20250829182436\n'
+[18:24:37] Check cycle 14100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:24:43] Queue content: 'RPC|gSt30vBN2uQfyl6I|doShutdown|1|20250829182443\nRPC|Sb0Tzmo3QaOrfzQ2|doCheckHubStatus|1|20250829182443\n'
+[18:24:43] Queue content: 'RPC|Bf1Cwmnk7zPfZLre|doCheckHubStatus|1|20250829182443\n'
+[18:24:47] Check cycle 14200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:24:58] Check cycle 14300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:08] Check cycle 14400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:18] Check cycle 14500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:22] Queue content: 'RPC|dgsVEwfckSqp4uhi|doCheckHubStatus|1|20250829182522\n'
+[18:25:25] Queue content: 'RPC|sQeEZ0kE3L9YV7WE|runPkg|1|20250829182525|Latex\n'
+[18:25:25] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:25:25] Queue content: 'RPC|iAS1RfMeVPIONBDv|reloadGui|1|20250829182525\n'
+[18:25:25] Queue content: 'RPC|Si9rVPea21H0wDOi|reloadGui|1|20250829182525\n'
+[18:25:28] Check cycle 14600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:38] Check cycle 14700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:48] Check cycle 14800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:25:58] Check cycle 14900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:08] Check cycle 15000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:13] Queue content: 'RPC|woRwdVltCRnVnyhi|doCheckHubStatus|1|20250829182613\nRPC|PgUCWehpabn1pqu2|doCheckHubStatus|1|20250829182613\n'
+[18:26:13] Queue content: 'RPC|PgUCWehpabn1pqu2|doCheckHubStatus|1|20250829182613\n'
+[18:26:18] Check cycle 15100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:29] Check cycle 15200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:39] Check cycle 15300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:49] Check cycle 15400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:26:58] Queue content: 'RPC|I4tUjzFSYsre4QIQ|doCheckHubStatus|1|20250829182658\n'
+[18:26:59] Check cycle 15500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:27:02] Queue content: 'RPC|EzC6OKiQfvChpCU8|runPkg|1|20250829182702|Latex\n'
+[18:27:02] Queue content: 'RPC|flJmOZ2s768KBwXP|reloadGui|1|20250829182702\nRPC|oN2tYo6paCjTNZPp|reloadGui|1|20250829182702\n'
+[18:27:03] Queue content: 'RPC|oN2tYo6paCjTNZPp|reloadGui|1|20250829182702\n'
+[18:27:09] Check cycle 15600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:27:19] Check cycle 15700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:27:29] Check cycle 15800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:27:40] Check cycle 15900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:27:50] Check cycle 16000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:00] Check cycle 16100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:10] Check cycle 16200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:20] Check cycle 16300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:30] Check cycle 16400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:40] Check cycle 16500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:50] Check cycle 16600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:28:52] Queue content: 'RPC|7pxbOJtQf6Sl8ehz|doShutdown|1|20250829182852\nRPC|0hdpdBxRiQnKteEr|doCheckHubStatus|1|20250829182852\n'
+[18:28:52] Queue content: 'RPC|0hdpdBxRiQnKteEr|doCheckHubStatus|1|20250829182852\nRPC|n3k4RLOfckrMlD6m|doCheckHubStatus|1|20250829182852\n'
+[18:28:52] Duplicate request ignored: 0hdpdBxRiQnKteEr
+[18:28:52] Queue content: 'RPC|f6JbbRLbLuq5Al3U|doCheckHubStatus|1|20250829182852\n'
+[18:28:54] Queue content: 'RPC|YAblxWg67mVnBDmu|runPkg|1|20250829182854|Latex\n'
+[18:28:54] Queue content: 'RPC|M5UVFNYGwSAiwpin|reloadGui|1|20250829182854\n'
+[18:28:55] Queue content: 'RPC|gqU0Qhv5DdaRrFf4|reloadGui|1|20250829182855\n'
+[18:28:57] Queue content: 'RPC|CmhDHatVdRvaATFE|runPkg|1|20250829182857|Latex\n'
+[18:28:57] Queue content: 'RPC|EiC252JXAi7qPJKE|reloadGui|1|20250829182857\n'
+[18:28:58] Queue content: 'RPC|wk4GNThApiqU9YTA|reloadGui|1|20250829182858\n'
+[18:29:01] Check cycle 16700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:29:11] Check cycle 16800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:29:21] Check cycle 16900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:29:31] Check cycle 17000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:29:41] Check cycle 17100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:29:51] Check cycle 17200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:01] Check cycle 17300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:12] Check cycle 17400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:22] Check cycle 17500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:32] Check cycle 17600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:34] Queue content: 'RPC|gsbQ4WOXEjVhFD9U|doShutdown|1|20250829183034\nRPC|9TZ2D0cnnfyBZKdW|doCheckHubStatus|1|20250829183034\n'
+[18:30:34] Queue content: 'RPC|qKdmHbMqcs7yXO93|doCheckHubStatus|1|20250829183034\n'
+[18:30:37] Queue content: 'RPC|5b04UIiMM8o5Q0Zm|doCheckHubStatus|1|20250829183037\n'
+[18:30:42] Check cycle 17700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:43] Queue content: 'RPC|AHdnwnGz4bv9g0Ei|runPkg|1|20250829183043|Latex\n'
+[18:30:43] Queue content: 'RPC|MFl7tFjUU9JbrFNa|reloadGui|1|20250829183043\n'
+[18:30:52] Check cycle 17800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:30:53] Queue content: 'RPC|jyzyPh6ZHEMPBmQl|reloadGui|1|20250829183053\n'
+[18:31:09] Queue content: 'RPC|qvAv89KnaqpfffoI|doCheckHubStatus|1|20250829183105\n'
+[18:31:12] Queue content: 'RPC|ydUQeDaCuK8ZnBux|doCheckHubStatus|1|20250829183112\n'
+[18:31:14] Queue content: 'RPC|OxpRC0bBvsoVQH9M|runPkg|1|20250829183114|Latex\n'
+[18:31:14] Queue content: 'RPC|OxpRC0bBvsoVQH9M|runPkg|1|20250829183114|Latex\n'
+[18:31:14] Duplicate request ignored: OxpRC0bBvsoVQH9M
+[18:31:14] Queue content: 'RPC|cMOxJpAPnU5tQHyU|reloadGui|1|20250829183114\n'
+[18:31:14] Queue content: 'RPC|nrYs7DKC4ioQqLus|reloadGui|1|20250829183114\n'
+[18:31:20] Queue content: 'RPC|eBOd4Wr8k0O9nPnG|runPkg|1|20250829183119|Latex\n'
+[18:31:20] Queue content: 'RPC|RFBQ3gLjmINlsoxa|reloadGui|1|20250829183120\n'
+[18:31:20] Queue content: 'RPC|MDe0wQAk7fVtbWlc|reloadGui|1|20250829183120\n'
+[18:31:20] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:31:21] Queue content: 'RPC|lYOBtxzzTW4iWe1R|doShutdown|1|20250829183121\nRPC|iaPoNncfDZPm6naJ|doCheckHubStatus|1|20250829183121\n'
+[18:31:21] Queue content: 'RPC|e6h7tplwxuAEJ9pe|doCheckHubStatus|1|20250829183121\n'
+[18:31:24] Queue content: 'RPC|ecikM137ulKtuXnr|doCheckHubStatus|1|20250829183124\n'
+[18:31:26] Queue content: 'RPC|FFNG7opD355UsfNU|runPkg|1|20250829183126|Latex\n'
+[18:31:27] Queue content: 'RPC|c1kI4B2Mome2dQS5|reloadGui|1|20250829183127\n'
+[18:31:30] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:31:34] Queue content: 'RPC|8GpEGrOQEgX2L4Ml|stopPkg|1|20250829183134|Latex\n'
+[18:31:34] Queue content: 'RPC|UFMfjL4zfQkikJXC|reloadGui|1|20250829183134\n'
+[18:31:34] Queue content: 'RPC|7fkkzGpqoYvjxXlG|reloadGui|1|20250829183134\n'
+[18:31:36] Queue content: 'RPC|aDgL1rASQKARwzYL|reloadGui|1|20250829183136\n'
+[18:31:39] Queue content: 'RPC|3Kiok7uLldxruJMf|reloadGui|1|20250829183139\n'
+[18:31:40] Queue content: 'RPC|juVLGX7kc49HdjDr|doShutdown|1|20250829183140\nRPC|QqdvEo82uFwUOfHL|doCheckHubStatus|1|20250829183140\n'
+[18:31:40] Queue content: 'RPC|XRmgEL7aY7tDH9qQ|doCheckHubStatus|1|20250829183140\n'
+[18:31:40] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:34:13] Queue content: 'RPC|feIxjnFOW3ZCveqe|doCheckHubStatus|1|20250829183401\n'
+[18:34:15] Queue content: 'RPC|dJ9nZTn4EBAUYhaq|runPkg|1|20250829183415|Latex\n'
+[18:34:16] Queue content: 'RPC|zguUMTEFrS0CklY3|reloadGui|1|20250829183415\n'
+[18:34:24] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:34:30] Queue content: 'RPC|qn0YSkdRNJLdDqSW|reloadGui|1|20250829183430\n'
+[18:34:34] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:34:44] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:34:54] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:34:56] Queue content: 'RPC|VEoy78Xn8dguPVAV|doShutdown|1|20250829183456\nRPC|8cPY4DrCEWt88apk|doCheckHubStatus|1|20250829183456\n'
+[18:34:56] Queue content: 'RPC|8cPY4DrCEWt88apk|doCheckHubStatus|1|20250829183456\nRPC|5cZCxeMnORXsE1qM|doCheckHubStatus|1|20250829183456\n'
+[18:34:56] Queue content: 'RPC|5cZCxeMnORXsE1qM|doCheckHubStatus|1|20250829183456\n'
+[18:34:57] Queue content: 'RPC|REkyXOj6sXk9lxVs|doCheckHubStatus|1|20250829183457\n'
+[18:34:59] Queue content: 'RPC|afp763VraVetWJCP|runPkg|1|20250829183459|Latex\n'
+[18:34:59] Queue content: 'RPC|jwrZDa8AvFnKhl8i|reloadGui|1|20250829183459\n'
+[18:34:59] Queue content: 'RPC|ZOyv2CKa1LNtQGx6|reloadGui|1|20250829183459\n'
+[18:35:04] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:35:52] Queue content: 'RPC|QxWv5dY9mASuVmZh|doCheckHubStatus|1|20250829183516\n'
+[18:35:56] Queue content: 'RPC|G23LwYYVWNwIGV0n|doCheckHubStatus|1|20250829183556\n'
+[18:35:57] Queue content: 'RPC|9wLMSUhlJVrSVBs4|runPkg|1|20250829183556|Latex\n'
+[18:35:57] Queue content: 'RPC|usA8l1LjYAPlMijX|reloadGui|1|20250829183557\n'
+[18:36:03] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:36:13] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:36:23] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:36:33] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:36:43] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:36:54] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:04] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:14] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:24] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:34] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:44] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:54] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:37:57] Queue content: 'RPC|E4RLllk4do8EnMux|stopPkg|1|20250829183757|Latex\n'
+[18:37:57] Queue content: 'RPC|vWjyVT5CPlJ1CF7P|reloadGui|1|20250829183757\n'
+[18:38:00] Queue content: 'RPC|csOFuZ7mFDvrUz8l|doShutdown|1|20250829183800\nRPC|z1K2gIJN3hjkkHyZ|doCheckHubStatus|1|20250829183800\n'
+[18:38:00] Queue content: 'RPC|K7RTwOw6S09KmsiC|doCheckHubStatus|1|20250829183800\n'
+[18:38:01] Queue content: 'RPC|B0joMov8PiOZTIep|doCheckHubStatus|1|20250829183801\n'
+[18:38:04] Queue content: 'RPC|i6xOdBmyvgvjOGWi|doShutdown|1|20250829183804\nRPC|nQ7KIYmkqjbV3gzz|doCheckHubStatus|1|20250829183804\n'
+[18:38:04] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:38:04] Queue content: 'RPC|ZEBytC1nXxJxXKgy|doCheckHubStatus|1|20250829183804\n'
+[18:38:09] Queue content: 'RPC|DZ3lLEhRpJkEzWl9|doCheckHubStatus|1|20250829183809\n'
+[18:38:15] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:38:25] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:38:25] Queue content: 'RPC|PYcVrg38ZhxcKF0s|doShutdown|1|20250829183825\nRPC|G5dZOCiiFUB1qt36|doCheckHubStatus|1|20250829183825\n'
+[18:38:25] Duplicate request ignored: PYcVrg38ZhxcKF0s
+[18:38:25] Queue update error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:38:25] Queue content: 'RPC|G5dZOCiiFUB1qt36|doCheckHubStatus|1|20250829183825\nRPC|va5p8aAFRQ7FW7WB|doCheckHubStatus|1|20250829183825\n'
+[18:38:25] Duplicate request ignored: G5dZOCiiFUB1qt36
+[18:38:35] Check cycle 1600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:38:38] Queue content: 'RPC|uAHSbsYJQYjCMkTO|doCheckHubStatus|1|20250829183838\n'
+[18:38:41] Queue content: 'RPC|pHeN245xe1nPuqry|runPkg|1|20250829183841|Latex\n'
+[18:38:41] Queue content: 'RPC|iY3sGiFeZxqfSaKq|reloadGui|1|20250829183841\n'
+[18:38:45] Check cycle 1700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:38:55] Check cycle 1800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:05] Check cycle 1900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:15] Check cycle 2000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:25] Check cycle 2100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:36] Check cycle 2200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:46] Check cycle 2300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:39:56] Check cycle 2400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:06] Check cycle 2500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:16] Check cycle 2600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:26] Check cycle 2700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:36] Check cycle 2800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:46] Check cycle 2900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:40:57] Check cycle 3000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Check cycle 3100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:06] Queue content: 'RPC|LO6uZiFA2hnMW2CJ|doShutdown|1|20250829184106\nRPC|UTSITgBn1SC4NuGd|doCheckHubStatus|1|20250829184106\n'
+[18:41:06] Queue content: 'RPC|7HX8OXGG8jJddd1z|doCheckHubStatus|1|20250829184106\n'
+[18:41:07] Queue content: 'RPC|zJQE5EupIHBxCt5H|doCheckHubStatus|1|20250829184107\n'
+[18:41:11] Queue content: 'RPC|VNdhF5BEReyXpoZ6|doShutdown|1|20250829184111\nRPC|yLlvODZCljVcP8bO|doCheckHubStatus|1|20250829184111\n'
+[18:41:11] Queue content: 'RPC|WdwvlaRHV7F01kOT|doCheckHubStatus|1|20250829184111\n'
+[18:41:12] Queue content: 'RPC|IzbYYV5XytvkWem5|doCheckHubStatus|1|20250829184112\n'
+[18:41:12] Queue content: 'RPC|IzbYYV5XytvkWem5|doCheckHubStatus|1|20250829184112\n'
+[18:41:12] Duplicate request ignored: IzbYYV5XytvkWem5
+[18:41:16] Check cycle 3200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:26] Check cycle 3300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:32] Queue content: 'RPC|PhZMOl5gQyE4SNTK|doCheckHubStatus|1|20250829184131\nRPC|foA3kE5fNv9of7JJ|doCheckHubStatus|1|20250829184132\n'
+[18:41:32] Queue content: 'RPC|foA3kE5fNv9of7JJ|doCheckHubStatus|1|20250829184132\n'
+[18:41:32] Queue content: 'RPC|4uus2HGQH9o0w7fa|doCheckHubStatus|1|20250829184132\n'
+[18:41:34] Queue content: 'RPC|aIYRLH3AizXsR1LI|stopPkg|1|20250829184134|Latex\n'
+[18:41:34] Queue content: 'RPC|za932UJFYmuIvmNN|reloadGui|1|20250829184134\n'
+[18:41:34] Queue content: 'RPC|Ks5hOSjx57d1XZ03|reloadGui|1|20250829184134\n'
+[18:41:35] Queue content: 'RPC|8OCv4xHs4GqsFhi6|reloadGui|1|20250829184135\n'
+[18:41:36] Check cycle 3400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:40] Queue content: 'RPC|c5MzXiNZY4xwDlKb|reloadGui|1|20250829184140\n'
+[18:41:46] Check cycle 3500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:47] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:47] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:47] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:47] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:47] Queue read error: [Errno 13] Permission denied: 'C:\\PROLETARIAT\\AutoHotkey\\core\\tmp\\ipc\\rpc_requests.queue'
+[18:41:47] Queue content: 'RPC|35v4vLg3onfHg6KF|doCheckHubStatus|1|20250829184147\nRPC|tSmAMxmMO8cRNZj0|doCheckHubStatus|1|20250829184147\n'
+[18:41:47] Queue content: 'RPC|tSmAMxmMO8cRNZj0|doCheckHubStatus|1|20250829184147\n'
+[18:41:48] Queue content: 'RPC|mRKUniHeOhQSYJjl|doCheckHubStatus|1|20250829184148\n'
+[18:41:49] Queue content: 'RPC|ztLzC9HKUskMnbNO|runPkg|1|20250829184149|Latex\n'
+[18:41:49] Queue content: 'RPC|GXWWAa67oZUb6vWP|reloadGui|1|20250829184149\n'
+[18:41:50] Queue content: 'RPC|92RQCGKWH9LRoDMl|reloadGui|1|20250829184150\n'
+[18:41:51] Queue content: 'RPC|j2CJrCehhTFK8JLn|runPkg|1|20250829184151|Latex\n'
+[18:41:51] Queue content: 'RPC|RdzTt6pW0i1ZDezh|reloadGui|1|20250829184151\n'
+[18:41:54] Queue content: 'RPC|r48iQ1SSclDN0Ill|reloadGui|1|20250829184154\n'
+[18:41:56] Check cycle 3600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:41:56] Queue content: 'RPC|no0W6RLcZwvcS4U3|runPkg|1|20250829184156|Latex\n'
+[18:41:56] Queue content: 'RPC|5TFppTBABaIg0Q7h|reloadGui|1|20250829184156\n'
+[18:42:01] Queue content: 'RPC|g7jshpvgi6gBRM2M|reloadGui|1|20250829184201\n'
+[18:42:06] Check cycle 3700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:42:16] Check cycle 3800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:42:26] Check cycle 3900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:42:36] Check cycle 4000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:42:39] Queue content: 'RPC|cG88qT6HZHFI3b7y|doCheckHubStatus|1|20250829184239\n'
+[18:42:44] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:44] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:45] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\nRPC|8hhyK0uk1S2khJcE|doCheckHubStatus|1|20250829184246\n'
+[18:42:46] Queue content: 'RPC|mVWYrmaxGJUXrTds|runPkg|1|20250829184244|Latex\n'
+[18:42:46] Check cycle 4100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[18:42:46] Queue content: 'RPC|x3yKmRHE49dXPh2e|reloadGui|1|20250829184246\n'
+[18:42:50] Queue content: 'RPC|NmJNTFhS9QyXUpVW|stopPkg|1|20250829184250|Latex\n'
+[18:42:50] Queue content: 'RPC|R5bc0QFtb6TOjwaQ|reloadGui|1|20250829184250\n'

@@ -21,7 +21,6 @@ if (python_exe_path = "") {
 
 OnExit(cleanup)
 setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성.
-
 ;#region  RPC 통신을 위한 클라이언트 및 종료 신호 관리자 생성
 
 client := RPCManager(PathJoin(TEMP_PATH, "ipc"))
@@ -31,6 +30,8 @@ client.regist(shutdown, "doShutdown")
 client.spin()
 ;#endregion
 
+Daniel := graveKeeper(client)
+; SetTimer(() => Daniel.cleanCorpse(), 500)
 ; 허브 상태를 '활성'으로 변경하고 파일에 기록
 hub_status := readJsonFile(PathJoin(RUNTIME_PATH, "hub-status.json"))
 hub_status["is_active"] := "True"
@@ -213,25 +214,49 @@ shutdown() {
     ExitApp
 }
 
-class WatchDog {
-    __New() {
-
+class graveKeeper {
+    __New(_communicator){
+        this.client := _communicator
+        SetTimer(() => this.cleanCorpse(), 333)
     }
-    pkgs_status := readPkgStatusJson()
-    
+
+    cleanCorpse(){
+        pkgs_status := readPkgStatusJson()
+        for pkg in pkgs_status{
+            if(!this.isThisPkgWellBeing(pkg)){ ; 죽었으면
+                setPkgStatusById(pkg["id"],"stopped",-1,0,0) ; 묻고
+                this.client.request("reloadGui", [], true) ; 보고하기
+                return "RIP"
+            }else{
+                return 0
+            }
+        }
+    }
+
     isThisPkgWellBeing(pkg) {
         dt := 0
         processName := 0
         pkg_pid := pkg["pid"]
+        if pkg_pid = -1{
+            ; FileAppend("이미 싸늘함. `n", "*", "UTF-8-RAW")
+            return true ; 중복 사망처리 안함.
+        }
         getNameAndDtByPID(pkg_pid, &dt, &processName) 
         if dt = 0 && processName = 0{ ; pid가 정상이라면 여기서 실행 시간 나와야함
-            return false ; not well being
-        }else If (processName = StrSplit(A_AhkPath, "\").Pop()){ ; ahk프로그램인지 확인
-            if(Number(dt) = Number(pkg["creation_time"])){
-                return false
+            ; ToolTip("Pid 죽음.`n")
+            return false ; not well being : 프로세스가 존재하지 않는다
+        }else If(processName = pkg["process_name"]){ ; ahk프로그램인지 확인
+            if(Abs(Number(dt) - Number(pkg["creation_time"])) < 2){
+                ; ToolTip "전부 정상. `n"
+                return true ; 프로세스가 존재하고, ahk exe로 실행되었고, 실행 시간마저 시스템 기록과 json이 일치(1초 오차 이내)한다: 지극히 높은 확률로 우리가 실행한 패키지임.
+            }else{
+                ; ToolTip("Pid 있고 ahk 실행이지만 시스템 시간 다름.`n")
+                return false ; 프로세스가 존재하고, ahk exe로 실행되었지만, 실행 시간이 시스템 기록과 다르다.
             }
         }else{
-            return false
+            ; ToolTip("Pid 정상이지만 ahk 아님.`n")
+            return false ; ahk exe로 실행된 PID가 아니면 죽음: PID가 있지만 ahk가 아니다
         }
     }
 }
+; MsgBox StrSplit(A_AhkPath, "\").Pop()
