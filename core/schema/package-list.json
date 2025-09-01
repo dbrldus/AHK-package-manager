@@ -3,5 +3,10 @@
         "id": "Latex",
         "name": "Latex Tools For Notion Math Editor",
         "version": "0.1.0"
+    },
+    {
+        "id": "vsc_bridge",
+        "name": "VSC path/opening tool",
+        "version": "0.1.0"
     }
 ]

@@ -52,7 +52,7 @@ Latex Tools For Notion Math Editor
 
 :*?:\diff::
 {
-    ih := InputHook("V", "{Enter}")
+    ih := InputHook("V", "{Space}")
     ih.Start()
     ih.Wait()
     ch := ih.Input
@@ -65,7 +65,7 @@ Latex Tools For Notion Math Editor
 
 :*?:\pdiff::
 {
-    ih := InputHook("V", "{Enter}")
+    ih := InputHook("V", "{Space}")
     ih.Start()
     ih.Wait()
     ch := ih.Input
@@ -126,4 +126,12 @@ F1:: {
 }
 ::\z:: {
     SendText("\zeta")
+}
+::\h::{
+    SendText("\hat{}")
+    SendInput("{Left}")
+}
+::\bb:: {
+    SendText("\mathbb{}")
+    SendInput("{Left}")
 }

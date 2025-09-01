@@ -11,6 +11,6 @@ if (python_exe_path = "") {
 pyw := StrReplace(python_exe_path, "python.exe", "pythonw.exe")
 
 ^#g:: {
-    obj := '"' pyw '"' " " '"' PathJoin(CORE_PATH, "py", "DummyGUI.py") '"'
+    obj := '"' pyw '"' " " '"' PathJoin(CORE_PATH, "py", "DummyGUI copy.py") '"'
     Run obj
 }

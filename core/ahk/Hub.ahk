@@ -227,9 +227,6 @@ class graveKeeper {
             if(!this.isThisPkgWellBeing(pkg)){ ; 죽었으면
                 setPkgStatusById(pkg["id"],"stopped",-1,0,0) ; 묻고
                 this.client.request("reloadGui", [], true) ; 보고하기
-                return "RIP"
-            }else{
-                return 0
             }
         }
     }
