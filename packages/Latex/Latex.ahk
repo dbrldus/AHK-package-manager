@@ -4,12 +4,17 @@ Latex Tools For Notion Math Editor
 */
 #SingleInstance Force
 
+global hotStringSignal := false
+
 ::\mb:: {
     SendText("/mat")
     SendInput("h{Enter}")
 }
 ::\mi:: {
     SendInput("^+e")
+    Sleep(50)
+    SendText("aaa")
+    SendInput("{Enter}")
 }
 ::\ma:: {
     SendText("\begin{align*}")
@@ -84,22 +89,18 @@ Latex Tools For Notion Math Editor
     SendText("\int_{-\infty}^{\infty}")
 }
 
-F1:: {
-    OriginalClipboard := A_Clipboard
-    A_Clipboard := ""
-    SendInput("+^{End}")
-    SendInput("^c")
-    ClipWait("0.3")
-
-    CopiedText := A_Clipboard
-    Position := InStr(CopiedText, "{}")
+::\h:: {
+    SendText("\hat{}")
     SendInput("{Left}")
-    if (Position > 0) {
-        Count := Position
-        Send("{Right " Count "}")
-    }
-    A_Clipboard := OriginalClipboard
-    return
+}
+::\bb:: {
+    SendText("\mathbb{}")
+    SendInput("{Left}")
+}
+
+::\cal::{
+    SendText("\mathcal{}")
+    SendInput("{Left}")
 }
 
 ;Greek Alphabet
@@ -108,6 +109,9 @@ F1:: {
 }
 ::\b:: {
     SendText("\beta")
+}
+::\d::{
+    SendText("\delta")
 }
 ::\\d:: {
     SendText("\Delta")
@@ -127,11 +131,115 @@ F1:: {
 ::\z:: {
     SendText("\zeta")
 }
-::\h::{
-    SendText("\hat{}")
+
+; Direct input
+::\da:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\alpha")
+    SendInput("{Enter}")
+}
+::\db:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\beta")
+    SendInput("{Enter}")
+}
+::\dd:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\delta")
+    SendInput("{Enter}")
+}
+::\\dd:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\Delta")
+    SendInput("{Enter}")
+}
+::\dt:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\theta")
+    SendInput("{Enter}")
+}
+::\dl:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\lambda")
+    SendInput("{Enter}")
+}
+::\dw:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\omega")
+    SendInput("{Enter}")
+}
+::\dx:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\xi")
+    SendInput("{Enter}")
+}
+::\dz:: {
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\zeta")
+    SendInput("{Enter}")
+}
+::\dcal::{
+    ih := InputHook("V", "{Space}")
+    ih.Start()
+    ih.Wait()
+    ch := ih.Input
+    if (ch = "")
+        return
+    len := StrLen(ch) + 1
+    Send("{Backspace " len "}")
+    SendInput("^+e")
+    Sleep(50)
+    SendText("\mathcal{ " ch "}")
+    SendInput("{Enter}")
+    ih.Stop()
+}
+
+::\din:: {
+    ih := InputHook("V", "{Space}")
+    ih.Start()
+    ih.Wait()
+    ch := ih.Input
+    if (ch = "")
+        return
+    len := StrLen(ch) + 1
+    Send("{Backspace " len "}")
+    SendInput("^+e")       ; 수식 편집기 열기
+    Sleep(50)
+    SendText(ch)           ; 입력 텍스트 삽입
+    ; 수식 닫기
+    SendInput("{Enter}")
+    ih.Stop()
+}
+
++Space::{
+    SendInput("{Right}")
+}
+
+:*?:^:: {
+    SendText("^{}")
     SendInput("{Left}")
 }
-::\bb:: {
-    SendText("\mathbb{}")
-    SendInput("{Left}")
+
+:*?:_:: {
+    SendText("_{}")
+    Send("{Left}")
 }
+
+::\do:: {
+    SendText("\dot{}")
+    Send("{Left}")
+}
+:*?:\dot::{
+    SendText("\dot{}")
+    Send("{Left}")
+}
+

@@ -8707,3 +8707,56 @@
 [03:56:56] Queue content: 'RPC|CYqK07gRKcbfdd9e|reloadGui|1|20250905035656\n'
 [03:56:57] Queue content: 'RPC|ggO3Gq4zWFZzSnPj|runPkg|1|20250905035657|vsc_bridge\n'
 [03:56:58] Queue content: 'RPC|uGF0j4xac2Rby380|reloadGui|1|20250905035658\n'
+[04:27:57] Queue content: 'RPC|nKMD4rin7zzy16TD|stopPkg|1|20250905042756|Latex\n'
+[04:27:57] Queue content: 'RPC|SHeJfOhPsKc5i0yP|reloadGui|1|20250905042757\n'
+[04:27:57] Queue content: 'RPC|ReRiJBAONd8p2m3D|reloadGui|1|20250905042757\n'
+[04:27:58] Queue content: 'RPC|tApDpWQdfr5KklaH|reloadGui|1|20250905042758\n'
+[04:27:59] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:28:59] Queue content: 'RPC|E79nUp4Ip33RvW7d|stopPkg|1|20250905042859|Latex\n'
+[04:29:00] Queue content: 'RPC|XgN93aheEXkZooI0|reloadGui|1|20250905042900\n'
+[04:29:00] Queue content: 'RPC|JoEaHmV7M6as1KS4|reloadGui|1|20250905042900\n'
+[04:29:01] Queue content: 'RPC|ER5jiFd551yTQb8L|runPkg|1|20250905042900|Latex\n'
+[04:29:01] Queue content: 'RPC|csgAaY824Z0elKLb|reloadGui|1|20250905042901\n'
+[04:29:52] Queue content: 'RPC|FXUVf92LZtx0Cxg8|reloadGui|1|20250905042952\n'
+[04:29:53] Queue content: 'RPC|ZshspZI08S5Hk5cG|reloadGui|1|20250905042953\n'
+[04:31:33] Queue content: 'RPC|GORSBrNvyrXxYMFe|stopPkg|1|20250905043133|Latex\n'
+[04:31:33] Queue content: 'RPC|5Qhw83hTGM25Moff|reloadGui|1|20250905043133\n'
+[04:31:34] Queue content: 'RPC|IeCNdNEAbyCjWxa6|runPkg|1|20250905043134|Latex\n'
+[04:31:34] Queue content: 'RPC|cDeG8kECrSNOAmho|reloadGui|1|20250905043134\n'
+[04:31:38] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:33:03] Queue content: 'RPC|Y5vxh32Tm3T324Di|reloadGui|1|20250905043303\n'
+[04:33:04] Queue content: 'RPC|WrMfIAQ2cqf7h4qZ|reloadGui|1|20250905043304\n'
+[04:33:08] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:40:43] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:44:24] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:44:34] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:44:44] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:44:55] Check cycle 400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:05] Check cycle 500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:15] Check cycle 600, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:25] Check cycle 700, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:35] Check cycle 800, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:45] Check cycle 900, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:45:55] Check cycle 1000, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:05] Check cycle 1100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:16] Check cycle 1200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:26] Check cycle 1300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:36] Check cycle 1400, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:46] Check cycle 1500, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:46:48] Queue content: 'RPC|lswSJaZGLjU4VAHh|reloadGui|1|20250905044648\n'
+[04:46:49] Queue content: 'RPC|VpUUvCkqsRTcHRhq|runPkg|1|20250905044649|Latex\n'
+[04:46:49] Queue content: 'RPC|VpUUvCkqsRTcHRhq|runPkg|1|20250905044649|Latex\n'
+[04:46:49] Queue content: 'RPC|Ae8kZBS6Y9QCgjV7|reloadGui|1|20250905044649\n'
+[04:47:23] Queue content: 'RPC|IGYbNgB0OcdXK7mB|reloadGui|1|20250905044723\n'
+[04:47:24] Queue content: 'RPC|bGPdQ8DOEhs7iPa7|reloadGui|1|20250905044724\n'
+[04:47:24] Queue content: 'RPC|OXHl1ZYaUKq4fOcD|runPkg|1|20250905044724|Latex\n'
+[04:47:24] Queue content: 'RPC|9h0cmehV3ilgBCF0|reloadGui|1|20250905044724\n'
+[04:49:02] Queue content: 'RPC|FVhsCeP5uY5ckzGY|reloadGui|1|20250905044902\n'
+[04:49:03] Queue content: 'RPC|m9KazW1mHyBxpaNJ|runPkg|1|20250905044903|Latex\n'
+[04:49:03] Queue content: 'RPC|h01dPfILKpfssUcW|reloadGui|1|20250905044903\n'
+[04:49:09] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:51:56] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[04:51:57] Queue content: 'RPC|2Cw3tTjav17CnpaH|stopPkg|1|20250905045156|Latex\n'
+[04:51:57] Queue content: 'RPC|V5K1n7UDXWXaQ0ag|reloadGui|1|20250905045157\n'
+[04:51:58] Queue content: 'RPC|Vfx2tvDCRAFDBcyg|runPkg|1|20250905045158|Latex\n'
+[04:51:58] Queue content: 'RPC|xHesbASNAdb6f0QR|reloadGui|1|20250905045158\n'
