@@ -6,7 +6,8 @@
 #endregion #=================================================================================================================
 
 #region imports
-import sys, json, os, winreg, shutil, threading, subprocess, time, difflib
+import sys, os
+import json, winreg, shutil, threading, subprocess, time, difflib
 from typing import *
 from pathlib import Path
 from PyQt5.QtWidgets import (

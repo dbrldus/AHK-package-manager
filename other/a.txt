@@ -1,0 +1,1 @@
+.\python-3.12.6-amd64.exe /quiet InstallAllUsers=0 Include_launcher=1 Include_pip=1 PrependPath=0 AssociateFiles=0 TargetDir="C:\Users\acalo\AppData\Local\Programs\Python\Python312"

@@ -6,18 +6,15 @@ DetectHiddenWindows(true)
 
 #Include <Path>
 #Include <AHKRPC2>
-#Include <PythonFinder>
+; #Include <PythonFinder>
 #Include <JSON_PLUS>
 #Include <SafetyFileCheck>
 ;#endregion
 
 ;#region 파이썬 인터프리터 경로 설정
-python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
-if (python_exe_path = "") {
-    findPythonInterpreterGUI()
-    python_exe_path := FileRead(SCHEMA_PATH "\python_interpreter_path.txt")
-}
-;#endregion
+python_exe_path := PYTHON_EXE_PATH
+
+;#endregion 
 
 OnExit(cleanup)
 setupPkgStatusJson() ; pkglist확인해서 pkgstatus와 비교 후, list 기반으로 stat 재작성.

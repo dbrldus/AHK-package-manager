@@ -93,3 +93,5 @@ fileAutoGen(filepath) {
         return false
     }
 }
+
+PYTHON_EXE_PATH := PathJoin(SCHEMA_PATH, "PYTHON3.12.6", "python.exe")
