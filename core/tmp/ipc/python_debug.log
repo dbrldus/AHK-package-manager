@@ -8887,3 +8887,23 @@
 [22:01:33] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
 [22:01:33] Queue content: 'RPC|OywqH58pWMRrzz7h|doCheckHubStatus|1|20250910220132\nRPC|4mTPdTWE6izpRvWw|doCheckHubStatus|1|20250910220133\n'
 [22:01:33] Queue content: 'RPC|4mTPdTWE6izpRvWw|doCheckHubStatus|1|20250910220133\n'
+[17:32:55] Queue content: 'RPC|E5lZVXCeZepfnJkn|doCheckHubStatus|1|20250912173255\n'
+[17:32:56] Queue content: 'RPC|NxJDgDeNyAxdcdIB|runPkg|1|20250912173256|Latex\n'
+[17:32:56] Queue content: 'RPC|lopnP7rz2Zlyhvqh|reloadGui|1|20250912173256\n'
+[17:32:58] Queue content: 'RPC|QYWUIGxkBYdcKMR6|reloadGui|1|20250912173258\n'
+[17:32:59] Queue content: 'RPC|AixfntkCWMukJqmE|runPkg|1|20250912173259|vsc_bridge\n'
+[17:32:59] Queue content: 'RPC|PfgvvqElyXlyhj2V|reloadGui|1|20250912173259\n'
+[16:12:23] Queue content: 'RPC|pHjCCVJkg7koCKAZ|doCheckHubStatus|1|20250913020943\n'
+[16:12:25] Queue content: 'RPC|8YC2fZENlmLdms9G|reloadGui|1|20250913161225\nRPC|XzXJIgraPCdRBXbh|doCheckHubStatus|1|20250913161225\n'
+[16:12:26] Queue content: 'RPC|XzXJIgraPCdRBXbh|doCheckHubStatus|1|20250913161225\n'
+[16:12:28] Queue content: 'RPC|lFhaVtjwxqXuqivs|runPkg|1|20250913161228|vsc_bridge\n'
+[16:12:28] Queue content: 'RPC|Hv1nBqfHCUACYdND|reloadGui|1|20250913161228\n'
+[14:19:42] Queue content: 'RPC|jR3KafaQbEEs9qyq|doCheckHubStatus|1|20250913212942\n'
+[14:19:45] Queue content: 'RPC|RZvwOuHOclN2UnDK|reloadGui|1|20250915141945\nRPC|MrrdLHUP1OXrPTWu|doCheckHubStatus|1|20250915141945\n'
+[14:19:45] Queue content: 'RPC|MrrdLHUP1OXrPTWu|doCheckHubStatus|1|20250915141945\n'
+[14:19:46] Queue content: 'RPC|9Gt3pfKpg2romX3n|reloadGui|1|20250915141946\n'
+[14:19:53] Check cycle 100, callbacks: ['reloadGui', 'doCheckHubStatus']
+[14:20:03] Check cycle 200, callbacks: ['reloadGui', 'doCheckHubStatus']
+[14:20:13] Check cycle 300, callbacks: ['reloadGui', 'doCheckHubStatus']
+[14:20:25] Queue content: 'RPC|9ML2JtqMrWnWLKJG|runPkg|1|20250915142025|Latex\n'
+[14:20:25] Queue content: 'RPC|Mhe0Z3ZWkkgFwzmN|reloadGui|1|20250915142025\n'

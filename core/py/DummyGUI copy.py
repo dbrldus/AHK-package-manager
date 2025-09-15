@@ -880,7 +880,7 @@ class PackageManagementGUI(QWidget):
     #region 정보통신. json을 열고, 읽고, (쓸 수는 없음), 각종 ahk실행 및 
     
     def openJson(self, path):
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8-sig") as f:
             return json.load(f)
     
     def addPkg(self):
