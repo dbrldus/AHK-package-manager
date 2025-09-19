@@ -8,7 +8,6 @@ DetectHiddenWindows(true)
 #Include <AHKRPC2>
 ; #Include <PythonFinder>
 #Include <JSON_PLUS>
-#Include <SafetyFileCheck>
 ;#endregion
 
 ;#region 파이썬 인터프리터 경로 설정
